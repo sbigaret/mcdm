@@ -10,10 +10,10 @@
         </alternative>
         <alternative id="D">
         </alternative>
-        <alternative id="E">
-        </alternative>
-        <alternative id="F">
-        </alternative>
+        <!--<alternative id="E">-->
+        <!--</alternative>-->
+        <!--<alternative id="F">-->
+        <!--</alternative>-->
     </alternatives>
 
 </xmcda:XMCDA>

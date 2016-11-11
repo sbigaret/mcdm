@@ -1,18 +1,17 @@
 package org.OC;
 
-
+import jdk.internal.util.xml.impl.Pair;
+import org.jgrapht.alg.CycleDetector;
+import org.jgrapht.alg.cycle.TarjanSimpleCycles;
+import org.omg.CORBA.INTERNAL;
 import org.xmcda.Alternative;
-import org.xmcda.Alternatives;
-import org.xmcda.AlternativesSetsMatrix;
 import org.xmcda.QualifiedValue;
-import org.xmcda.parsers.xml.xmcda_3_0.AlternativesMatrixParser;
-import org.xmcda.utils.Coord;
-import org.xmcda.v2_2_1.AlternativesMatrix;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
+
 
 public class OrderedClustering extends Core{
 
@@ -93,5 +92,99 @@ public class OrderedClustering extends Core{
         LoadData(in);
         PrepareData();
         System.out.print("asd");
+
+        OrderedClutering();
+
+
+        DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+
+        DefaultWeightedEdge edge;
+
+        edge = graph.addEdge("A", "B");
+        graph.setEdgeWeight(edge, -1.0);
+        edge = graph.addEdge("B", "C");
+        graph.setEdgeWeight(edge, -1.0);
+        edge = graph.addEdge("C", "A");
+        graph.setEdgeWeight(edge, -1.0);
+
+
+        //graph.addEdge(alternatives.indexOf("C"), alternatives.indexOf("A"), 1);
+
+        //isCyclic = cycles.detectCycles();
+
+
+        //graph.addVertex(alternatives.indexOf("D"));
+
     }
+
+
+    private void OrderedClutering()
+    {
+//        ArrayList<ArrayList<Integer>> Marray = new ArrayList<ArrayList<Integer>>();
+//        ArrayList<ArrayList<Double>> Iarray = new ArrayList<ArrayList<Double>>();
+//
+//        for(int i =0; i < alternatives.size(); i++)
+//        {
+//            Marray.add(i, new ArrayList<Integer>());
+//            Iarray.add(i, new ArrayList<Double>());
+//
+//            for(int j =0; j < alternatives.size(); j++)
+//            {
+//                Marray.get(i).add(j, 0);
+//                Iarray.get(i).add(j, 0.0);
+//            }
+//        }
+
+        ArrayList<ArrayList<Double>> matrixC = cloneList(matrix);
+
+
+        Tuple<Integer, Integer> coord = getMaxFrom(matrixC);
+//        while(coord.getFirst() >= 0 && coord.getSecond() >= 0)
+//        {
+//
+//
+//        }
+
+
+    }
+
+
+    private static ArrayList<ArrayList<Double>> cloneList(ArrayList<ArrayList<Double>> list)
+    {
+        ArrayList<ArrayList<Double>> result = new ArrayList<ArrayList<Double>>(list.size());
+        for(int i = 0; i < list.size(); i++)
+        {
+            result.add(new ArrayList<Double>());
+            for(Double x : list.get(i))
+            {
+                result.get(i).add(x);
+            }
+        }
+        return result;
+    }
+
+    private Tuple<Integer, Integer> getMaxFrom(ArrayList<ArrayList<Double>> table)
+    {
+        Tuple<Integer, Integer> result = new Tuple<Integer, Integer>(-1, -1);
+
+        Double max = 0.0;
+
+        for(int i = 0; i < table.size(); i++)
+        {
+            for(int j = 0; j < table.size(); j++) {
+                if (table.get(i).get(j) > max) {
+                    max = table.get(i).get(j);
+                    result.set(i, j);
+                }
+            }
+        }
+
+        return result;
+    }
+
+
 }

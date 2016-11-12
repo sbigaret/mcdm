@@ -5,7 +5,7 @@
         <parameter id="NumberOfClusters">
             <values>
                 <value>
-                    <integer>3</integer>
+                    <integer>4</integer>
                 </value>
             </values>
         </parameter>

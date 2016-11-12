@@ -1,16 +1,21 @@
 package org.OC;
 
-import jdk.internal.util.xml.impl.Pair;
+
+import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.AllDirectedPaths;
 import org.jgrapht.alg.CycleDetector;
-import org.jgrapht.alg.cycle.TarjanSimpleCycles;
-import org.omg.CORBA.INTERNAL;
+import org.jgrapht.alg.DijkstraShortestPath;
+import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.xmcda.Alternative;
 import org.xmcda.QualifiedValue;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import java.util.Set;
+import java.util.HashSet;
 
 
 public class OrderedClustering extends Core{
@@ -91,64 +96,68 @@ public class OrderedClustering extends Core{
     public void Compute(String in, String out) {
         LoadData(in);
         PrepareData();
-        System.out.print("asd");
-
         OrderedClutering();
-
-
-        DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
-
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-
-        DefaultWeightedEdge edge;
-
-        edge = graph.addEdge("A", "B");
-        graph.setEdgeWeight(edge, -1.0);
-        edge = graph.addEdge("B", "C");
-        graph.setEdgeWeight(edge, -1.0);
-        edge = graph.addEdge("C", "A");
-        graph.setEdgeWeight(edge, -1.0);
-
-
-        //graph.addEdge(alternatives.indexOf("C"), alternatives.indexOf("A"), 1);
-
-        //isCyclic = cycles.detectCycles();
-
-
-        //graph.addVertex(alternatives.indexOf("D"));
-
     }
 
 
     private void OrderedClutering()
     {
-//        ArrayList<ArrayList<Integer>> Marray = new ArrayList<ArrayList<Integer>>();
-//        ArrayList<ArrayList<Double>> Iarray = new ArrayList<ArrayList<Double>>();
-//
-//        for(int i =0; i < alternatives.size(); i++)
-//        {
-//            Marray.add(i, new ArrayList<Integer>());
-//            Iarray.add(i, new ArrayList<Double>());
-//
-//            for(int j =0; j < alternatives.size(); j++)
-//            {
-//                Marray.get(i).add(j, 0);
-//                Iarray.get(i).add(j, 0.0);
-//            }
-//        }
+
+        DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+        CycleDetector detector = new CycleDetector(graph);
+        AllDirectedPaths path = new AllDirectedPaths(graph);
+
+        Iterator<String> iter = alternatives.iterator();
+        while (iter.hasNext())
+            graph.addVertex(iter.next());
+
 
         ArrayList<ArrayList<Double>> matrixC = cloneList(matrix);
-
-
         Tuple<Integer, Integer> coord = getMaxFrom(matrixC);
-//        while(coord.getFirst() >= 0 && coord.getSecond() >= 0)
-//        {
-//
-//
-//        }
 
+        while (coord.getFirst() >= 0 && coord.getSecond() >= 0)
+        {
+            String from = alternatives.get(coord.getFirst());
+            String to = alternatives.get(coord.getSecond());
+
+            DefaultWeightedEdge edge;
+
+            edge = graph.addEdge(from, to);
+            if (edge == null)
+                return;
+            graph.setEdgeWeight(edge, -1.0);
+
+            if (detector.findCycles().size() == 0)
+            {
+                FloydWarshallShortestPaths<String, DefaultWeightedEdge> alg = new FloydWarshallShortestPaths<>(graph);
+                List<GraphPath<String, DefaultWeightedEdge>> res2 = alg.getShortestPaths();
+
+                Iterator<GraphPath<String, DefaultWeightedEdge>> findM = res2.iterator();
+                Integer max = 0;
+                while(findM.hasNext())
+                {
+                    List<String> temp = findM.next().getVertexList();
+                    if (temp.size() > max)
+                        max = temp.size();
+                }
+
+                if (max > clustersNum)
+                {
+                    graph.removeEdge(edge);
+                }
+
+                System.out.print("asd");
+            }
+            else
+            {
+                graph.removeEdge(edge);
+            }
+
+            matrixC.get(coord.getFirst()).set(coord.getSecond(), 0.0);
+            coord = getMaxFrom(matrixC);
+        }
+
+        System.out.print("asd");
 
     }
 

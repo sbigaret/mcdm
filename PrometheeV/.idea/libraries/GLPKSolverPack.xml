@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="GLPKSolverPack">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Pobrane/GLPKSolverPack.jar!/" />
+      <root url="jar://$USER_HOME$/Pobrane/SCPSolver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -7,13 +7,14 @@ import org.jgrapht.alg.AllDirectedPaths;
 import org.jgrapht.alg.CycleDetector;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
-import org.xmcda.Alternative;
-import org.xmcda.QualifiedValue;
+import org.xmcda.*;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import org.jgrapht.graph.*;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -22,6 +23,8 @@ public class OrderedClustering extends Core{
 
     protected ArrayList<ArrayList<Double>> matrix;
     protected int clustersNum = 0;
+
+    public ArrayList<ArrayList<Alternative>> mainResult;
 
     @Override
     protected void LoadData(String input) {
@@ -157,10 +160,34 @@ public class OrderedClustering extends Core{
             coord = getMaxFrom(matrixC);
         }
 
-        System.out.print("asd");
 
+
+        for (int i = 0; i < clustersNum; i++)
+        {
+            List<Alternative> partial = getNextResultAlt(graph);
+            AlternativesSet<String> set = new AlternativesSet<String>();
+            set.put(partial.get(0), new QualifiedValues<String>());
+
+            xmcda.alternativesSets = new AlternativesSets<String>();
+            xmcda.alternativesSets.add(set);
+        }
     }
 
+
+    private List<Alternative> getNextResultAlt(DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph)
+    {
+        List<Alternative> result = new ArrayList<Alternative>();
+
+        for (String node : alternatives)
+        {
+            int in = graph.inDegreeOf(node);
+            if (in == 0)
+                result.add(new Alternative(node));
+        }
+
+
+        return result;
+    }
 
     private static ArrayList<ArrayList<Double>> cloneList(ArrayList<ArrayList<Double>> list)
     {

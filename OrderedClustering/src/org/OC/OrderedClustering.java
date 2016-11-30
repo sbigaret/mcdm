@@ -1,22 +1,20 @@
 package org.OC;
 
 
-import org.jgrapht.Graph;
+
+import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.AllDirectedPaths;
 import org.jgrapht.alg.CycleDetector;
-import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.xmcda.*;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import org.jgrapht.graph.*;
 
-import java.util.Set;
-import java.util.HashSet;
 
 
 public class OrderedClustering extends Core{
@@ -99,11 +97,11 @@ public class OrderedClustering extends Core{
     public void Compute(String in, String out) {
         LoadData(in);
         PrepareData();
-        OrderedClutering();
+        OrderedClutering(out);
     }
 
 
-    private void OrderedClutering()
+    private void OrderedClutering(String out)
     {
 
         DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
@@ -161,16 +159,31 @@ public class OrderedClustering extends Core{
         }
 
 
-
+        xmcda.alternativesSets.clear();
         for (int i = 0; i < clustersNum; i++)
         {
             List<Alternative> partial = getNextResultAlt(graph);
-            AlternativesSet<String> set = new AlternativesSet<String>();
-            set.put(partial.get(0), new QualifiedValues<String>());
+            AlternativesSet set = new AlternativesSet<String>();
 
-            xmcda.alternativesSets = new AlternativesSets<String>();
+            for (Alternative alt : partial)
+                set.put(alt, null);
+
+            set.setId(String.valueOf(i));
             xmcda.alternativesSets.add(set);
         }
+
+        final XMCDAParser parser = new XMCDAParser();
+        final File plik = new File(out, "result.xml");
+        try
+        {
+            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+        }
+        catch (Throwable thr)
+        {
+            errors.add(thr);
+        }
+
+
     }
 
 
@@ -178,12 +191,15 @@ public class OrderedClustering extends Core{
     {
         List<Alternative> result = new ArrayList<Alternative>();
 
-        for (String node : alternatives)
+        for (String node : graph.vertexSet())
         {
             int in = graph.inDegreeOf(node);
             if (in == 0)
                 result.add(new Alternative(node));
         }
+
+        for(Alternative alt : result)
+            graph.removeVertex(alt.id());
 
 
         return result;

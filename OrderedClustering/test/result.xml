@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2013/XMCDA-3.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.decision-deck.org/2013/XMCDA-3.0.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-3.0.0.xsd">
+
+<alternativesSets>
+		<alternativesSet id="0">
+			<element>
+				<alternativeID>A</alternativeID>
+			</element>
+		</alternativesSet>
+		<alternativesSet id="1">
+			<element>
+				<alternativeID>B</alternativeID>
+			</element>
+			<element>
+				<alternativeID>C</alternativeID>
+			</element>
+		</alternativesSet>
+		<alternativesSet id="2">
+			<element>
+				<alternativeID>D</alternativeID>
+			</element>
+		</alternativesSet>
+	</alternativesSets>
+</xmcda:XMCDA>

@@ -24,14 +24,13 @@
       <file leaf-file-name="P2clust.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+            <state relative-caret-position="108">
+              <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#278#279#0" expanded="true" />
-                <element signature="e#313#314#0" expanded="true" />
                 <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
                 <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+                <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -40,11 +39,51 @@
       <file leaf-file-name="PrometheeII.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            <state relative-caret-position="310">
+              <caret line="30" column="72" selection-start-line="30" selection-start-column="72" selection-end-line="30" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#521#522#0" expanded="true" />
+                <element signature="e#563#564#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlternativesCriteriaValues.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/AlternativesCriteriaValues.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alternativesCriteriaValues.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+              <folding>
+                <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#5;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+                <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XMCDA.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/XMCDA.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,7 +107,6 @@
       <list>
         <option value="$PROJECT_DIR$/test/alternatives.xml" />
         <option value="$PROJECT_DIR$/test/alternativesCriteria.xml" />
-        <option value="$PROJECT_DIR$/test/alternativesCriteriaValues.xml" />
         <option value="$PROJECT_DIR$/test/criteriaScales.xml" />
         <option value="$PROJECT_DIR$/test/criteria.xml" />
         <option value="$PROJECT_DIR$/test/parameters.xml" />
@@ -76,6 +114,7 @@
         <option value="$PROJECT_DIR$/src/org/mcdm/P2CLUST.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clust.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clustUI.java" />
+        <option value="$PROJECT_DIR$/test/alternativesCriteriaValues.xml" />
         <option value="$PROJECT_DIR$/src/org/mcdm/P2clust.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/PrometheeII.java" />
       </list>
@@ -499,7 +538,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -528,13 +567,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/mcdm/P2clust.java</url>
-          <line>37</line>
+          <url>file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java</url>
+          <line>33</line>
           <properties />
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -591,14 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/AlternativesCriteriaValues.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -606,17 +637,6 @@
           <folding>
             <element signature="e#24298#24299#0" expanded="false" />
             <element signature="e#24363#24364#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="34" />
-          <folding>
-            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -656,31 +676,56 @@
     <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/XMCDA.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="108">
+          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
             <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
             <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding>
+            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#5;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/AlternativesCriteriaValues.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="310">
+          <caret line="30" column="72" selection-start-line="30" selection-start-column="72" selection-end-line="30" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
           </folding>
         </state>
       </provider>

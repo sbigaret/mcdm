@@ -1,8 +1,13 @@
 package org.mcdm;
-import org.xmcda.*;
-import org.xmcda.v2_2_1.CriteriaValues;
+
+import org.xmcda.Alternative;
+import org.xmcda.AlternativesCriteriaValues;
+import org.xmcda.AlternativesSet;
+import org.xmcda.XMCDA;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.Random;
 
@@ -10,10 +15,16 @@ public class P2clust {
 
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
+    protected List<Alternative> currentAlternatives;
+    protected AlternativesCriteriaValues currentCriteria;
+    protected List<Alternative> centralProfiles;
 
     public P2clust()
     {
         xmcda = new XMCDA();
+        currentCriteria = new AlternativesCriteriaValues();
+        currentAlternatives = new ArrayList<>();
+        centralProfiles = new ArrayList<>();
     }
 
     public boolean Calculate(String inputPath)
@@ -32,8 +43,15 @@ public class P2clust {
         if(!Validate())
             return false;
 
+        CopyToCurrent();
+
         for (int i = 0; i < 4; i++)
-            RandomAlternative();
+            AddRandomAlternative();
+
+        PrometheeII engine = new PrometheeII(xmcda);
+        engine.SetCriteria(currentCriteria);
+        engine.FindClosest(centralProfiles, currentAlternatives.get(0));
+
 
         return true;
     }
@@ -82,29 +100,28 @@ public class P2clust {
         return true;
     }
 
-    protected void PrepareIteration()
+    protected void AddRandomAlternative()
     {
+
+        Alternative alternative = new Alternative(UUID.randomUUID().toString());
+        currentAlternatives.add(alternative);
+
+        org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<Double>();
+        Random generator = new Random();
+        for (Object c : xmcda.criteria.toArray())
+            criteria.put(c, (double)generator.nextInt() );
+
+        currentCriteria.put(alternative, criteria);
+
+        centralProfiles.add(alternative);
 
     }
 
-    protected boolean RandomAlternative()
+    protected void CopyToCurrent()
     {
-        if (!xmcda.alternativesSets.contains(randCoreName))
-            xmcda.alternativesSets.add(new AlternativesSet(randCoreName));
-        if (xmcda.alternativesSets.size() < 1)
-            return false;
-        Alternative alt = new Alternative(UUID.randomUUID().toString());
-        xmcda.alternativesSets.get(randCoreName).put(alt, null);
+        for(Alternative alt : xmcda.alternatives)
+            currentAlternatives.add(alt);
 
-        if(xmcda.alternativesCriteriaValuesList.size() < 2)
-            xmcda.alternativesCriteriaValuesList.add(new AlternativesCriteriaValues());
-
-        org.xmcda.CriteriaValues crit = new  org.xmcda.CriteriaValues<Double>();
-        Random generator = new Random();
-        for (Object c : xmcda.criteria.toArray())
-            crit.put(c, (double)generator.nextInt() );
-        xmcda.alternativesCriteriaValuesList.get(1).put(alt, crit);
-
-        return true;
+        currentCriteria.putAll(xmcda.alternativesCriteriaValuesList.get(0));
     }
 }

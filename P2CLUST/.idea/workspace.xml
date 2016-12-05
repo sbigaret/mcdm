@@ -21,30 +21,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="P2clust.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="P2clust.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
                 <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+                <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
                 <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrometheeII.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PrometheeII.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
+                <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
+                <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
+                <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+                <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,8 +57,8 @@
       <file leaf-file-name="criteriaValues.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/criteriaValues.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="126">
+              <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -118,12 +122,12 @@
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clust.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clustUI.java" />
         <option value="$PROJECT_DIR$/test/alternativesCriteriaValues.xml" />
-        <option value="$PROJECT_DIR$/src/org/mcdm/P2clust.java" />
         <option value="$PROJECT_DIR$/test/criteriaThresholds.xml" />
         <option value="$PROJECT_DIR$/test/criteria.xml" />
-        <option value="$PROJECT_DIR$/src/org/mcdm/PrometheeII.java" />
         <option value="$PROJECT_DIR$/test/criteriaWeigths.xml" />
         <option value="$PROJECT_DIR$/test/criteriaValues.xml" />
+        <option value="$PROJECT_DIR$/src/org/mcdm/P2clust.java" />
+        <option value="$PROJECT_DIR$/src/org/mcdm/PrometheeII.java" />
       </list>
     </option>
   </component>
@@ -580,18 +584,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java</url>
-          <line>104</line>
+          <line>20</line>
           <properties />
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java</url>
-          <line>92</line>
+          <line>90</line>
           <properties />
-          <option name="timeStamp" value="42" />
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -606,8 +610,8 @@
           <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
             <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
             <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
           </folding>
         </state>
@@ -621,6 +625,10 @@
             <element signature="imports" expanded="true" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -807,38 +815,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="8" column="43" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/criteriaValues.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/criteria.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -854,15 +834,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteria.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteriaValues.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
             <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
             <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
           </folding>
         </state>
       </provider>

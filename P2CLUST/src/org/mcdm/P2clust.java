@@ -31,7 +31,8 @@ public class P2clust {
                 "alternativesCriteriaValues",
                 "criteria",
                 "criteriaScales",
-                "criteriaThresholds"
+                "criteriaThresholds",
+                "criteriaValues"
         };
 
         for(String tag : tags)

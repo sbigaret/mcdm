@@ -17,7 +17,7 @@ public class PrometheeII {
 
     public Alternative FindClosest(List<Alternative> centralProfiles, Alternative tested)
     {
-        CalculatePI(centralProfiles.get(0), tested);
+        double test = CalculatePI(centralProfiles.get(0), tested);
         return null;
     }
 
@@ -70,14 +70,25 @@ public class PrometheeII {
             return 1.0;
     }
 
+    double getWeigth(Criterion criterion)
+    {
+        double result = 0.0;
+
+        LabelledQValues var = xmcda.criteriaValuesList.get(0).get(criterion);
+        QualifiedValue val = (QualifiedValue)var.get(0);
+        result = (double)val.getValue();
+
+        return result;
+    }
 
     private double CalculatePI(Alternative first, Alternative second)
     {
+        double result = 0.0;
         CriteriaValues firstAlter = (CriteriaValues)currentCriteria.get(first);
         CriteriaValues secondAlter = (CriteriaValues)currentCriteria.get(second);
         for (Criterion crit : xmcda.criteria)
         {
-            Double result = 0.0;
+            Double critResult = 0.0;
 
             LabelledQValues secLQV = (LabelledQValues)secondAlter.get(crit);
             QualifiedValue secQV = (QualifiedValue)secLQV.get(0);
@@ -95,28 +106,15 @@ public class PrometheeII {
 
             QuantitativeScale x = (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crit).get(0);
             if (x.getPreferenceDirection() == Scale.PreferenceDirection.MIN)
-                result = functionPMax(indif, pref, dk);
+                critResult = functionPMax(indif, pref, dk);
             else
-                result = functionPMin(indif, pref, dk);
+                critResult = functionPMin(indif, pref, dk);
 
+            critResult *= getWeigth(crit);
 
-
-            crit.equals(null);
+            result += critResult;
         }
 
-
-//        //int firstIndex = currentCriteria.get(first);
-//        int secondIndex = currentCriteria.getAlternativeCriteriaValue().lastIndexOf(second);
-//
-//        for (Criterion crt : xmcda.criteria)
-//        {
-//            double dk = (double)currentCriteria.getAlternativeCriteriaValue().get(firstIndex).getCriterionValue().get(0).getValueOrValues().get(0);
-//
-//
-//
-//        }
-//
-
-        return 0;
+        return result;
     }
 }

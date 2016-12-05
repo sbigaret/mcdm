@@ -2,6 +2,7 @@ package org.mcdm;
 import org.xmcda.*;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.LinkedHashSet;
 
@@ -17,8 +18,33 @@ public class PrometheeII {
 
     public Alternative FindClosest(List<Alternative> centralProfiles, Alternative tested)
     {
-        double test = CalculatePI(centralProfiles.get(0), tested);
-        return null;
+        LinkedHashMap<Alternative, Double> flows = new LinkedHashMap<Alternative, Double>();
+        flows.put(tested, CalculateFlow(tested, centralProfiles));
+
+        for(Alternative alt : centralProfiles)
+        {
+            List<Alternative> temp = new ArrayList();
+            temp.add(tested);
+            temp.addAll(centralProfiles);
+            temp.remove(alt);
+            double res = CalculateFlow(alt, temp);
+            flows.put(alt, res);
+        }
+
+        Alternative result = null;
+        Double min = Double.MAX_VALUE;
+        for(Alternative alt : centralProfiles)
+        {
+            Double temp = flows.get(alt) - flows.get(tested);
+            temp = Math.abs(temp);
+            if (temp < min)
+            {
+                min = temp;
+                result = alt;
+            }
+        }
+
+        return result;
     }
 
     public void SetCriteria(AlternativesCriteriaValues criteria)
@@ -26,7 +52,7 @@ public class PrometheeII {
         currentCriteria = criteria;
     }
 
-    public double getIndifference(Criterion crit)
+    private double getIndifference(Criterion crit)
     {
         CriteriaThresholds ctr = xmcda.criteriaThresholdsList.get(0);
 
@@ -38,7 +64,7 @@ public class PrometheeII {
             return (double)criterionT.get(1).getConstant().getValue();
     }
 
-    public double getPreference(Criterion crit)
+    private double getPreference(Criterion crit)
     {
         CriteriaThresholds ctr = xmcda.criteriaThresholdsList.get(0);
 
@@ -50,7 +76,7 @@ public class PrometheeII {
             return (double)criterionT.get(1).getConstant().getValue();
     }
 
-    double functionPMax(double indf, double pref, double x)
+    private double functionPMax(double indf, double pref, double x)
     {
         if (x < pref)
             return 1.0;
@@ -60,7 +86,7 @@ public class PrometheeII {
             return 0.0;
     }
 
-    double functionPMin(double indf, double pref, double x)
+    private double functionPMin(double indf, double pref, double x)
     {
         if (x < indf)
             return 0.0;
@@ -70,7 +96,7 @@ public class PrometheeII {
             return 1.0;
     }
 
-    double getWeigth(Criterion criterion)
+    private double getWeigth(Criterion criterion)
     {
         double result = 0.0;
 
@@ -117,4 +143,20 @@ public class PrometheeII {
 
         return result;
     }
+
+    private double CalculateFlow(Alternative argument, List<Alternative> rest)
+    {
+        double result = 0;
+
+        for (Alternative alt : rest)
+        {
+            double positivePI = CalculatePI(argument, alt);
+            double negativePI = CalculatePI(alt, argument);
+            result += positivePI - negativePI;
+        }
+        result /= (double)rest.size();
+
+        return result;
+    }
+
 }

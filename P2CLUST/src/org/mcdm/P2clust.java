@@ -3,10 +3,7 @@ package org.mcdm;
 import org.xmcda.*;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.Random;
+import java.util.*;
 
 public class P2clust {
 
@@ -26,6 +23,83 @@ public class P2clust {
 
     public boolean Calculate(String inputPath)
     {
+        if (!Init(inputPath))
+            return false;
+
+        PrometheeII engine = new PrometheeII(xmcda);
+        engine.SetCriteria(currentCriteria);
+
+        LinkedHashMap<Alternative, List<Alternative>> lastOrder = new LinkedHashMap<>();
+        LinkedHashMap<Alternative, List<Alternative>> profilesData = new LinkedHashMap<>();
+        boolean flag = true;
+        do {
+            List<Alternative> tempAlternatives = new ArrayList<>(currentAlternatives);
+            for(Alternative alt : centralProfiles)
+            {
+                profilesData.put(alt, new ArrayList<>());
+                tempAlternatives.remove(alt);
+            }
+
+            for (Alternative alt : tempAlternatives)
+            {
+                Alternative prof = engine.FindClosest(centralProfiles, alt);
+                profilesData.get(prof).add(alt);
+            }
+
+            UpdateCentralProfiles(profilesData);
+
+            if (lastOrder == profilesData)
+                flag = false;
+            else
+                lastOrder = profilesData;
+
+        }while(flag);
+
+        return true;
+    }
+
+    private void UpdateCentralProfiles(LinkedHashMap<Alternative, List<Alternative>> profilesData)
+    {
+        ArrayList<Alternative> list = new ArrayList<>();
+
+        for (Map.Entry<Alternative, List<Alternative>> l : profilesData.entrySet())
+        {
+            Alternative key = l.getKey();
+            List<Alternative> value = l.getValue();
+
+            if(value.size() == 0)
+                continue;
+
+
+            UpdateCriteriaValue(value, key);
+
+        }
+
+    }
+
+    private void UpdateCriteriaValue(List<Alternative> list, Alternative profile)
+    {
+        for (Criterion crt : xmcda.criteria)
+        {
+            Double partialRes = 0.0;
+            for (Alternative alt : list)
+            {
+                CriteriaValues crVal = (CriteriaValues)currentCriteria.get(alt);
+                LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
+                QualifiedValue QV = (QualifiedValue)LabQVal.get(0);
+                Double value = (double)QV.getValue();
+                partialRes += value;
+            }
+            partialRes /= (double)list.size();
+
+            CriteriaValues crVal = (CriteriaValues)currentCriteria.get(profile);
+            LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
+            LabQVal.set(0, new QualifiedValue<Double>(partialRes));
+        }
+    }
+
+    private boolean Init(String inputPath)
+    {
         String[] tags = new String[]{
                 "alternatives",
                 "alternativesCriteriaValues",
@@ -43,13 +117,8 @@ public class P2clust {
 
         CopyToCurrent();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
             AddRandomAlternative();
-
-        PrometheeII engine = new PrometheeII(xmcda);
-        engine.SetCriteria(currentCriteria);
-        engine.FindClosest(centralProfiles, currentAlternatives.get(0));
-
 
         return true;
     }

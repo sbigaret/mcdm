@@ -24,12 +24,18 @@
       <file leaf-file-name="P2clust.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="129" column="55" selection-start-line="129" selection-start-column="55" selection-end-line="129" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#Calculate#0;class#P2clust#0" expanded="false" />
+                <element signature="method#UpdateCentralProfiles#0;class#P2clust#0" expanded="false" />
+                <element signature="method#UpdateCriteriaValue#0;class#P2clust#0" expanded="false" />
                 <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
                 <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+                <element signature="method#GetBounds#0;class#P2clust#0" expanded="false" />
+                <element signature="method#SetAlternativesWithEmptyCriteria#0;class#P2clust#0" expanded="false" />
+                <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
                 <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
               </folding>
             </state>
@@ -49,17 +55,17 @@
       <file leaf-file-name="PrometheeII.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+            <state relative-caret-position="576">
+              <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#FindClosest#0;class#PrometheeII#0" expanded="false" />
-                <element signature="e#503#524#0" expanded="true" />
                 <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+                <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
                 <element signature="method#CalculateFlow#0;class#PrometheeII#0" expanded="false" />
               </folding>
             </state>
@@ -103,15 +109,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuantitativeScale.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/QuantitativeScale.class">
+      <file leaf-file-name="criteriaThresholds.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-              <folding>
-                <element signature="e#745#746#0" expanded="true" />
-                <element signature="e#792#793#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,17 +123,7 @@
         <entry file="file://$PROJECT_DIR$/test/criteriaScales.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="criteriaThresholds.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+              <caret line="9" column="44" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -573,7 +566,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="0" width="1922" height="1081" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -591,7 +584,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3208122" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3208122" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -621,20 +614,8 @@
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/mcdm/P2clust.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/mcdm/P2clust.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="64" />
+      <option name="time" value="81" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -645,12 +626,118 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Calculate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P2clust#0" expanded="false" />
+            <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
+            <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#GetBounds#0;class#P2clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithEmptyCriteria#0;class#P2clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
+            <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/alternatives.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#FindClosest#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculateFlow#0;class#PrometheeII#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding>
+            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteriaValues.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteria.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/QuantitativeScale.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteriaScales.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#Calculate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P2clust#0" expanded="false" />
             <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
             <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#GetBounds#0;class#P2clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithEmptyCriteria#0;class#P2clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
             <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
           </folding>
         </state>
@@ -663,12 +750,12 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#FindClosest#0;class#PrometheeII#0" expanded="false" />
-            <element signature="e#503#524#0" expanded="true" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#CalculateFlow#0;class#PrometheeII#0" expanded="false" />
           </folding>
         </state>
@@ -701,7 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,14 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/AlternativesCriteriaValues.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -776,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1692">
           <caret line="117" column="13" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -792,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,20 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="53" column="23" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/Criterion.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="e#1910#1911#0" expanded="true" />
-            <element signature="e#2397#2398#0" expanded="true" />
-            <element signature="e#2427#2428#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,18 +883,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
           <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/QuantitativeScale.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="306">
           <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="e#745#746#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -841,33 +899,9 @@
         <state relative-caret-position="231">
           <caret line="328" column="17" selection-start-line="328" selection-start-column="17" selection-end-line="328" selection-end-column="17" />
           <folding>
-            <element signature="e#11985#11986#0" expanded="true" />
-            <element signature="e#12016#12017#0" expanded="true" />
+            <element signature="e#11985#11986#0" expanded="false" />
+            <element signature="e#12016#12017#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/criteriaScales.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/alternatives.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -887,6 +921,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#FindClosest#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculatePI#0;class#PrometheeII#0" expanded="false" />
+            <element signature="method#CalculateFlow#0;class#PrometheeII#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/alternatives.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/Criterion.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <element signature="e#1910#1911#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
+          <folding>
+            <element signature="e#5644#5645#0" expanded="true" />
+            <element signature="e#5675#5676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/AlternativesCriteriaValues.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="16" column="85" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="604">
@@ -902,32 +991,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeII.java">
+    <entry file="file://$PROJECT_DIR$/test/criteriaThresholds.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#FindClosest#0;class#PrometheeII#0" expanded="false" />
-            <element signature="e#503#524#0" expanded="true" />
-            <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#functionPMin#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#getWeigth#0;class#PrometheeII#0" expanded="false" />
-            <element signature="method#CalculateFlow#0;class#PrometheeII#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/criteriaScales.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="234">
+          <caret line="129" column="55" selection-start-line="129" selection-start-column="55" selection-end-line="129" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#Calculate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P2clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P2clust#0" expanded="false" />
             <element signature="method#LoadData#0;class#P2clust#0" expanded="false" />
             <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
+            <element signature="method#GetBounds#0;class#P2clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithEmptyCriteria#0;class#P2clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
             <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
           </folding>
         </state>

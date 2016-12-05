@@ -1,6 +1,8 @@
 package org.mcdm;
 
+import javafx.util.Pair;
 import org.xmcda.*;
+import org.xmcda.v2_2_1.Quantitative;
 
 import java.io.File;
 import java.util.*;
@@ -12,6 +14,8 @@ public class P2clust {
     protected List<Alternative> currentAlternatives;
     protected AlternativesCriteriaValues currentCriteria;
     protected List<Alternative> centralProfiles;
+    protected int K = 4;
+    protected String prefix;
 
     public P2clust()
     {
@@ -19,6 +23,7 @@ public class P2clust {
         currentCriteria = new AlternativesCriteriaValues();
         currentAlternatives = new ArrayList<>();
         centralProfiles = new ArrayList<>();
+        prefix = UUID.randomUUID().toString();
     }
 
     public boolean Calculate(String inputPath)
@@ -117,8 +122,7 @@ public class P2clust {
 
         CopyToCurrent();
 
-        for (int i = 0; i < 3; i++)
-            AddRandomAlternative();
+        AddRandomAlternative(4);
 
         return true;
     }
@@ -167,22 +171,100 @@ public class P2clust {
         return true;
     }
 
-    protected void AddRandomAlternative()
+    protected void AddRandomAlternative(int num)
     {
+        HashMap<Criterion, Pair<Double, Double>> bounds = GetBounds();
 
-        Alternative alternative = new Alternative(UUID.randomUUID().toString());
-        currentAlternatives.add(alternative);
+        SetAlternativesWithEmptyCriteria();
 
-        org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
+        HashMap<Criterion, List<Double>> tempList = getRandomInRange(bounds);
 
-        Random generator = new Random();
-        for (Object c : xmcda.criteria.toArray())
-            criteria.put(c, new LabelledQValues(new QualifiedValue<Double>(new Double(generator.nextInt()))));
+        for(Map.Entry<Criterion, List<Double>> val : tempList.entrySet())
+        {
+            List<Double> vars = val.getValue();
+            Criterion crt = val.getKey();
+            Collections.sort(vars);
 
-        currentCriteria.put(alternative, criteria);
+            QuantitativeScale direction =  (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crt).get(0);
+            if (direction.getPreferenceDirection() == Scale.PreferenceDirection.MAX)
+                Collections.reverse(vars);
 
-        centralProfiles.add(alternative);
 
+            for(int i = 0; i < K; i++)
+            {
+                int index = currentAlternatives.size() - K;
+                Alternative alt = currentAlternatives.get(index + i);
+                ((QualifiedValue)((LabelledQValues)((CriteriaValues)currentCriteria.get(alt)).get(crt)).get(0)).setValue(vars.get(i));
+            }
+
+        }
+
+    }
+
+    protected HashMap<Criterion, Pair<Double, Double>> GetBounds()
+    {
+        HashMap<Criterion, Pair<Double, Double>> bounds = new HashMap<>();
+        for(Criterion crt : xmcda.criteria)
+            bounds.put(crt, new Pair<>(Double.MIN_VALUE, Double.MAX_VALUE));
+
+        for (Criterion crt : xmcda.criteria)
+        {
+            double max = Double.MIN_VALUE;
+            double min = Double.MAX_VALUE;
+            for (Alternative alt : currentAlternatives)
+            {
+                LabelledQValues temp = xmcda.alternativesCriteriaValuesList.get(0).get(alt).get(crt);
+                double tempVal = (double)((QualifiedValue)temp.get(0)).getValue();
+
+                if(tempVal < min)
+                    min = tempVal;
+                if(tempVal > max)
+                    max = tempVal;
+            }
+
+            bounds.put(crt, new Pair<>(min, max));
+        }
+
+        return bounds;
+    }
+
+    protected void SetAlternativesWithEmptyCriteria()
+    {
+        for (int i = 0; i < K; i++)
+        {
+            Alternative alt = new Alternative(prefix.concat(Integer.toString(i)));
+            centralProfiles.add(alt);
+            currentAlternatives.add(alt);
+        }
+
+        for (Alternative alt : centralProfiles)
+        {
+            org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
+            for (Criterion crt : xmcda.criteria)
+                criteria.put(crt,new QualifiedValue(0.0));
+            currentCriteria.put(alt, criteria);
+        }
+    }
+
+    protected HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
+    {
+        Random engine = new Random();
+
+        HashMap<Criterion, List<Double>> tempList = new HashMap<>();
+        for (Criterion crt : xmcda.criteria)
+            tempList.put(crt, new ArrayList<>());
+
+        for (int i = 0; i < K; i++)
+        {
+            for (Criterion crt : xmcda.criteria)
+            {
+                double randVal = bounds.get(crt).getValue() - bounds.get(crt).getKey();
+                randVal = engine.nextInt((int)randVal);
+                randVal += bounds.get(crt).getKey();
+                tempList.get(crt).add(randVal);
+            }
+        }
+        return tempList;
     }
 
     protected void CopyToCurrent()

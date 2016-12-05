@@ -1,9 +1,6 @@
 package org.mcdm;
 
-import org.xmcda.Alternative;
-import org.xmcda.AlternativesCriteriaValues;
-import org.xmcda.AlternativesSet;
-import org.xmcda.XMCDA;
+import org.xmcda.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -106,10 +103,11 @@ public class P2clust {
         Alternative alternative = new Alternative(UUID.randomUUID().toString());
         currentAlternatives.add(alternative);
 
-        org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<Double>();
+        org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
+
         Random generator = new Random();
         for (Object c : xmcda.criteria.toArray())
-            criteria.put(c, (double)generator.nextInt() );
+            criteria.put(c, new LabelledQValues(new QualifiedValue<Double>(new Double(generator.nextInt()))));
 
         currentCriteria.put(alternative, criteria);
 

@@ -14,7 +14,7 @@ public class P2clust {
     protected List<Alternative> currentAlternatives;
     protected AlternativesCriteriaValues currentCriteria;
     protected List<Alternative> centralProfiles;
-    protected int K = 4;
+    protected int K;
     protected String prefix;
 
     public P2clust()
@@ -154,7 +154,8 @@ public class P2clust {
                 "criteria",
                 "criteriaScales",
                 "criteriaThresholds",
-                "criteriaValues"
+                "criteriaValues",
+                "programParameters"
         };
 
         for(String tag : tags)
@@ -165,7 +166,9 @@ public class P2clust {
 
         CopyToCurrent();
 
-        AddRandomAlternative(4);
+        K = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
+        AddRandomAlternative(K);
+
 
         return true;
     }
@@ -209,6 +212,10 @@ public class P2clust {
         if (critScalNum > 0)
             critScalNum = xmcda.criteriaScalesList.get(0).size();
         if (critNum != critScalNum)
+            return false;
+
+        int cNum = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
+        if (cNum >= altNum)
             return false;
 
         return true;

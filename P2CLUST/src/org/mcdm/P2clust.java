@@ -2,6 +2,7 @@ package org.mcdm;
 
 import javafx.util.Pair;
 import org.xmcda.*;
+import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
 import org.xmcda.v2_2_1.Quantitative;
 
 import java.io.File;
@@ -63,9 +64,37 @@ public class P2clust {
 
         }while(flag);
 
+        SaveData(profilesData);
+
         return true;
     }
 
+    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data)
+    {
+        for(int i = 0; i < K; i++)
+        {
+            AlternativesSet set = new AlternativesSet<String>();
+            List<Alternative> temp = data.get(centralProfiles.get(i));
+
+            for (Alternative item : temp) {
+//                QualifiedValues<String> val = new QualifiedValues<>();
+//                val.add(new QualifiedValue<>(String.valueOf(i)));
+                set.put(item, null);
+            }
+            set.setId(String.valueOf(i));
+            xmcda.alternativesSets.add(set);
+        }
+
+        final File plik = new File("result.xml");
+        final XMCDAParser parser = new XMCDAParser();
+        try {
+            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+        }
+        catch(Throwable thr)
+        {
+            return;
+        }
+    }
 
     private LinkedHashMap<Alternative, List<Alternative>> RepairData(LinkedHashMap<Alternative, List<Alternative>> data)
     {
@@ -161,8 +190,15 @@ public class P2clust {
         for(String tag : tags)
             LoadData(inputPath.concat(tag).concat(".xml"), tag);
 
-        if(!Validate())
+        try
+        {
+            if (!Validate())
+                return false;
+        }
+        catch (Throwable thr)
+        {
             return false;
+        }
 
         CopyToCurrent();
 

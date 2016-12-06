@@ -53,6 +53,9 @@ public class P2clust {
 
             UpdateCentralProfiles(profilesData);
 
+            if (!isValid(profilesData))
+                profilesData = RepairData(profilesData);
+
             if (lastOrder == profilesData)
                 flag = false;
             else
@@ -60,6 +63,46 @@ public class P2clust {
 
         }while(flag);
 
+        return true;
+    }
+
+
+    private LinkedHashMap<Alternative, List<Alternative>> RepairData(LinkedHashMap<Alternative, List<Alternative>> data)
+    {
+        List<Alternative> notEnougth = new ArrayList<>();
+        List<Alternative> moreThanRequired = new ArrayList<>();
+
+        for (Map.Entry<Alternative, List<Alternative>> item : data.entrySet())
+        {
+            if (item.getValue().size() == 0)
+                notEnougth.add(item.getKey());
+            else if (item.getValue().size() > 1)
+                moreThanRequired.add(item.getKey());
+        }
+
+        for (Alternative item : notEnougth)
+        {
+            for (Alternative temp : moreThanRequired)
+            {
+                if (data.get(temp).size() > 1)
+                {
+                    data.get(item).add(data.get(temp).get(0));
+                    data.get(temp).remove(0);
+                    break;
+                }
+            }
+        }
+
+        return data;
+    }
+
+    private boolean isValid(LinkedHashMap<Alternative, List<Alternative>> data)
+    {
+        for (Map.Entry<Alternative, List<Alternative>> item : data.entrySet())
+        {
+            if (item.getValue().size() == 0)
+                return false;
+        }
         return true;
     }
 

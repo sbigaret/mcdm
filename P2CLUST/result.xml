@@ -2,7 +2,7 @@
 <xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2013/XMCDA-3.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.decision-deck.org/2013/XMCDA-3.0.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-3.0.0.xsd">
 
 <alternativesSets>
-		<alternativesSet id="0">
+		<alternativesSet id="5">
 			<element>
 				<alternativeID>C</alternativeID>
 			</element>
@@ -16,22 +16,22 @@
 				<alternativeID>G</alternativeID>
 			</element>
 		</alternativesSet>
-		<alternativesSet id="1">
+		<alternativesSet id="4">
 			<element>
 				<alternativeID>D</alternativeID>
 			</element>
 		</alternativesSet>
-		<alternativesSet id="2">
+		<alternativesSet id="3">
 			<element>
 				<alternativeID>A</alternativeID>
 			</element>
 		</alternativesSet>
-		<alternativesSet id="3">
+		<alternativesSet id="2">
 			<element>
 				<alternativeID>B</alternativeID>
 			</element>
 		</alternativesSet>
-		<alternativesSet id="4">
+		<alternativesSet id="1">
 			<element>
 				<alternativeID>H</alternativeID>
 			</element>

@@ -202,7 +202,7 @@ public class P3clust {
         CopyToCurrent();
 
         K = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
-        AddRandomAlternative(K);
+        GetRandomAlternative(K);
 
 
         return true;
@@ -256,33 +256,24 @@ public class P3clust {
         return true;
     }
 
-    protected void AddRandomAlternative(int num)
+    protected void GetRandomAlternative(int num)
     {
-        HashMap<Criterion, Pair<Double, Double>> bounds = GetBounds();
 
-        SetAlternativesWithEmptyCriteria();
 
-        HashMap<Criterion, List<Double>> tempList = getRandomInRange(bounds);
-
-        for(Map.Entry<Criterion, List<Double>> val : tempList.entrySet())
+        int currentNum = 0;
+        Random rnd = new Random();
+        List<Alternative> chosenOnes = new ArrayList<>();
+        while (currentNum < num)
         {
-            List<Double> vars = val.getValue();
-            Criterion crt = val.getKey();
-            Collections.sort(vars);
-
-            QuantitativeScale direction =  (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crt).get(0);
-            if (direction.getPreferenceDirection() == Scale.PreferenceDirection.MAX)
-                Collections.reverse(vars);
-
-
-            for(int i = 0; i < K; i++)
+            int chosen = rnd.nextInt(num);
+            if (!chosenOnes.contains(currentAlternatives.get(chosen)))
             {
-                int index = currentAlternatives.size() - K;
-                Alternative alt = currentAlternatives.get(index + i);
-                ((QualifiedValue)((LabelledQValues)((CriteriaValues)currentCriteria.get(alt)).get(crt)).get(0)).setValue(vars.get(i));
+                currentNum++;
+                chosenOnes.add(currentAlternatives.get(chosen));
             }
-
         }
+
+        SetAlternativesWithCriteria(chosenOnes);
 
     }
 
@@ -313,21 +304,29 @@ public class P3clust {
         return bounds;
     }
 
-    protected void SetAlternativesWithEmptyCriteria()
+    protected void SetAlternativesWithCriteria(List<Alternative> from)
     {
         for (int i = 0; i < K; i++)
         {
             Alternative alt = new Alternative(prefix.concat(Integer.toString(i)));
             centralProfiles.add(alt);
-            currentAlternatives.add(alt);
         }
 
-        for (Alternative alt : centralProfiles)
+        //for (Alternative alt : centralProfiles)
+        for (int i = 0; i < centralProfiles.size(); i++)
         {
+            Alternative altDst = centralProfiles.get(i);
+            Alternative altSrc = from.get(i);
             org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
             for (Criterion crt : xmcda.criteria)
-                criteria.put(crt,new QualifiedValue(0.0));
-            currentCriteria.put(alt, criteria);
+            {
+                CriteriaValues srcCritVal = (CriteriaValues)currentCriteria.get(altSrc);
+                LabelledQValues srcLVal = (LabelledQValues)srcCritVal.get(crt);
+                QualifiedValue srcQV = (QualifiedValue)srcLVal.get(0);
+                QualifiedValue<Double> insert = new QualifiedValue<Double>((double)srcQV.getValue());
+                criteria.put(crt, insert);
+            }
+            currentCriteria.put(altDst, criteria);
         }
     }
 

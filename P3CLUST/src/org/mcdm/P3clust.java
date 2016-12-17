@@ -11,11 +11,12 @@ public class P3clust {
 
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
-    protected List<Alternative> currentAlternatives;
-    protected AlternativesCriteriaValues currentCriteria;
-    protected List<Alternative> centralProfiles;
-    protected int K;
-    protected String prefix;
+    private List<Alternative> currentAlternatives;
+    private AlternativesCriteriaValues currentCriteria;
+    private List<Alternative> centralProfiles;
+    private int K;
+    private int P;
+    private String prefix;
 
     public P3clust()
     {
@@ -76,8 +77,6 @@ public class P3clust {
             List<Alternative> temp = data.get(centralProfiles.get(i));
 
             for (Alternative item : temp) {
-//                QualifiedValues<String> val = new QualifiedValues<>();
-//                val.add(new QualifiedValue<>(String.valueOf(i)));
                 set.put(item, null);
             }
             set.setId(String.valueOf(K-i));
@@ -201,11 +200,27 @@ public class P3clust {
 
         CopyToCurrent();
 
-        K = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
+        GetParameters();
         GetRandomAlternative(K);
 
 
         return true;
+    }
+
+    private void GetParameters()
+    {
+        ProgramParameters paramList = (ProgramParameters)xmcda.programParametersList.get(0);
+
+        for (Object qv : paramList)
+        {
+            ProgramParameter qwe = (ProgramParameter)qv;
+            int val = (int)((QualifiedValue)qwe.getValues().get(0)).getValue();
+            if (qwe.id().equals("distance"))
+                P = val;
+            else
+                K = val;
+        }
+
     }
 
     protected boolean LoadData(String path, String tag)

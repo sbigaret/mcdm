@@ -4,8 +4,15 @@ import java.io.File;
 import java.util.*;
 
 import org.xmcda.*;
+import org.xmcda.Alternative;
+import org.xmcda.AlternativesLinearConstraints;
+import org.xmcda.AlternativesValues;
 import org.xmcda.LinearConstraint;
+import org.xmcda.XMCDA;
+import org.xmcda.converters.v2_2_1_v3_0.AlternativeConverter;
+import org.xmcda.converters.v2_2_1_v3_0.XMCDAConverter;
 import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
+import org.xmcda.v2_2_1.*;
 import scpsolver.constraints.*;
 import scpsolver.lpsolver.LinearProgramSolver;
 import scpsolver.lpsolver.SolverFactory;
@@ -17,6 +24,8 @@ public class PrometheeV {
     private HashMap<String, Double> flows;
     private ArrayList<String> alternatives;
     private XMCDA xmcda;
+
+    public enum xmcdaVersion {V2, V3};
 
     public PrometheeV()
     {
@@ -42,6 +51,25 @@ public class PrometheeV {
         {
             return false;
         }
+    }
+
+    public org.xmcda.v2_2_1.XMCDA LoadFileObsolete(org.xmcda.v2_2_1.XMCDA xmcdaV2, String path, String ... typeTag)
+    {
+        File file = new File(path);
+
+        if(file.exists())
+        {
+            try
+            {
+                //return org.xmcda.parsers.xml.xmcda_2_2_1.XMCDAParser.readXMCDA(path, typeTag);
+                xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_2_2_1.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
+            }
+            catch (Throwable thr)
+            {
+                System.out.print(thr.getMessage());
+            }
+        }
+        return xmcdaV2;
     }
 
     protected HashMap<String, Double>  GetFlows()
@@ -90,23 +118,39 @@ public class PrometheeV {
         }
     }
 
-    protected void LoadData(String input)
+    protected void LoadData(xmcdaVersion version,  String input)
     {
-        LoadFile(input.concat("/positive.xml"), "alternativesValues");
-        LoadFile(input.concat("/test.xml"), "alternativesLinearConstraints");
-        LoadFile(input.concat("/alternatives.xml"), "alternatives");
+        if (version == xmcdaVersion.V3) {
+            LoadFile(input.concat("/flows.xml"), "alternativesValues");
+            LoadFile(input.concat("/constraints.xml"), "alternativesLinearConstraints");
+            LoadFile(input.concat("/alternatives.xml"), "alternatives");
+        }
+        else{
+            org.xmcda.v2_2_1.XMCDA xmcdaV2 = new org.xmcda.v2_2_1.XMCDA();
+            xmcdaV2 = LoadFileObsolete(xmcdaV2, input.concat("/flows.xml"), "alternativesValues");
+            xmcdaV2 = LoadFileObsolete(xmcdaV2, input.concat("/alternatives.xml"), "alternatives");
+            xmcdaV2 = LoadFileObsolete(xmcdaV2, input.concat("/constraints.xml"), "alternativesLinearConstraints");
+            xmcda = XMCDAConverter.convertTo_v3(xmcdaV2);
+        }
     }
 
-    public boolean Compute(String input, String output)
+    public boolean Compute(xmcdaVersion version, String input, String output)
     {
-        LoadData(input);
+        LoadData(version, input);
+
         if (!GetAlternatives())
             return false;
+
         LinearProgram lp = MakeLP();
+        if (lp == null)
+            return false;
+
         if (!MakeConstraints(lp))
             return false;
+
         if (!SolveAndSave(lp, output))
             return false;
+
         return true;
     }
 
@@ -114,6 +158,8 @@ public class PrometheeV {
     private LinearProgram MakeLP()
     {
         flows = GetFlows();
+        if (flows == null)
+            return null;
         double [] problem = new double[flows.size()];
         Arrays.fill(problem, 1.0);
         LinearProgram lp = new LinearProgram(problem);

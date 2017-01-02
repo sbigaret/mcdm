@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2012/XMCDA-2.2.1"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd">
+
+    <alternativesLinearConstraints>
+        <constraint id="con0">
+            <element>
+                <alternativeID>A</alternativeID>
+                <coefficient>
+                    <real>1.00</real>
+                </coefficient>
+            </element>
+            <element>
+                <alternativeID>B</alternativeID>
+                <coefficient>
+                    <real>2.00</real>
+                </coefficient>
+            </element>
+            <element>
+                <alternativeID>C</alternativeID>
+                <coefficient>
+                    <real>3.00</real>
+                </coefficient>
+            </element>
+            <rhs>
+                <real>5.0</real>
+            </rhs>
+            <operator>geq</operator>
+        </constraint>
+        <constraint id="con1">
+                <element>
+                    <alternativeID>C</alternativeID>
+                    <coefficient>
+                        <real>2.00</real>
+                    </coefficient>
+                </element>
+                <element>
+                    <alternativeID>D</alternativeID>
+                    <coefficient>
+                        <real>2.00</real>
+                    </coefficient>
+                </element>
+                <element>
+                    <alternativeID>E</alternativeID>
+                    <coefficient>
+                        <real>2.00</real>
+                    </coefficient>
+                </element>
+            <rhs>
+                <real>5.0</real>
+            </rhs>
+            <operator>leq</operator>
+        </constraint>
+        <constraint id="con0">
+                <element>
+                    <alternativeID>B</alternativeID>
+                    <coefficient>
+                        <real>1.00</real>
+                    </coefficient>
+                </element>
+                <element>
+                    <alternativeID>C</alternativeID>
+                    <coefficient>
+                        <real>2.00</real>
+                    </coefficient>
+                </element>
+                <element>
+                    <alternativeID>D</alternativeID>
+                    <coefficient>
+                        <real>1.00</real>
+                    </coefficient>
+                </element>
+            <rhs>
+                <real>3.0</real>
+            </rhs>
+            <operator>eq</operator>
+        </constraint>
+
+    </alternativesLinearConstraints>
+
+
+</xmcda:XMCDA>

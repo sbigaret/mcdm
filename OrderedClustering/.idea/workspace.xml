@@ -21,19 +21,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrderedClustering.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderedClustering.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+            <state relative-caret-position="196">
+              <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="method#LoadData#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="e#3106#3122#0" expanded="true" />
+                <element signature="e#3098#3114#0" expanded="true" />
                 <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
@@ -41,6 +40,26 @@
                 <element signature="method#cloneList#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#getMaxFrom#0;class#OrderedClustering#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="program_config.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="22" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preferences.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/v2/preferences.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="28" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,8 +105,8 @@
         <option value="$PROJECT_DIR$/test/v2/alternatives.xml" />
         <option value="$PROJECT_DIR$/test/v2/preference_matrix.xml" />
         <option value="$PROJECT_DIR$/test/v2/program_config.xml" />
-        <option value="$PROJECT_DIR$/src/org/OC/OrderedClustering.java" />
         <option value="$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java" />
+        <option value="$PROJECT_DIR$/src/org/OC/OrderedClustering.java" />
       </list>
     </option>
   </component>
@@ -565,17 +584,17 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19635417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -623,11 +642,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#LoadData#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="e#3106#3122#0" expanded="true" />
+            <element signature="e#3098#3114#0" expanded="true" />
             <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
@@ -652,13 +670,13 @@
     <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/ReferenceableContainer.class" />
     <entry file="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/org/xmcda/Alternative.class" />
     <entry file="file://$PROJECT_DIR$/test/outut.xml" />
-    <entry file="file://$PROJECT_DIR$/test/v3/preferences_matrix.xml" />
+    <entry file="file://$PROJECT_DIR$/test/v3/preferences.xml" />
     <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java" />
     <entry file="file://$PROJECT_DIR$/test/v3/alternatives.xml" />
     <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml" />
     <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java" />
     <entry file="file://$PROJECT_DIR$/test/outut.xml" />
-    <entry file="file://$PROJECT_DIR$/test/v3/preferences_matrix.xml" />
+    <entry file="file://$PROJECT_DIR$/test/v3/preferences.xml" />
     <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml" />
     <entry file="file://$PROJECT_DIR$/test/v3/alternatives.xml" />
     <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java" />
@@ -768,15 +786,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/v2/program_config.xml">
+    <entry file="file://$PROJECT_DIR$/test/v2/method_parameters.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
@@ -784,15 +794,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/v2/preferences_matrix.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/v3/preferences_matrix.xml">
+    <entry file="file://$PROJECT_DIR$/test/v3/preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="115" column="21" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="21" />
@@ -824,18 +826,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/v2/preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+        <state relative-caret-position="196">
+          <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#LoadData#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="e#3106#3122#0" expanded="true" />
+            <element signature="e#3098#3114#0" expanded="true" />
             <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
@@ -843,6 +852,14 @@
             <element signature="method#cloneList#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#getMaxFrom#0;class#OrderedClustering#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

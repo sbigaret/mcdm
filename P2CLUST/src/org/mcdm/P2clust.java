@@ -2,8 +2,7 @@ package org.mcdm;
 
 import javafx.util.Pair;
 import org.xmcda.*;
-import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
-import org.xmcda.v2_2_1.Quantitative;
+import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
 
 import java.io.File;
 import java.util.*;
@@ -12,11 +11,11 @@ public class P2clust {
 
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
-    protected List<Alternative> currentAlternatives;
-    protected AlternativesCriteriaValues currentCriteria;
-    protected List<Alternative> centralProfiles;
-    protected int K;
-    protected String prefix;
+    private List<Alternative> currentAlternatives;
+    private AlternativesCriteriaValues currentCriteria;
+    private List<Alternative> centralProfiles;
+    private int K;
+    private String prefix;
 
     public P2clust()
     {
@@ -77,8 +76,6 @@ public class P2clust {
             List<Alternative> temp = data.get(centralProfiles.get(i));
 
             for (Alternative item : temp) {
-//                QualifiedValues<String> val = new QualifiedValues<>();
-//                val.add(new QualifiedValue<>(String.valueOf(i)));
                 set.put(item, null);
             }
             set.setId(String.valueOf(K-i));
@@ -187,8 +184,19 @@ public class P2clust {
                 "programParameters"
         };
 
-        for(String tag : tags)
-            LoadData(inputPath.concat(tag).concat(".xml"), tag);
+        String[] filenames = new String[]{
+                "alternatives.xml",
+                "alternativesCriteriaValues.xml",
+                "criteria.xml",
+                "criteria.xml",
+                "criteria.xml",
+                "criteriaValues.xml",
+                "programParameters.xml"
+
+        };
+
+        for(int i = 0; i < filenames.length; i++)
+            LoadData(inputPath.concat(filenames[i]), tags[i]);
 
         try
         {
@@ -209,9 +217,9 @@ public class P2clust {
         return true;
     }
 
-    protected boolean LoadData(String path, String tag)
+    private boolean LoadData(String path, String tag)
     {
-        final org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser();
+        final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
         if(!file.exists())
@@ -228,7 +236,7 @@ public class P2clust {
         }
     }
 
-    protected boolean Validate()
+    private boolean Validate()
     {
         int critNum = xmcda.criteria.size();
         int critThrNum = xmcda.criteriaThresholdsList.size();
@@ -257,7 +265,7 @@ public class P2clust {
         return true;
     }
 
-    protected void AddRandomAlternative(int num)
+    private void AddRandomAlternative(int num)
     {
         HashMap<Criterion, Pair<Double, Double>> bounds = GetBounds();
 
@@ -287,7 +295,7 @@ public class P2clust {
 
     }
 
-    protected HashMap<Criterion, Pair<Double, Double>> GetBounds()
+    private HashMap<Criterion, Pair<Double, Double>> GetBounds()
     {
         HashMap<Criterion, Pair<Double, Double>> bounds = new HashMap<>();
         for(Criterion crt : xmcda.criteria)
@@ -314,7 +322,7 @@ public class P2clust {
         return bounds;
     }
 
-    protected void SetAlternativesWithEmptyCriteria()
+    private void SetAlternativesWithEmptyCriteria()
     {
         for (int i = 0; i < K; i++)
         {
@@ -332,7 +340,7 @@ public class P2clust {
         }
     }
 
-    protected HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
+    private HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
     {
         Random engine = new Random();
 
@@ -353,7 +361,7 @@ public class P2clust {
         return tempList;
     }
 
-    protected void CopyToCurrent()
+    private void CopyToCurrent()
     {
         for(Alternative alt : xmcda.alternatives)
             currentAlternatives.add(alt);

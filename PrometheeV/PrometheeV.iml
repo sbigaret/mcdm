@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="XMCDA-java-2016.10-11" level="project" />
     <orderEntry type="library" name="GLPKSolverPack" level="project" />
     <orderEntry type="library" name="SCPSolver" level="project" />
+    <orderEntry type="library" name="XMCDA-java-0.2.0-60-g1a1c570" level="project" />
   </component>
 </module>

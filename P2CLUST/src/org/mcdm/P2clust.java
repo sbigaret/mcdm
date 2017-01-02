@@ -12,7 +12,7 @@ public class P2clust {
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
     private List<Alternative> currentAlternatives;
-    private AlternativesCriteriaValues currentCriteria;
+    private PerformanceTable currentCriteria;
     private List<Alternative> centralProfiles;
     private int K;
     private String prefix;
@@ -20,7 +20,7 @@ public class P2clust {
     public P2clust()
     {
         xmcda = new XMCDA();
-        currentCriteria = new AlternativesCriteriaValues();
+        currentCriteria = new PerformanceTable();
         currentAlternatives = new ArrayList<>();
         centralProfiles = new ArrayList<>();
         prefix = UUID.randomUUID().toString();
@@ -158,17 +158,17 @@ public class P2clust {
             Double partialRes = 0.0;
             for (Alternative alt : list)
             {
-                CriteriaValues crVal = (CriteriaValues)currentCriteria.get(alt);
-                LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-                QualifiedValue QV = (QualifiedValue)LabQVal.get(0);
-                Double value = (double)QV.getValue();
-                partialRes += value;
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                partialRes += (double)qv.getValue();
             }
             partialRes /= (double)list.size();
 
-            CriteriaValues crVal = (CriteriaValues)currentCriteria.get(profile);
-            LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-            LabQVal.set(0, new QualifiedValue<Double>(partialRes));
+
+
+            QualifiedValues vals = currentCriteria.get(profile, crt);
+            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
+            crtVal.setValue(partialRes);
         }
     }
 
@@ -181,7 +181,8 @@ public class P2clust {
                 "criteriaScales",
                 "criteriaThresholds",
                 "criteriaValues",
-                "programParameters"
+                "programParameters",
+                "performanceTable"
         };
 
         String[] filenames = new String[]{
@@ -191,7 +192,8 @@ public class P2clust {
                 "criteria.xml",
                 "criteria.xml",
                 "criteriaValues.xml",
-                "programParameters.xml"
+                "programParameters.xml",
+                "performanceTable.xml"
 
         };
 
@@ -246,10 +248,10 @@ public class P2clust {
             return false;
 
         int altNum = xmcda.alternatives.size();
-        int altCritValNum = xmcda.alternativesCriteriaValuesList.size();
+        int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
-            altCritValNum = xmcda.alternativesCriteriaValuesList.get(0).size();
-        if (altCritValNum != altNum)
+            altCritValNum = xmcda.performanceTablesList.get(0).size();
+        if (altCritValNum != altNum*critNum)
             return false;
 
         int critScalNum = xmcda.criteriaScalesList.size();
@@ -288,7 +290,10 @@ public class P2clust {
             {
                 int index = currentAlternatives.size() - K;
                 Alternative alt = currentAlternatives.get(index + i);
-                ((QualifiedValue)((LabelledQValues)((CriteriaValues)currentCriteria.get(alt)).get(crt)).get(0)).setValue(vars.get(i));
+                QualifiedValue<Double> result = new QualifiedValue<Double>();
+                result.setValue(vars.get(i));
+                currentCriteria.get(alt, crt).add(result);
+
             }
 
         }
@@ -307,13 +312,19 @@ public class P2clust {
             double min = Double.MAX_VALUE;
             for (Alternative alt : currentAlternatives)
             {
-                LabelledQValues temp = xmcda.alternativesCriteriaValuesList.get(0).get(alt).get(crt);
-                double tempVal = (double)((QualifiedValue)temp.get(0)).getValue();
 
-                if(tempVal < min)
-                    min = tempVal;
-                if(tempVal > max)
-                    max = tempVal;
+                try {
+                    QualifiedValue<Double> temp = xmcda.performanceTablesList.get(0).get(alt, crt).get(0).convertToDouble();
+                    double tempVal = (double)temp.getValue();
+
+                    if(tempVal < min)
+                        min = tempVal;
+                    if(tempVal > max)
+                        max = tempVal;
+                }
+                catch(Throwable thr){
+                    System.out.print(thr.getMessage());
+                }
             }
 
             bounds.put(crt, new Pair<>(min, max));
@@ -333,10 +344,10 @@ public class P2clust {
 
         for (Alternative alt : centralProfiles)
         {
-            org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
             for (Criterion crt : xmcda.criteria)
-                criteria.put(crt,new QualifiedValue(0.0));
-            currentCriteria.put(alt, criteria);
+            {
+                currentCriteria.put(alt, crt, new QualifiedValues<>());
+            }
         }
     }
 
@@ -366,6 +377,6 @@ public class P2clust {
         for(Alternative alt : xmcda.alternatives)
             currentAlternatives.add(alt);
 
-        currentCriteria.putAll(xmcda.alternativesCriteriaValuesList.get(0));
+        currentCriteria.putAll(xmcda.performanceTablesList.get(0));
     }
 }

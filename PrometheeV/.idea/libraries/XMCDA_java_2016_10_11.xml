@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="XMCDA-java-2016.10-1">
+  <library name="XMCDA-java-2016.10-11">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Pobrane/XMCDA-java-2016.10-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/XMCDA-java-2016.10-1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

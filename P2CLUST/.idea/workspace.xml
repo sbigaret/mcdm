@@ -24,8 +24,8 @@
       <file leaf-file-name="P2clust.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="204" column="9" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+            <state relative-caret-position="403">
+              <caret line="201" column="9" selection-start-line="201" selection-start-column="9" selection-end-line="201" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#P2clust#0;class#P2clust#0" expanded="false" />
@@ -41,6 +41,36 @@
                 <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
                 <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="performanceTable.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/performanceTable.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2898">
+              <caret line="161" column="48" selection-start-line="161" selection-start-column="48" selection-end-line="161" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alternativesCriteriaValues.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="13" column="29" selection-start-line="8" selection-start-column="20" selection-end-line="13" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="result.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/result.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,6 +91,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -79,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/org/mcdm/P2CLUST.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clust.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/p2clustUI.java" />
-        <option value="$PROJECT_DIR$/test/alternativesCriteriaValues.xml" />
         <option value="$PROJECT_DIR$/test/criteriaWeigths.xml" />
         <option value="$PROJECT_DIR$/src/org/mcdm/PrometheeII.java" />
         <option value="$PROJECT_DIR$/test/criteriaThresholds.xml" />
@@ -89,6 +119,9 @@
         <option value="$PROJECT_DIR$/test/criteria.xml" />
         <option value="$PROJECT_DIR$/result.xml" />
         <option value="$PROJECT_DIR$/src/org/mcdm/P2clust.java" />
+        <option value="$PROJECT_DIR$/test/performanceTable.xml.html" />
+        <option value="$PROJECT_DIR$/test/performanceTable.xml" />
+        <option value="$PROJECT_DIR$/test/alternativesCriteriaValues.xml" />
       </list>
     </option>
   </component>
@@ -123,7 +156,38 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P2CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P2CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P2CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P2CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P2CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
@@ -137,6 +201,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/XMCDA-java-0.2.0-60-g1a1c570.jar!/" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -449,18 +514,18 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31878173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31878173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -481,11 +546,11 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18385416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31878173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31878173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -525,28 +590,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#P2clust#0;class#P2clust#0" expanded="false" />
-            <element signature="method#SaveData#0;class#P2clust#0" expanded="false" />
-            <element signature="method#RepairData#0;class#P2clust#0" expanded="false" />
-            <element signature="method#isValid#0;class#P2clust#0" expanded="false" />
-            <element signature="method#UpdateCentralProfiles#0;class#P2clust#0" expanded="false" />
-            <element signature="method#UpdateCriteriaValue#0;class#P2clust#0" expanded="false" />
-            <element signature="method#Validate#0;class#P2clust#0" expanded="false" />
-            <element signature="method#AddRandomAlternative#0;class#P2clust#0" expanded="false" />
-            <element signature="method#GetBounds#0;class#P2clust#0" expanded="false" />
-            <element signature="method#SetAlternativesWithEmptyCriteria#0;class#P2clust#0" expanded="false" />
-            <element signature="method#getRandomInRange#0;class#P2clust#0" expanded="false" />
-            <element signature="method#CopyToCurrent#0;class#P2clust#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/alternatives.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -560,8 +603,8 @@
         <state relative-caret-position="576">
           <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#503#524#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#503#524#0" expanded="false" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
@@ -577,14 +620,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -655,8 +691,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#503#524#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#503#524#0" expanded="false" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
@@ -672,14 +708,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -749,8 +778,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#503#524#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#503#524#0" expanded="false" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
@@ -773,14 +802,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -910,21 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding>
-            <element signature="n#alternativeCriteriaValues#1;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#2;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#3;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#4;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#6;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-            <element signature="n#alternativeCriteriaValues#7;n#alternativesCriteriaValues#0;n#xmcda:XMCDA#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/alternatives.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -938,8 +945,8 @@
         <state relative-caret-position="360">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#503#524#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#503#524#0" expanded="false" />
             <element signature="method#getIndifference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#getPreference#0;class#PrometheeII#0" expanded="false" />
             <element signature="method#functionPMax#0;class#PrometheeII#0" expanded="false" />
@@ -1020,10 +1027,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/alternativesCriteriaValues.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="13" column="29" selection-start-line="8" selection-start-column="20" selection-end-line="13" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/performanceTable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2898">
+          <caret line="161" column="48" selection-start-line="161" selection-start-column="48" selection-end-line="161" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P2clust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="204" column="9" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+        <state relative-caret-position="403">
+          <caret line="201" column="9" selection-start-line="201" selection-start-column="9" selection-end-line="201" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#P2clust#0;class#P2clust#0" expanded="false" />

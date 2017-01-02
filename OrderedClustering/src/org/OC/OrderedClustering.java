@@ -1,44 +1,143 @@
 package org.OC;
 
-
-
-import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
+import org.xmcda.Alternative;
+import org.xmcda.AlternativesMatrix;
+import org.xmcda.AlternativesSet;
+import org.xmcda.AlternativesValues;
+import org.xmcda.XMCDA;
+import org.xmcda.converters.v2_v3.XMCDAConverter;
+import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.AllDirectedPaths;
 import org.jgrapht.alg.CycleDetector;
 import org.jgrapht.alg.FloydWarshallShortestPaths;
 import org.xmcda.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
+
 import org.jgrapht.graph.*;
+import org.xmcda.v2.*;
 
 
+public class OrderedClustering {
 
-public class OrderedClustering extends Core{
-
-    protected ArrayList<ArrayList<Double>> matrix;
-    protected int clustersNum = 0;
+    private HashMap<String, Double> flows;
+    private ArrayList<String> alternatives;
+    private XMCDA xmcda;
+    private ArrayList<ArrayList<Double>> matrix;
+    private int clustersNum = 0;
+    public enum xmcdaVersion {V2, V3}
 
     public ArrayList<ArrayList<Alternative>> mainResult;
 
-    @Override
-    protected void LoadData(String input) {
-        LoadFile(input.concat("preferences_matrix.xml"), "alternativesMatrix");
-        LoadFile(input.concat("alternatives.xml"), "alternatives");
-        LoadFile(input.concat("program_config.xml"), "programParameters");
+    public OrderedClustering()
+    {
+        xmcda = new XMCDA();
     }
 
-    protected void PrepareData()
+    private boolean LoadFile(String path, String ... typeTag)
+    {
+        final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
+        File file = new File(path);
+
+        if(!file.exists())
+        {
+            return false;
+        }
+
+        try
+        {
+            parser.readXMCDA(xmcda, file, typeTag);
+            return true;
+        }
+        catch (Throwable throwable)
+        {
+            return false;
+        }
+    }
+
+    private void LoadData(xmcdaVersion version, String input) {
+        if (version == xmcdaVersion.V3) {
+            LoadFile(input.concat("preferences_matrix.xml"), "alternativesMatrix");
+            LoadFile(input.concat("alternatives.xml"), "alternatives");
+            LoadFile(input.concat("program_config.xml"), "programParameters");
+        }
+        else
+        {
+            org.xmcda.v2.XMCDA tempXmcda = new org.xmcda.v2.XMCDA();
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("preferences_matrix.xml"), "alternativesMatrix");
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("alternatives.xml"), "alternatives");
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("program_config.xml"), "programParameters");
+            xmcda = XMCDAConverter.convertTo_v3(tempXmcda);
+        }
+    }
+
+    public org.xmcda.v2.XMCDA LoadFileObsolete(org.xmcda.v2.XMCDA xmcdaV2, String path, String... typeTag) {
+        File file = new File(path);
+
+        if (file.exists()) {
+            try {
+                xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
+            } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
+            }
+        }
+        return xmcdaV2;
+    }
+
+    private void PrepareData()
     {
         GetAlternatives();
         GetMatrix();
         GetParameters();
     }
 
-    protected void GetParameters()
+    protected HashMap<String, Double>  GetFlows()
+    {
+        org.xmcda.AlternativesValues flows;
+
+        HashMap<String, Double> result = new HashMap<String, Double>();
+
+        try
+        {
+            flows = xmcda.alternativesValuesList.get(0).asDouble();
+
+        }
+        catch (Throwable ce)
+        {
+            return null;
+        }
+
+        Set<Alternative> asd = flows.getAlternatives();
+        for( org.xmcda.Alternative alt : asd)
+        {
+            try {
+                LabelledQValues<QualifiedValue<Double>> something = (LabelledQValues<QualifiedValue<Double>>) flows.get(alt);
+                Object obj = something.get(0).getValue();
+                result.put(alt.id(), new Double((double)obj));
+                //result.add(new Double((double)obj));
+            }
+            catch (Throwable thr) {
+                return null;
+            }
+        }
+
+
+        return result;
+    }
+
+    private void GetAlternatives()
+    {
+        try
+        {
+            alternatives = xmcda.alternatives.getIDs();
+        }
+        catch(Throwable thr)
+        {
+        }
+    }
+
+    private void GetParameters()
     {
         try
         {
@@ -50,7 +149,7 @@ public class OrderedClustering extends Core{
         }
     }
 
-    protected void GetMatrix()
+    private void GetMatrix()
     {
         matrix = new ArrayList<ArrayList<Double>>();
 
@@ -93,15 +192,15 @@ public class OrderedClustering extends Core{
         //LinkedHashMap<Coord<Alternative, Alternative>, QualifiedValue<Double>>>
     }
 
-    @Override
-    public void Compute(String in, String out) {
-        LoadData(in);
+
+    public void Compute(xmcdaVersion version, String in, String out) {
+        LoadData(version, in);
         PrepareData();
-        OrderedClutering(out);
+        OrderedClutering(version, out);
     }
 
 
-    private void OrderedClutering(String out)
+    private void OrderedClutering(xmcdaVersion version, String out)
     {
 
         DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
@@ -172,15 +271,23 @@ public class OrderedClustering extends Core{
             xmcda.alternativesSets.add(set);
         }
 
-        final XMCDAParser parser = new XMCDAParser();
-        final File plik = new File(out, "result.xml");
-        try
-        {
-            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+        if (version == xmcdaVersion.V3) {
+
+            final XMCDAParser parser = new XMCDAParser();
+            final File plik = new File(out, "result.xml");
+            try {
+                parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            } catch (Throwable thr) {
+            }
         }
-        catch (Throwable thr)
+        else
         {
-            errors.add(thr);
+            org.xmcda.v2.XMCDA resXmcda = XMCDAConverter.convertTo_v2(xmcda);
+            final File plik = new File(out, "result.xml");
+            try {
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(resXmcda, plik.getAbsolutePath(), "alternativesSets");
+            } catch (Throwable thr) {
+            }
         }
 
 

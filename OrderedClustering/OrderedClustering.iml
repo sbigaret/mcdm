@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="XMCDA-java-2016.10-1" level="project" />
     <orderEntry type="library" name="jgrapht-core-1.0.0" level="project" />
+    <orderEntry type="library" name="XMCDA-java-0.2.0-60-g1a1c570" level="project" />
   </component>
 </module>

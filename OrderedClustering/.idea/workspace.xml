@@ -21,55 +21,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrderedClustering.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OrderedClustering.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
+            <state relative-caret-position="49">
+              <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="e#3098#3114#0" expanded="true" />
+                <element signature="e#3140#3156#0" expanded="true" />
                 <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
-                <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#getNextResultAlt#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#cloneList#0;class#OrderedClustering#0" expanded="false" />
                 <element signature="method#getMaxFrom#0;class#OrderedClustering#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program_config.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="22" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preferences.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/v2/preferences.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderedClusteringUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -105,6 +70,7 @@
         <option value="$PROJECT_DIR$/test/v2/alternatives.xml" />
         <option value="$PROJECT_DIR$/test/v2/preference_matrix.xml" />
         <option value="$PROJECT_DIR$/test/v2/program_config.xml" />
+        <option value="$PROJECT_DIR$/test/v2/method_parameters.xml" />
         <option value="$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java" />
         <option value="$PROJECT_DIR$/src/org/OC/OrderedClustering.java" />
       </list>
@@ -573,7 +539,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328934" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328934" sideWeight="0.50208336" order="10" side_tool="true" content_ui="tabs" />
@@ -588,7 +554,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -613,7 +579,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java</url>
-          <line>196</line>
+          <line>197</line>
           <properties />
           <option name="timeStamp" value="64" />
         </line-breakpoint>
@@ -641,13 +607,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="e#3098#3114#0" expanded="true" />
+            <element signature="e#3140#3156#0" expanded="true" />
             <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#getNextResultAlt#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#cloneList#0;class#OrderedClustering#0" expanded="false" />
@@ -786,14 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/v2/method_parameters.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/v3/preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -810,18 +763,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/v2out/result.xml">
+    <entry file="file://$PROJECT_DIR$/test/v2/method_parameters.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java">
+    <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        <state relative-caret-position="54">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -834,32 +787,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClusteringUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="172" selection-start-line="9" selection-start-column="172" selection-end-line="9" selection-end-column="172" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/v2out/result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/OC/OrderedClustering.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
+        <state relative-caret-position="49">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#LoadFile#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#LoadFileObsolete#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#PrepareData#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#GetFlows#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="e#3098#3114#0" expanded="true" />
+            <element signature="e#3140#3156#0" expanded="true" />
             <element signature="method#GetAlternatives#0;class#OrderedClustering#0" expanded="false" />
-            <element signature="method#GetParameters#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#GetMatrix#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#getNextResultAlt#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#cloneList#0;class#OrderedClustering#0" expanded="false" />
             <element signature="method#getMaxFrom#0;class#OrderedClustering#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/v3/program_config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>

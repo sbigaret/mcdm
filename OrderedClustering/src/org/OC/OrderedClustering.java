@@ -50,8 +50,9 @@ public class OrderedClustering {
             parser.readXMCDA(xmcda, file, typeTag);
             return true;
         }
-        catch (Throwable throwable)
+        catch (Throwable thr)
         {
+            System.out.print(thr.getMessage());
             return false;
         }
     }
@@ -101,28 +102,26 @@ public class OrderedClustering {
         try
         {
             flows = xmcda.alternativesValuesList.get(0).asDouble();
-
+            Set<Alternative> asd = flows.getAlternatives();
+            for( org.xmcda.Alternative alt : asd)
+            {
+                try {
+                    LabelledQValues<QualifiedValue<Double>> something = (LabelledQValues<QualifiedValue<Double>>) flows.get(alt);
+                    Object obj = something.get(0).getValue();
+                    result.put(alt.id(), new Double((double)obj));
+                    //result.add(new Double((double)obj));
+                }
+                catch (Throwable thr) {
+                    System.out.print(thr.getMessage());
+                    return null;
+                }
+            }
         }
-        catch (Throwable ce)
+        catch (Throwable thr)
         {
+            System.out.print(thr.getMessage());
             return null;
         }
-
-        Set<Alternative> asd = flows.getAlternatives();
-        for( org.xmcda.Alternative alt : asd)
-        {
-            try {
-                LabelledQValues<QualifiedValue<Double>> something = (LabelledQValues<QualifiedValue<Double>>) flows.get(alt);
-                Object obj = something.get(0).getValue();
-                result.put(alt.id(), new Double((double)obj));
-                //result.add(new Double((double)obj));
-            }
-            catch (Throwable thr) {
-                return null;
-            }
-        }
-
-
         return result;
     }
 
@@ -134,6 +133,7 @@ public class OrderedClustering {
         }
         catch(Throwable thr)
         {
+            System.out.print(thr.getMessage());
         }
     }
 
@@ -145,7 +145,7 @@ public class OrderedClustering {
         }
         catch (Throwable thr)
         {
-
+            System.out.print(thr.getMessage());
         }
     }
 
@@ -184,6 +184,7 @@ public class OrderedClustering {
         }
         catch (Throwable thr)
         {
+            System.out.print(thr.getMessage());
             return;
         }
 
@@ -246,7 +247,6 @@ public class OrderedClustering {
                     graph.removeEdge(edge);
                 }
 
-                System.out.print("asd");
             }
             else
             {
@@ -278,6 +278,7 @@ public class OrderedClustering {
             try {
                 parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
             } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
             }
         }
         else
@@ -287,6 +288,7 @@ public class OrderedClustering {
             try {
                 org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(resXmcda, plik.getAbsolutePath(), "alternativesSets");
             } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
             }
         }
 

@@ -2,7 +2,8 @@ package org.mcdm;
 
 import javafx.util.Pair;
 import org.xmcda.*;
-import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
+import org.xmcda.converters.v2_v3.XMCDAConverter;
+import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
 
 import java.io.File;
 import java.util.*;
@@ -18,6 +19,8 @@ public class P3clust {
     private int P;
     private String prefix;
 
+    public enum xmcdaVersion {V2, V3};
+
     public P3clust()
     {
         xmcda = new XMCDA();
@@ -27,9 +30,9 @@ public class P3clust {
         prefix = UUID.randomUUID().toString();
     }
 
-    public boolean Calculate(String inputPath)
+    public boolean Calculate(xmcdaVersion version, String inputPath, String outputPath)
     {
-        if (!Init(inputPath))
+        if (!Init(inputPath, version))
             return false;
 
         PrometheeTri engine = new PrometheeTri(xmcda, P);
@@ -64,12 +67,12 @@ public class P3clust {
 
         }while(flag);
 
-        SaveData(profilesData);
+        SaveData(profilesData, outputPath, version);
 
         return true;
     }
 
-    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data)
+    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data, String path, xmcdaVersion version)
     {
         for(int i = 0; i < K; i++)
         {
@@ -83,10 +86,18 @@ public class P3clust {
             xmcda.alternativesSets.add(set);
         }
 
-        final File plik = new File("result.xml");
-        final XMCDAParser parser = new XMCDAParser();
+        final File plik = new File(path, "result.xml");
         try {
-            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            if (version == xmcdaVersion.V3) {
+                final XMCDAParser parser = new XMCDAParser();
+                parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA oldXmcda = new org.xmcda.v2.XMCDA();
+                oldXmcda = XMCDAConverter.convertTo_v2(xmcda);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(oldXmcda, plik.getAbsoluteFile(), "alternativesSets");
+            }
         }
         catch(Throwable thr)
         {
@@ -173,30 +184,52 @@ public class P3clust {
         }
     }
 
-    private boolean Init(String inputPath)
+    private boolean Init(String inputPath, xmcdaVersion version)
     {
-        String[] tags = new String[]{
-                "alternatives",
-                "criteria",
-                "criteriaScales",
-                "criteriaThresholds",
-                "criteriaValues",
-                "programParameters",
-                "performanceTable"
-        };
+        if (version == xmcdaVersion.V3) {
+            String[] tags = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaScales",
+                    "criteriaThresholds",
+                    "criteriaValues",
+                    "programParameters",
+                    "performanceTable"
+            };
 
-        String[] filenames = new String[]{
-                "alternatives.xml",
-                "criteria.xml",
-                "criteria.xml",
-                "criteria.xml",
-                "criteriaValues.xml",
-                "programParameters.xml",
-                "performanceTable.xml"
-        };
-        for (int i = 0; i < filenames.length; i++)
-            LoadData(inputPath.concat(filenames[i]), tags[i]);
+            String[] filenames = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
+            for (int i = 0; i < filenames.length; i++)
+                LoadData(inputPath.concat(filenames[i]), tags[i]);
+        }
+        else {
+            String[] tagsV2 = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaValues",
+                    "methodParameters",
+                    "performanceTable"
+            };
+            String[] filenamesV2 = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
 
+            org.xmcda.v2.XMCDA oldXMCDA = new org.xmcda.v2.XMCDA();
+            for (int i = 0; i < filenamesV2.length; i++)
+                oldXMCDA = ObsoleteLoadData(oldXMCDA, inputPath.concat(filenamesV2[i]), tagsV2[i]);
+            xmcda = XMCDAConverter.convertTo_v3(oldXMCDA);
+        }
         try
         {
             if (!Validate())
@@ -214,6 +247,20 @@ public class P3clust {
 
 
         return true;
+    }
+
+    private org.xmcda.v2.XMCDA ObsoleteLoadData(org.xmcda.v2.XMCDA xmcdaV2, String path, String tag)
+    {
+        File file = new File(path);
+
+        if (file.exists()) {
+            try {
+                xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
+            } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
+            }
+        }
+        return xmcdaV2;
     }
 
     private void GetParameters()
@@ -234,7 +281,7 @@ public class P3clust {
 
     protected boolean LoadData(String path, String tag)
     {
-        final org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser();
+        final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
         if(!file.exists())

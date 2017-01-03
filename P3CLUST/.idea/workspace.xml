@@ -24,12 +24,25 @@
       <file leaf-file-name="P3clust.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/P3clust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+            <state relative-caret-position="246">
+              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#P3clust#0;class#P3clust#0" expanded="false" />
+                <element signature="method#RepairData#0;class#P3clust#0" expanded="false" />
+                <element signature="method#isValid#0;class#P3clust#0" expanded="false" />
+                <element signature="method#UpdateCentralProfiles#0;class#P3clust#0" expanded="false" />
+                <element signature="method#UpdateCriteriaValue#0;class#P3clust#0" expanded="false" />
+                <element signature="method#Init#0;class#P3clust#0" expanded="false" />
+                <element signature="method#ObsoleteLoadData#0;class#P3clust#0" expanded="false" />
+                <element signature="method#GetParameters#0;class#P3clust#0" expanded="false" />
+                <element signature="method#LoadData#0;class#P3clust#0" expanded="false" />
+                <element signature="method#Validate#0;class#P3clust#0" expanded="false" />
+                <element signature="method#GetRandomAlternative#0;class#P3clust#0" expanded="false" />
                 <element signature="method#GetBounds#0;class#P3clust#0" expanded="false" />
+                <element signature="method#SetAlternativesWithCriteria#0;class#P3clust#0" expanded="false" />
+                <element signature="method#getRandomInRange#0;class#P3clust#0" expanded="false" />
+                <element signature="method#CopyToCurrent#0;class#P3clust#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -39,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/org/mcdm/p3clustUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
+              <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -77,10 +90,10 @@
         <option value="$PROJECT_DIR$/test/programParameters.xml" />
         <option value="$PROJECT_DIR$/test/criteria.xml" />
         <option value="$PROJECT_DIR$/test/v3/preferenceTable.xml" />
-        <option value="$PROJECT_DIR$/src/org/mcdm/p3clustUI.java" />
-        <option value="$PROJECT_DIR$/src/org/mcdm/P3clust.java" />
         <option value="$PROJECT_DIR$/src/org/mcdm/PrometheeTri.java" />
         <option value="$PROJECT_DIR$/result.xml" />
+        <option value="$PROJECT_DIR$/src/org/mcdm/P3clust.java" />
+        <option value="$PROJECT_DIR$/src/org/mcdm/p3clustUI.java" />
       </list>
     </option>
   </component>
@@ -149,6 +162,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="v3out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P3CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="P3CLUST" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="v3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -193,12 +224,15 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="diff.base" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/XMCDA-java-0.2.0-60-g1a1c570.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test/v3" />
     </key>
@@ -492,7 +526,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -506,12 +540,12 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17552084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17552084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -533,10 +567,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/mcdm/P3clust.java</url>
+          <line>34</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="44" />
+      <option name="time" value="48" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -552,7 +594,20 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#P3clust#0;class#P3clust#0" expanded="false" />
+            <element signature="method#RepairData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#isValid#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Init#0;class#P3clust#0" expanded="false" />
+            <element signature="method#ObsoleteLoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetParameters#0;class#P3clust#0" expanded="false" />
+            <element signature="method#LoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Validate#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetRandomAlternative#0;class#P3clust#0" expanded="false" />
             <element signature="method#GetBounds#0;class#P3clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithCriteria#0;class#P3clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P3clust#0" expanded="false" />
+            <element signature="method#CopyToCurrent#0;class#P3clust#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -611,7 +666,20 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#P3clust#0;class#P3clust#0" expanded="false" />
+            <element signature="method#RepairData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#isValid#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Init#0;class#P3clust#0" expanded="false" />
+            <element signature="method#ObsoleteLoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetParameters#0;class#P3clust#0" expanded="false" />
+            <element signature="method#LoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Validate#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetRandomAlternative#0;class#P3clust#0" expanded="false" />
             <element signature="method#GetBounds#0;class#P3clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithCriteria#0;class#P3clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P3clust#0" expanded="false" />
+            <element signature="method#CopyToCurrent#0;class#P3clust#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,7 +699,20 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#P3clust#0;class#P3clust#0" expanded="false" />
+            <element signature="method#RepairData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#isValid#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Init#0;class#P3clust#0" expanded="false" />
+            <element signature="method#ObsoleteLoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetParameters#0;class#P3clust#0" expanded="false" />
+            <element signature="method#LoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Validate#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetRandomAlternative#0;class#P3clust#0" expanded="false" />
             <element signature="method#GetBounds#0;class#P3clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithCriteria#0;class#P3clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P3clust#0" expanded="false" />
+            <element signature="method#CopyToCurrent#0;class#P3clust#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -774,14 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/mcdm/p3clustUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/PrometheeTri.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -821,14 +894,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/mcdm/p3clustUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/v3out/result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-322">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/mcdm/P3clust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+        <state relative-caret-position="246">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#P3clust#0;class#P3clust#0" expanded="false" />
+            <element signature="method#RepairData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#isValid#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCentralProfiles#0;class#P3clust#0" expanded="false" />
+            <element signature="method#UpdateCriteriaValue#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Init#0;class#P3clust#0" expanded="false" />
+            <element signature="method#ObsoleteLoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetParameters#0;class#P3clust#0" expanded="false" />
+            <element signature="method#LoadData#0;class#P3clust#0" expanded="false" />
+            <element signature="method#Validate#0;class#P3clust#0" expanded="false" />
+            <element signature="method#GetRandomAlternative#0;class#P3clust#0" expanded="false" />
             <element signature="method#GetBounds#0;class#P3clust#0" expanded="false" />
+            <element signature="method#SetAlternativesWithCriteria#0;class#P3clust#0" expanded="false" />
+            <element signature="method#getRandomInRange#0;class#P3clust#0" expanded="false" />
+            <element signature="method#CopyToCurrent#0;class#P3clust#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -898,7 +1000,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>XMCDA-java-2016.10-1</last-edited>
+          <last-edited>XMCDA-java-0.2.0-60-g1a1c570</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

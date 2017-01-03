@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2016/XMCDA-2.2.2">
+    <alternativesSets>
+        <alternativesSet id="5">
+            <element>
+                <alternativeID>D</alternativeID>
+                <values/>
+            </element>
+        </alternativesSet>
+        <alternativesSet id="4">
+            <element>
+                <alternativeID>A</alternativeID>
+                <values/>
+            </element>
+            <element>
+                <alternativeID>F</alternativeID>
+                <values/>
+            </element>
+            <element>
+                <alternativeID>G</alternativeID>
+                <values/>
+            </element>
+        </alternativesSet>
+        <alternativesSet id="3">
+            <element>
+                <alternativeID>E</alternativeID>
+                <values/>
+            </element>
+        </alternativesSet>
+        <alternativesSet id="2">
+            <element>
+                <alternativeID>C</alternativeID>
+                <values/>
+            </element>
+        </alternativesSet>
+        <alternativesSet id="1">
+            <element>
+                <alternativeID>B</alternativeID>
+                <values/>
+            </element>
+            <element>
+                <alternativeID>H</alternativeID>
+                <values/>
+            </element>
+        </alternativesSet>
+    </alternativesSets>
+</ns2:XMCDA>

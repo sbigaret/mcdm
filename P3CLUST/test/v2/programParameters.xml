@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2016/XMCDA-2.2.2">
+    <methodParameters>
+        <parameter id="NumberOfClusters">
+            <value>
+                <integer>5</integer>
+            </value>
+        </parameter>
+        <parameter id="distance">
+                <value>
+                    <integer>1</integer>
+                </value>
+        </parameter>
+    </methodParameters>
+
+</ns2:XMCDA>

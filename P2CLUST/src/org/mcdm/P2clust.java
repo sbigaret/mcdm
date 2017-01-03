@@ -2,8 +2,15 @@ package org.mcdm;
 
 import javafx.util.Pair;
 import org.xmcda.*;
-import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
-import org.xmcda.v2_2_1.Quantitative;
+import org.xmcda.Alternative;
+import org.xmcda.AlternativesSet;
+import org.xmcda.Criterion;
+import org.xmcda.PerformanceTable;
+import org.xmcda.Scale;
+import org.xmcda.XMCDA;
+import org.xmcda.converters.v2_v3.XMCDAConverter;
+import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
+import org.xmcda.v2.*;
 
 import java.io.File;
 import java.util.*;
@@ -12,24 +19,26 @@ public class P2clust {
 
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
-    protected List<Alternative> currentAlternatives;
-    protected AlternativesCriteriaValues currentCriteria;
-    protected List<Alternative> centralProfiles;
-    protected int K;
-    protected String prefix;
+    private List<Alternative> currentAlternatives;
+    private PerformanceTable currentCriteria;
+    private List<Alternative> centralProfiles;
+    private int K;
+    private String prefix;
+
+    public enum xmcdaVersion {V2, V3};
 
     public P2clust()
     {
         xmcda = new XMCDA();
-        currentCriteria = new AlternativesCriteriaValues();
+        currentCriteria = new PerformanceTable();
         currentAlternatives = new ArrayList<>();
         centralProfiles = new ArrayList<>();
         prefix = UUID.randomUUID().toString();
     }
 
-    public boolean Calculate(String inputPath)
+    public boolean Calculate(xmcdaVersion version, String inputPath, String outputPath)
     {
-        if (!Init(inputPath))
+        if (!Init(inputPath, version))
             return false;
 
         PrometheeII engine = new PrometheeII(xmcda);
@@ -64,12 +73,12 @@ public class P2clust {
 
         }while(flag);
 
-        SaveData(profilesData);
+        SaveData(profilesData, outputPath, version);
 
         return true;
     }
 
-    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data)
+    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data, String path, xmcdaVersion version)
     {
         for(int i = 0; i < K; i++)
         {
@@ -77,18 +86,24 @@ public class P2clust {
             List<Alternative> temp = data.get(centralProfiles.get(i));
 
             for (Alternative item : temp) {
-//                QualifiedValues<String> val = new QualifiedValues<>();
-//                val.add(new QualifiedValue<>(String.valueOf(i)));
                 set.put(item, null);
             }
             set.setId(String.valueOf(K-i));
             xmcda.alternativesSets.add(set);
         }
 
-        final File plik = new File("result.xml");
-        final XMCDAParser parser = new XMCDAParser();
+        final File plik = new File(path, "result.xml");
         try {
-            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            if (version == xmcdaVersion.V3) {
+                final XMCDAParser parser = new XMCDAParser();
+                parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA oldXmcda = new org.xmcda.v2.XMCDA();
+                oldXmcda = XMCDAConverter.convertTo_v2(xmcda);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(oldXmcda, plik.getAbsoluteFile(), "alternativesSets");
+            }
         }
         catch(Throwable thr)
         {
@@ -161,34 +176,66 @@ public class P2clust {
             Double partialRes = 0.0;
             for (Alternative alt : list)
             {
-                CriteriaValues crVal = (CriteriaValues)currentCriteria.get(alt);
-                LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-                QualifiedValue QV = (QualifiedValue)LabQVal.get(0);
-                Double value = (double)QV.getValue();
-                partialRes += value;
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                partialRes += (double)qv.getValue();
             }
             partialRes /= (double)list.size();
 
-            CriteriaValues crVal = (CriteriaValues)currentCriteria.get(profile);
-            LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-            LabQVal.set(0, new QualifiedValue<Double>(partialRes));
+
+
+            QualifiedValues vals = currentCriteria.get(profile, crt);
+            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
+            crtVal.setValue(partialRes);
         }
     }
 
-    private boolean Init(String inputPath)
+    private boolean Init(String inputPath, xmcdaVersion version)
     {
-        String[] tags = new String[]{
-                "alternatives",
-                "alternativesCriteriaValues",
-                "criteria",
-                "criteriaScales",
-                "criteriaThresholds",
-                "criteriaValues",
-                "programParameters"
-        };
+        if (version == xmcdaVersion.V3) {
+            String[] tags = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaScales",
+                    "criteriaThresholds",
+                    "criteriaValues",
+                    "programParameters",
+                    "performanceTable"
+            };
 
-        for(String tag : tags)
-            LoadData(inputPath.concat(tag).concat(".xml"), tag);
+            String[] filenames = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
+            for (int i = 0; i < filenames.length; i++)
+                LoadData(inputPath.concat(filenames[i]), tags[i]);
+        }
+        else {
+            String[] tagsV2 = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaValues",
+                    "methodParameters",
+                    "performanceTable"
+            };
+            String[] filenamesV2 = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
+
+            org.xmcda.v2.XMCDA oldXMCDA = new org.xmcda.v2.XMCDA();
+            for (int i = 0; i < filenamesV2.length; i++)
+                oldXMCDA = ObsoleteLoadData(oldXMCDA, inputPath.concat(filenamesV2[i]), tagsV2[i]);
+            xmcda = XMCDAConverter.convertTo_v3(oldXMCDA);
+        }
 
         try
         {
@@ -209,9 +256,23 @@ public class P2clust {
         return true;
     }
 
-    protected boolean LoadData(String path, String tag)
+    private org.xmcda.v2.XMCDA ObsoleteLoadData(org.xmcda.v2.XMCDA xmcdaV2, String path, String tag)
     {
-        final org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser();
+        File file = new File(path);
+
+        if (file.exists()) {
+            try {
+                xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
+            } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
+            }
+        }
+        return xmcdaV2;
+    }
+
+    private boolean LoadData(String path, String tag)
+    {
+        final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
         if(!file.exists())
@@ -228,7 +289,7 @@ public class P2clust {
         }
     }
 
-    protected boolean Validate()
+    private boolean Validate()
     {
         int critNum = xmcda.criteria.size();
         int critThrNum = xmcda.criteriaThresholdsList.size();
@@ -238,10 +299,10 @@ public class P2clust {
             return false;
 
         int altNum = xmcda.alternatives.size();
-        int altCritValNum = xmcda.alternativesCriteriaValuesList.size();
+        int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
-            altCritValNum = xmcda.alternativesCriteriaValuesList.get(0).size();
-        if (altCritValNum != altNum)
+            altCritValNum = xmcda.performanceTablesList.get(0).size();
+        if (altCritValNum != altNum*critNum)
             return false;
 
         int critScalNum = xmcda.criteriaScalesList.size();
@@ -257,7 +318,7 @@ public class P2clust {
         return true;
     }
 
-    protected void AddRandomAlternative(int num)
+    private void AddRandomAlternative(int num)
     {
         HashMap<Criterion, Pair<Double, Double>> bounds = GetBounds();
 
@@ -280,14 +341,17 @@ public class P2clust {
             {
                 int index = currentAlternatives.size() - K;
                 Alternative alt = currentAlternatives.get(index + i);
-                ((QualifiedValue)((LabelledQValues)((CriteriaValues)currentCriteria.get(alt)).get(crt)).get(0)).setValue(vars.get(i));
+                QualifiedValue<Double> result = new QualifiedValue<Double>();
+                result.setValue(vars.get(i));
+                currentCriteria.get(alt, crt).add(result);
+
             }
 
         }
 
     }
 
-    protected HashMap<Criterion, Pair<Double, Double>> GetBounds()
+    private HashMap<Criterion, Pair<Double, Double>> GetBounds()
     {
         HashMap<Criterion, Pair<Double, Double>> bounds = new HashMap<>();
         for(Criterion crt : xmcda.criteria)
@@ -299,13 +363,19 @@ public class P2clust {
             double min = Double.MAX_VALUE;
             for (Alternative alt : currentAlternatives)
             {
-                LabelledQValues temp = xmcda.alternativesCriteriaValuesList.get(0).get(alt).get(crt);
-                double tempVal = (double)((QualifiedValue)temp.get(0)).getValue();
 
-                if(tempVal < min)
-                    min = tempVal;
-                if(tempVal > max)
-                    max = tempVal;
+                try {
+                    QualifiedValue<Double> temp = xmcda.performanceTablesList.get(0).get(alt, crt).get(0).convertToDouble();
+                    double tempVal = (double)temp.getValue();
+
+                    if(tempVal < min)
+                        min = tempVal;
+                    if(tempVal > max)
+                        max = tempVal;
+                }
+                catch(Throwable thr){
+                    System.out.print(thr.getMessage());
+                }
             }
 
             bounds.put(crt, new Pair<>(min, max));
@@ -314,7 +384,7 @@ public class P2clust {
         return bounds;
     }
 
-    protected void SetAlternativesWithEmptyCriteria()
+    private void SetAlternativesWithEmptyCriteria()
     {
         for (int i = 0; i < K; i++)
         {
@@ -325,14 +395,14 @@ public class P2clust {
 
         for (Alternative alt : centralProfiles)
         {
-            org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
             for (Criterion crt : xmcda.criteria)
-                criteria.put(crt,new QualifiedValue(0.0));
-            currentCriteria.put(alt, criteria);
+            {
+                currentCriteria.put(alt, crt, new QualifiedValues<>());
+            }
         }
     }
 
-    protected HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
+    private HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
     {
         Random engine = new Random();
 
@@ -353,11 +423,11 @@ public class P2clust {
         return tempList;
     }
 
-    protected void CopyToCurrent()
+    private void CopyToCurrent()
     {
         for(Alternative alt : xmcda.alternatives)
             currentAlternatives.add(alt);
 
-        currentCriteria.putAll(xmcda.alternativesCriteriaValuesList.get(0));
+        currentCriteria.putAll(xmcda.performanceTablesList.get(0));
     }
 }

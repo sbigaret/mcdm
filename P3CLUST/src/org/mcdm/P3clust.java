@@ -2,7 +2,8 @@ package org.mcdm;
 
 import javafx.util.Pair;
 import org.xmcda.*;
-import org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser;
+import org.xmcda.converters.v2_v3.XMCDAConverter;
+import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
 
 import java.io.File;
 import java.util.*;
@@ -12,27 +13,29 @@ public class P3clust {
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
     private List<Alternative> currentAlternatives;
-    private AlternativesCriteriaValues currentCriteria;
+    private PerformanceTable currentCriteria;
     private List<Alternative> centralProfiles;
     private int K;
     private int P;
     private String prefix;
 
+    public enum xmcdaVersion {V2, V3};
+
     public P3clust()
     {
         xmcda = new XMCDA();
-        currentCriteria = new AlternativesCriteriaValues();
+        currentCriteria = new PerformanceTable();
         currentAlternatives = new ArrayList<>();
         centralProfiles = new ArrayList<>();
         prefix = UUID.randomUUID().toString();
     }
 
-    public boolean Calculate(String inputPath)
+    public boolean Calculate(xmcdaVersion version, String inputPath, String outputPath)
     {
-        if (!Init(inputPath))
+        if (!Init(inputPath, version))
             return false;
 
-        PrometheeTri engine = new PrometheeTri(xmcda, 2.0);
+        PrometheeTri engine = new PrometheeTri(xmcda, P);
         engine.SetCriteria(currentCriteria);
 
         LinkedHashMap<Alternative, List<Alternative>> lastOrder = new LinkedHashMap<>();
@@ -64,12 +67,12 @@ public class P3clust {
 
         }while(flag);
 
-        SaveData(profilesData);
+        SaveData(profilesData, outputPath, version);
 
         return true;
     }
 
-    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data)
+    private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data, String path, xmcdaVersion version)
     {
         for(int i = 0; i < K; i++)
         {
@@ -83,10 +86,18 @@ public class P3clust {
             xmcda.alternativesSets.add(set);
         }
 
-        final File plik = new File("result.xml");
-        final XMCDAParser parser = new XMCDAParser();
+        final File plik = new File(path, "alternativesSets.xml");
         try {
-            parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            if (version == xmcdaVersion.V3) {
+                final XMCDAParser parser = new XMCDAParser();
+                parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA oldXmcda = new org.xmcda.v2.XMCDA();
+                oldXmcda = XMCDAConverter.convertTo_v2(xmcda);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(oldXmcda, plik.getAbsoluteFile(), "alternativesSets");
+            }
         }
         catch(Throwable thr)
         {
@@ -159,35 +170,66 @@ public class P3clust {
             Double partialRes = 0.0;
             for (Alternative alt : list)
             {
-                CriteriaValues crVal = (CriteriaValues)currentCriteria.get(alt);
-                LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-                QualifiedValue QV = (QualifiedValue)LabQVal.get(0);
-                Double value = (double)QV.getValue();
-                partialRes += value;
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                partialRes += (double)qv.getValue();
             }
             partialRes /= (double)list.size();
 
-            CriteriaValues crVal = (CriteriaValues)currentCriteria.get(profile);
-            LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-            LabQVal.set(0, new QualifiedValue<Double>(partialRes));
+
+
+            QualifiedValues vals = currentCriteria.get(profile, crt);
+            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
+            crtVal.setValue(partialRes);
         }
     }
 
-    private boolean Init(String inputPath)
+    private boolean Init(String inputPath, xmcdaVersion version)
     {
-        String[] tags = new String[]{
-                "alternatives",
-                "alternativesCriteriaValues",
-                "criteria",
-                "criteriaScales",
-                "criteriaThresholds",
-                "criteriaValues",
-                "programParameters"
-        };
+        if (version == xmcdaVersion.V3) {
+            String[] tags = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaScales",
+                    "criteriaThresholds",
+                    "criteriaValues",
+                    "programParameters",
+                    "performanceTable"
+            };
 
-        for(String tag : tags)
-            LoadData(inputPath.concat(tag).concat(".xml"), tag);
+            String[] filenames = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
+            for (int i = 0; i < filenames.length; i++)
+                LoadData(inputPath.concat(filenames[i]), tags[i]);
+        }
+        else {
+            String[] tagsV2 = new String[]{
+                    "alternatives",
+                    "criteria",
+                    "criteriaValues",
+                    "methodParameters",
+                    "performanceTable"
+            };
+            String[] filenamesV2 = new String[]{
+                    "alternatives.xml",
+                    "criteria.xml",
+                    "criteriaValues.xml",
+                    "programParameters.xml",
+                    "performanceTable.xml"
+            };
 
+            org.xmcda.v2.XMCDA oldXMCDA = new org.xmcda.v2.XMCDA();
+            for (int i = 0; i < filenamesV2.length; i++)
+                oldXMCDA = ObsoleteLoadData(oldXMCDA, inputPath.concat(filenamesV2[i]), tagsV2[i]);
+            xmcda = XMCDAConverter.convertTo_v3(oldXMCDA);
+        }
         try
         {
             if (!Validate())
@@ -205,6 +247,20 @@ public class P3clust {
 
 
         return true;
+    }
+
+    private org.xmcda.v2.XMCDA ObsoleteLoadData(org.xmcda.v2.XMCDA xmcdaV2, String path, String tag)
+    {
+        File file = new File(path);
+
+        if (file.exists()) {
+            try {
+                xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
+            } catch (Throwable thr) {
+                System.out.print(thr.getMessage());
+            }
+        }
+        return xmcdaV2;
     }
 
     private void GetParameters()
@@ -225,7 +281,7 @@ public class P3clust {
 
     protected boolean LoadData(String path, String tag)
     {
-        final org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_3_0.XMCDAParser();
+        final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
         if(!file.exists())
@@ -252,10 +308,10 @@ public class P3clust {
             return false;
 
         int altNum = xmcda.alternatives.size();
-        int altCritValNum = xmcda.alternativesCriteriaValuesList.size();
+        int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
-            altCritValNum = xmcda.alternativesCriteriaValuesList.get(0).size();
-        if (altCritValNum != altNum)
+            altCritValNum = xmcda.performanceTablesList.get(0).size();
+        if (altCritValNum != altNum*critNum)
             return false;
 
         int critScalNum = xmcda.criteriaScalesList.size();
@@ -327,21 +383,18 @@ public class P3clust {
             centralProfiles.add(alt);
         }
 
-        //for (Alternative alt : centralProfiles)
         for (int i = 0; i < centralProfiles.size(); i++)
         {
             Alternative altDst = centralProfiles.get(i);
             Alternative altSrc = from.get(i);
-            org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
             for (Criterion crt : xmcda.criteria)
             {
-                CriteriaValues srcCritVal = (CriteriaValues)currentCriteria.get(altSrc);
-                LabelledQValues srcLVal = (LabelledQValues)srcCritVal.get(crt);
-                QualifiedValue srcQV = (QualifiedValue)srcLVal.get(0);
-                QualifiedValue<Double> insert = new QualifiedValue<Double>((double)srcQV.getValue());
-                criteria.put(crt, insert);
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(altSrc, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                QualifiedValue<Double> insert = new QualifiedValue<Double>((double)qv.getValue());
+                currentCriteria.put(altDst, crt, insert);
             }
-            currentCriteria.put(altDst, criteria);
+
         }
     }
 
@@ -371,6 +424,6 @@ public class P3clust {
         for(Alternative alt : xmcda.alternatives)
             currentAlternatives.add(alt);
 
-        currentCriteria.putAll(xmcda.alternativesCriteriaValuesList.get(0));
+        currentCriteria.putAll(xmcda.performanceTablesList.get(0));
     }
 }

@@ -1,5 +1,12 @@
 package org.mcdm;
 import org.xmcda.*;
+import org.xmcda.Alternative;
+import org.xmcda.CriteriaValues;
+import org.xmcda.Criterion;
+import org.xmcda.PerformanceTable;
+import org.xmcda.Scale;
+import org.xmcda.XMCDA;
+import org.xmcda.v2.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -9,7 +16,7 @@ import java.util.LinkedHashSet;
 public class PrometheeII {
 
     protected XMCDA xmcda;
-    protected AlternativesCriteriaValues currentCriteria;
+    protected PerformanceTable currentCriteria;
 
     public PrometheeII(XMCDA core)
     {
@@ -47,7 +54,7 @@ public class PrometheeII {
         return result;
     }
 
-    public void SetCriteria(AlternativesCriteriaValues criteria)
+    public void SetCriteria(PerformanceTable criteria)
     {
         currentCriteria = criteria;
     }
@@ -110,22 +117,28 @@ public class PrometheeII {
     private double CalculatePI(Alternative first, Alternative second)
     {
         double result = 0.0;
-        CriteriaValues firstAlter = (CriteriaValues)currentCriteria.get(first);
-        CriteriaValues secondAlter = (CriteriaValues)currentCriteria.get(second);
+        //CriteriaValues firstAlter = (CriteriaValues)currentCriteria.get(first);
+        //CriteriaValues secondAlter = (CriteriaValues)currentCriteria.get(second);
         for (Criterion crit : xmcda.criteria)
         {
             Double critResult = 0.0;
+            Double dk = 0.0;
 
-            LabelledQValues secLQV = (LabelledQValues)secondAlter.get(crit);
-            QualifiedValue secQV = (QualifiedValue)secLQV.get(0);
-            Double sec = (double)secQV.getValue();
+            try {
+                QualifiedValues firstVals = currentCriteria.get(first, crit);
+                QualifiedValue firQV = (QualifiedValue) firstVals.get(0);
+                Double fir = (double)firQV.getValue();
 
+                QualifiedValues secondVals = currentCriteria.get(second, crit);
+                QualifiedValue secQV = (QualifiedValue) firstVals.get(0);
+                Double sec = (double)firQV.getValue();
 
-            LabelledQValues fiLQV = (LabelledQValues)firstAlter.get(crit);
-            QualifiedValue fiQV = (QualifiedValue)fiLQV.get(0);
-            Double fir = (double)fiQV.getValue();
-
-            Double dk = fir - sec;
+                dk = fir - sec;
+            }
+            catch(Throwable thr)
+            {
+                System.out.print(thr.getMessage());
+            }
 
             Double indif  = getIndifference(crit);
             Double pref  = getPreference(crit);

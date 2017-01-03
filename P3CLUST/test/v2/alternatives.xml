@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2016/XMCDA-2.2.2">
+
+    <alternatives>
+        <alternative id="A"/>
+        <alternative id="B"/>
+        <alternative id="C"/>
+        <alternative id="D"/>
+        <alternative id="E"/>
+        <alternative id="F"/>
+        <alternative id="G"/>
+        <alternative id="H"/>
+    </alternatives>
+
+
+</ns2:XMCDA>

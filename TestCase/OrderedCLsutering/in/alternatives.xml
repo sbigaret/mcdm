@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2013/XMCDA-3.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.decision-deck.org/2013/XMCDA-3.0.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-3.0.0.xsd">
+
+    <alternatives>
+        <alternative id="a1"/>
+        <alternative id="a2"/>
+        <alternative id="a3"/>
+        <alternative id="a4"/>
+        <alternative id="a5"/>
+        <alternative id="a6"/>
+        <alternative id="a7"/>
+        <alternative id="a8"/>
+        <alternative id="a9"/>
+        <alternative id="a10"/>
+        <alternative id="a11"/>
+        <alternative id="a12"/>
+        <alternative id="a13"/>
+        <alternative id="a14"/>
+        <alternative id="a15"/>
+        <alternative id="a16"/>
+        <alternative id="a17"/>
+        <alternative id="a18"/>
+        <alternative id="a19"/>
+        <alternative id="a20"/>
+        <alternative id="a21"/>
+        <alternative id="a22"/>
+        <alternative id="a23"/>
+        <alternative id="a24"/>
+        <alternative id="a25"/>
+        <alternative id="a26"/>
+        <alternative id="a27"/>
+        <alternative id="a28"/>
+        <alternative id="a29"/>
+        <alternative id="a30"/>
+        <alternative id="a31"/>
+        <alternative id="a32"/>
+        <alternative id="a33"/>
+        <alternative id="a34"/>
+        <alternative id="a35"/>
+        <alternative id="a36"/>
+        <alternative id="a37"/>
+        <alternative id="a38"/>
+        <alternative id="a39"/>
+        <alternative id="a40"/>
+    </alternatives>
+
+</xmcda:XMCDA>

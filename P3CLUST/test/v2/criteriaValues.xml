@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2016/XMCDA-2.2.2">
+
+    <criteriaValues>
+        <criterionValue>
+            <criterionID>weigth</criterionID>
+            <values>
+                <value>
+                    <real>0.25</real>
+                </value>
+            </values>
+        </criterionValue>
+        <criterionValue>
+            <criterionID>price</criterionID>
+            <values>
+                <value>
+                    <real>0.6</real>
+                </value>
+            </values>
+        </criterionValue>
+        <criterionValue>
+            <criterionID>size</criterionID>
+            <values>
+                <value>
+                    <real>0.15</real>
+                </value>
+            </values>
+        </criterionValue>
+    </criteriaValues>
+
+
+</ns2:XMCDA>

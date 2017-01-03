@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2016/XMCDA-2.2.2">
+
+    <criteria>
+        <criterion id="weigth">
+            <active>true</active>
+            <thresholds>
+                <threshold id="indifference">
+                    <constant>
+                        <real>2.5</real>
+                    </constant>
+                </threshold>
+                <threshold id="preference">
+                    <constant>
+                        <real>1.5</real>
+                    </constant>
+                </threshold>
+            </thresholds>
+            <scale>
+                <quantitative>
+                    <preferenceDirection>min</preferenceDirection>
+                </quantitative>
+            </scale>
+        </criterion>
+        <criterion id="price">
+            <active>true</active>
+            <thresholds>
+                <threshold id="indifference">
+                    <constant>
+                        <real>20.0</real>
+                    </constant>
+                </threshold>
+                <threshold id="preference">
+                    <constant>
+                        <real>10.0</real>
+                    </constant>
+                </threshold>
+            </thresholds>
+            <scale>
+                <quantitative>
+                    <preferenceDirection>min</preferenceDirection>
+                </quantitative>
+            </scale>
+        </criterion>
+        <criterion id="size">
+            <active>true</active>
+            <thresholds>
+                <threshold id="indifference">
+                    <constant>
+                        <real>1.1</real>
+                    </constant>
+                </threshold>
+                <threshold id="preference">
+                    <constant>
+                        <real>2.2</real>
+                    </constant>
+                </threshold>
+            </thresholds>
+            <scale>
+                <quantitative>
+                    <preferenceDirection>max</preferenceDirection>
+                </quantitative>
+            </scale>
+        </criterion>
+    </criteria>
+
+</ns2:XMCDA>

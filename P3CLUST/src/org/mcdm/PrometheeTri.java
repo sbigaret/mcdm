@@ -7,7 +7,7 @@ import java.util.*;
 public class PrometheeTri {
 
     protected XMCDA xmcda;
-    protected AlternativesCriteriaValues currentCriteria;
+    protected PerformanceTable currentCriteria;
     protected double P = 1.0;
 
     public PrometheeTri(XMCDA core, double P)
@@ -17,7 +17,7 @@ public class PrometheeTri {
     }
 
 
-    public void SetCriteria(AlternativesCriteriaValues criteria)
+    public void SetCriteria(PerformanceTable criteria)
     {
         currentCriteria = criteria;
     }
@@ -77,28 +77,24 @@ public class PrometheeTri {
         return result;
     }
 
-    private double functionP(Alternative A, Alternative B, Criterion crit)
+    private double functionP(Alternative A, Alternative B, Criterion crt)
     {
-        CriteriaValues firstAlter = (CriteriaValues)currentCriteria.get(A);
-        CriteriaValues secondAlter = (CriteriaValues)currentCriteria.get(B);
+        QualifiedValues aVals = currentCriteria.get(A, crt);
+        QualifiedValue aCrtVal = (QualifiedValue)aVals.get(0);
+        double aVal = (double)aCrtVal.getValue();
 
-        LabelledQValues secLQV = (LabelledQValues)secondAlter.get(crit);
-        QualifiedValue secQV = (QualifiedValue)secLQV.get(0);
-        Double bVal = (double)secQV.getValue();
-
-
-        LabelledQValues fiLQV = (LabelledQValues)firstAlter.get(crit);
-        QualifiedValue fiQV = (QualifiedValue)fiLQV.get(0);
-        Double aVal = (double)fiQV.getValue();
+        QualifiedValues bVals = currentCriteria.get(B, crt);
+        QualifiedValue bCrtVal = (QualifiedValue)bVals.get(0);
+        double bVal = (double)bCrtVal.getValue();
 
         double difference = aVal - bVal;
 
-        Double indif  = getIndifference(crit);
-        Double pref  = getPreference(crit);
+        Double indif  = getIndifference(crt);
+        Double pref  = getPreference(crt);
 
         double critResult = 0.0;
 
-        QuantitativeScale scale = (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crit).get(0);
+        QuantitativeScale scale = (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crt).get(0);
         if (scale.getPreferenceDirection() == Scale.PreferenceDirection.MIN)
             critResult = functionPMax(indif, pref, difference);
         else

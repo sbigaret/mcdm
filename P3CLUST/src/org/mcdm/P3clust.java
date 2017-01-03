@@ -12,7 +12,7 @@ public class P3clust {
     protected XMCDA xmcda;
     protected final String randCoreName = "RANDOM";
     private List<Alternative> currentAlternatives;
-    private AlternativesCriteriaValues currentCriteria;
+    private PerformanceTable currentCriteria;
     private List<Alternative> centralProfiles;
     private int K;
     private int P;
@@ -21,7 +21,7 @@ public class P3clust {
     public P3clust()
     {
         xmcda = new XMCDA();
-        currentCriteria = new AlternativesCriteriaValues();
+        currentCriteria = new PerformanceTable();
         currentAlternatives = new ArrayList<>();
         centralProfiles = new ArrayList<>();
         prefix = UUID.randomUUID().toString();
@@ -32,7 +32,7 @@ public class P3clust {
         if (!Init(inputPath))
             return false;
 
-        PrometheeTri engine = new PrometheeTri(xmcda, 2.0);
+        PrometheeTri engine = new PrometheeTri(xmcda, P);
         engine.SetCriteria(currentCriteria);
 
         LinkedHashMap<Alternative, List<Alternative>> lastOrder = new LinkedHashMap<>();
@@ -159,17 +159,17 @@ public class P3clust {
             Double partialRes = 0.0;
             for (Alternative alt : list)
             {
-                CriteriaValues crVal = (CriteriaValues)currentCriteria.get(alt);
-                LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-                QualifiedValue QV = (QualifiedValue)LabQVal.get(0);
-                Double value = (double)QV.getValue();
-                partialRes += value;
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                partialRes += (double)qv.getValue();
             }
             partialRes /= (double)list.size();
 
-            CriteriaValues crVal = (CriteriaValues)currentCriteria.get(profile);
-            LabelledQValues LabQVal = (LabelledQValues)crVal.get(crt);
-            LabQVal.set(0, new QualifiedValue<Double>(partialRes));
+
+
+            QualifiedValues vals = currentCriteria.get(profile, crt);
+            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
+            crtVal.setValue(partialRes);
         }
     }
 
@@ -177,16 +177,25 @@ public class P3clust {
     {
         String[] tags = new String[]{
                 "alternatives",
-                "alternativesCriteriaValues",
                 "criteria",
                 "criteriaScales",
                 "criteriaThresholds",
                 "criteriaValues",
-                "programParameters"
+                "programParameters",
+                "performanceTable"
         };
 
-        for(String tag : tags)
-            LoadData(inputPath.concat(tag).concat(".xml"), tag);
+        String[] filenames = new String[]{
+                "alternatives.xml",
+                "criteria.xml",
+                "criteria.xml",
+                "criteria.xml",
+                "criteriaValues.xml",
+                "programParameters.xml",
+                "performanceTable.xml"
+        };
+        for (int i = 0; i < filenames.length; i++)
+            LoadData(inputPath.concat(filenames[i]), tags[i]);
 
         try
         {
@@ -252,10 +261,10 @@ public class P3clust {
             return false;
 
         int altNum = xmcda.alternatives.size();
-        int altCritValNum = xmcda.alternativesCriteriaValuesList.size();
+        int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
-            altCritValNum = xmcda.alternativesCriteriaValuesList.get(0).size();
-        if (altCritValNum != altNum)
+            altCritValNum = xmcda.performanceTablesList.get(0).size();
+        if (altCritValNum != altNum*critNum)
             return false;
 
         int critScalNum = xmcda.criteriaScalesList.size();
@@ -327,21 +336,18 @@ public class P3clust {
             centralProfiles.add(alt);
         }
 
-        //for (Alternative alt : centralProfiles)
         for (int i = 0; i < centralProfiles.size(); i++)
         {
             Alternative altDst = centralProfiles.get(i);
             Alternative altSrc = from.get(i);
-            org.xmcda.CriteriaValues criteria = new  org.xmcda.CriteriaValues<LabelledQValues<QualifiedValue<Double>>>();
             for (Criterion crt : xmcda.criteria)
             {
-                CriteriaValues srcCritVal = (CriteriaValues)currentCriteria.get(altSrc);
-                LabelledQValues srcLVal = (LabelledQValues)srcCritVal.get(crt);
-                QualifiedValue srcQV = (QualifiedValue)srcLVal.get(0);
-                QualifiedValue<Double> insert = new QualifiedValue<Double>((double)srcQV.getValue());
-                criteria.put(crt, insert);
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(altSrc, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                QualifiedValue<Double> insert = new QualifiedValue<Double>((double)qv.getValue());
+                currentCriteria.put(altDst, crt, insert);
             }
-            currentCriteria.put(altDst, criteria);
+
         }
     }
 
@@ -371,6 +377,6 @@ public class P3clust {
         for(Alternative alt : xmcda.alternatives)
             currentAlternatives.add(alt);
 
-        currentCriteria.putAll(xmcda.alternativesCriteriaValuesList.get(0));
+        currentCriteria.putAll(xmcda.performanceTablesList.get(0));
     }
 }

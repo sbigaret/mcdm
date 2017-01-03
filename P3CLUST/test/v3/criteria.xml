@@ -1,6 +1,50 @@
 <?xml version="1.0" ?>
 <xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2013/XMCDA-3.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.decision-deck.org/2013/XMCDA-3.0.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-3.0.0.xsd">
 
+    <criteria>
+        <criterion id="weigth">
+            <active>true</active>
+        </criterion>
+        <criterion id="price">
+            <active>true</active>
+        </criterion>
+        <criterion id="size">
+            <active>true</active>
+        </criterion>
+    </criteria>
+
+    <criteriaScales>
+        <criterionScale>
+            <criterionID>weigth</criterionID>
+            <scales>
+                <scale>
+                    <quantitative>
+                        <preferenceDirection>min</preferenceDirection>
+                    </quantitative>
+                </scale>
+            </scales>
+        </criterionScale>
+        <criterionScale>
+            <criterionID>price</criterionID>
+            <scales>
+                <scale>
+                    <quantitative>
+                        <preferenceDirection>min</preferenceDirection>
+                    </quantitative>
+                </scale>
+            </scales>
+        </criterionScale>
+        <criterionScale>
+            <criterionID>size</criterionID>
+            <scales>
+                <scale>
+                    <quantitative>
+                        <preferenceDirection>max</preferenceDirection>
+                    </quantitative>
+                </scale>
+            </scales>
+        </criterionScale>
+    </criteriaScales>
 
     <criteriaThresholds>
         <criterionThreshold>
@@ -49,5 +93,5 @@
             </thresholds>
         </criterionThreshold>
     </criteriaThresholds>
-    
+
 </xmcda:XMCDA>

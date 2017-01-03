@@ -1,3 +1,0 @@
-- Zmienić criterias na jeden plik w P2CLUST, P3CLUST
-- CriteriaValues w oddzielnym pliku
-- 

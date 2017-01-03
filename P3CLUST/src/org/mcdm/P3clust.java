@@ -86,7 +86,7 @@ public class P3clust {
             xmcda.alternativesSets.add(set);
         }
 
-        final File plik = new File(path, "result.xml");
+        final File plik = new File(path, "alternativesSets.xml");
         try {
             if (version == xmcdaVersion.V3) {
                 final XMCDAParser parser = new XMCDAParser();

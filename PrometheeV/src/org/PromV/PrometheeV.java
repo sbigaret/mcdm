@@ -136,6 +136,23 @@ public class PrometheeV {
             return null;
         double[] problem = new double[flows.size()];
         Arrays.fill(problem, 1.0);
+
+        for (Map.Entry<String, Double> element : flows.entrySet())
+        {
+            String strIndex = element.getKey();
+            Double value = element.getValue();
+            int index  = alternatives.indexOf(strIndex);
+
+            try
+            {
+                problem[index] = value;
+            }
+            catch (Throwable thr)
+            {
+                System.out.print(thr.getMessage());
+            }
+        }
+
         LinearProgram lp = new LinearProgram(problem);
         lp.setMinProblem(false);
 

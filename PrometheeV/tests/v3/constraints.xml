@@ -58,7 +58,7 @@
                     <real>5.0</real>
                 </rhs>
             </constraint>
-            <constraint id="con0">
+            <constraint id="con2">
                 <elements>
                     <element>
                         <alternativeID>B</alternativeID>

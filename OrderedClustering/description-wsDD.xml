@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
+
+    <program provider="PUT" name="P3CLUST" displayName="P3CLUST" version="0.2.0" />
+    <documentation>
+        <description>
+            OrderedClustering - clustering method using graphs and  flows
+        </description>
+        <url>https://github.com/dohko93/mcdm/tree/master/OrderedClustering</url>
+    </documentation>
+    <parameters>
+
+        <input id="input1" name="alternatives" displayName="alternatives" isoptional="0">
+            <documentation>
+                <description>List of alternaties.</description>
+            </documentation>
+            <xmcda tag="alternatives" />
+        </input>
+        <input id="input2" name="preferences" displayName="preferences" isoptional="0">
+            <documentation>
+                <description>Information about alternatives preferences (preference table).</description>
+            </documentation>
+            <xmcda tag="alternativesComparisons" />
+        </input>
+        <input id="input3" name="method_parameters" displayName="method_parameters" isoptional="0">
+            <documentation>
+                <description>First parameter specifies number of output clusters K.
+                    Where K is integer number greater than 1 and less than number of alternatives.
+                </description>
+            </documentation>
+            <xmcda tag="methodParameters">
+                <![CDATA[
+            <methodParameters>
+        <parameter id="NumberOfClusters">
+            <value>
+                <label>%1</label>
+            </value>
+        </parameter>
+    </methodParameters>
+
+        ]]>
+            </xmcda>
+            <gui status="preferGUI">
+                <entry id="%1" type="integer" displayName="NumberOfClusters" />
+            </gui>
+        </input>
+
+        <output id="output1" name="alternativesSets" displayName="alternativesSets">
+            <documentation>
+                <description>List of alternatives sets where each set representing one cluster.
+                    Sets are ordered, less id value represents better set.</description>
+            </documentation>
+            <xmcda tag="alternativesSets" />
+        </output>
+
+    </parameters>
+</program_description>

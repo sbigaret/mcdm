@@ -5,16 +5,21 @@ import java.util.*;
 
 import org.xmcda.*;
 import org.xmcda.Alternative;
+import org.xmcda.Alternatives;
 import org.xmcda.AlternativesLinearConstraints;
 import org.xmcda.AlternativesValues;
 import org.xmcda.LinearConstraint;
 import org.xmcda.XMCDA;
+import org.xmcda.converters.v2_v3.AlternativesConverter;
 import org.xmcda.converters.v2_v3.XMCDAConverter;
 import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
+import org.xmcda.v2.*;
 import scpsolver.constraints.*;
 import scpsolver.lpsolver.LinearProgramSolver;
 import scpsolver.lpsolver.SolverFactory;
 import scpsolver.problems.LinearProgram;
+
+import javax.xml.bind.JAXBElement;
 
 
 public class PrometheeV {
@@ -107,8 +112,67 @@ public class PrometheeV {
             xmcdaV2 = LoadFileObsolete(xmcdaV2, input.concat("/alternatives.xml"), "alternatives");
             xmcdaV2 = LoadFileObsolete(xmcdaV2, input.concat("/constraints.xml"), "alternativesLinearConstraints");
             xmcda = XMCDAConverter.convertTo_v3(xmcdaV2);
+            xmcda.alternativesLinearConstraintsList.add(convertLC(xmcdaV2));
         }
     }
+
+    private AlternativesLinearConstraints convertLC(org.xmcda.v2.XMCDA oldXmcda)
+    {
+        AlternativesLinearConstraints<org.xmcda.v2.AlternativesLinearConstraints.Constraint> alc = new AlternativesLinearConstraints();
+
+        Iterator var2 = oldXmcda.getProjectReferenceOrMethodMessagesOrMethodParameters().iterator();
+        AlternativesLinearConstraints alt = new AlternativesLinearConstraints();
+
+        while(var2.hasNext())
+        {
+            JAXBElement element = (JAXBElement)var2.next();
+            if(element.getValue() instanceof org.xmcda.v2.AlternativesLinearConstraints) {
+                org.xmcda.v2.AlternativesLinearConstraints oldLC = (org.xmcda.v2.AlternativesLinearConstraints)element.getValue();
+
+                alt.setId(oldLC.getId());
+                alt.setMcdaConcept(oldLC.getMcdaConcept());
+                alt.setName(oldLC.getName());
+
+                List<org.xmcda.v2.AlternativesLinearConstraints.Constraint> cList = oldLC.getConstraint();
+
+                for (org.xmcda.v2.AlternativesLinearConstraints.Constraint cons : cList)
+                {
+                    String id = cons.getId();
+                    String operator = cons.getOperator();
+                    Double rhsNV = cons.getRhs().getReal();
+                    List<org.xmcda.v2.AlternativesLinearConstraints.Constraint.Element> elements = cons.getElement();
+
+                    LinearConstraint linC = new LinearConstraint();
+                    linC.setId(id);
+                    if (operator.equals("eq"))
+                        linC.setOperator(LinearConstraint.Operator.EQ);
+                    else if (operator.equals("geq"))
+                        linC.setOperator(LinearConstraint.Operator.GEQ);
+                    else
+                        linC.setOperator(LinearConstraint.Operator.LEQ);
+                    linC.setRhs(new QualifiedValue(rhsNV));
+
+                    ArrayList<LinearConstraint.Element> newEleList = new ArrayList<>();
+                    for (org.xmcda.v2.AlternativesLinearConstraints.Constraint.Element ele : elements)
+                    {
+                        LinearConstraint.Element newEle = new LinearConstraint.Element();
+                        newEle.setCoefficient(new QualifiedValue(ele.getCoefficient().getReal()));
+                        if (ele.getAlternativeID() != null)
+                            newEle.setUnknown(new Alternative(ele.getAlternativeID()));
+                        newEleList.add(newEle);
+
+                    }
+
+                    linC.setElements(newEleList);
+
+                    alc.add(linC);
+                }
+            }
+        }
+
+        return alc;
+    }
+
 
     public boolean Compute(xmcdaVersion version, String input, String output) {
         LoadData(version, input);

@@ -43,9 +43,9 @@
                     In this case deviation is weighted generalised mean of difference between flows on criteria, where P is used exponent.
                 </description>
             </documentation>
-            <xmcda tag="methodParameters">
+            <xmcda tag="programParameters">
                 <![CDATA[
-            <methodParameters>
+            <programParameters>
         <parameter id="NumberOfClusters">
             <value>
                 <label>%1</label>
@@ -56,7 +56,7 @@
                     <label>%2</label>
                 </value>
         </parameter>
-    </methodParameters>
+    </programParameters>
 
         ]]>
             </xmcda>

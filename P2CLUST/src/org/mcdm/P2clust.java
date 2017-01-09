@@ -213,7 +213,7 @@ public class P2clust {
                     "performanceTable.xml"
             };
             for (int i = 0; i < filenames.length; i++)
-                LoadData(inputPath.concat(filenames[i]), tags[i]);
+                LoadData(inputPath.concat("/").concat(filenames[i]), tags[i]);
         }
         else {
             String[] tagsV2 = new String[]{
@@ -233,7 +233,7 @@ public class P2clust {
 
             org.xmcda.v2.XMCDA oldXMCDA = new org.xmcda.v2.XMCDA();
             for (int i = 0; i < filenamesV2.length; i++)
-                oldXMCDA = ObsoleteLoadData(oldXMCDA, inputPath.concat(filenamesV2[i]), tagsV2[i]);
+                oldXMCDA = ObsoleteLoadData(oldXMCDA, inputPath.concat("/").concat(filenamesV2[i]), tagsV2[i]);
             xmcda = XMCDAConverter.convertTo_v3(oldXMCDA);
         }
 

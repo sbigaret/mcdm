@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
+
+    <program provider="PUT" name="P2CLUST" displayName="P2CLUST" version="0.2.0" />
+    <documentation>
+        <description>
+            Clustering using Protmethee II and k-means algorithm
+        </description>
+        <url>https://github.com/dohko93/mcdm/tree/master/P2CLUST</url>
+    </documentation>
+    <parameters>
+
+        <input id="input1" name="alternatives" displayName="alternatives" isoptional="0">
+            <documentation>
+                <description>List of alternaties.</description>
+            </documentation>
+            <xmcda tag="alternatives" />
+        </input>
+        <input id="input2" name="criteria" displayName="criteria" isoptional="0">
+            <documentation>
+                <description>Information about criterias required to compute Promethee Tri: criteria id, criteria thresholds (indifference and preference) and criteria scales.</description>
+            </documentation>
+            <xmcda tag="criteria" />
+        </input>
+        <input id="input3" name="criteriaValues" displayName="weights" isoptional="0">
+            <documentation>
+                <description>Weights of criteria to consider.</description>
+            </documentation>
+            <xmcda tag="criteriaValues" />
+        </input>
+        <input id="input4" name="performanceTable" displayName="performanceTable" isoptional="0">
+            <documentation>
+                <description>The performance of alternatives.</description>
+            </documentation>
+            <xmcda tag="performanceTable" />
+        </input>
+        <input id="input5" name="programParameters" displayName="programParameters" isoptional="0">
+            <documentation>
+                <description>First parameter specifies number of output clusters K.
+                    Where K is integer greater than 1 and less than number of alternatives.
+                </description>
+            </documentation>
+            <xmcda tag="methodParameters">
+                <![CDATA[
+            <methodParameters>
+        <parameter id="NumberOfClusters">
+            <value>
+                <label>%1</label>
+            </value>
+        </parameter>
+    </methodParameters>
+
+        ]]>
+            </xmcda>
+            <gui status="preferGUI">
+                <entry id="%1" type="integer" displayName="NumberOfClusters" />
+            </gui>
+        </input>
+
+        <output id="output1" name="alternativesSets" displayName="alternativesSets">
+            <documentation>
+                <description>List of alternatives sets where each set representing one cluster.</description>
+            </documentation>
+            <xmcda tag="alternativesSets" />
+        </output>
+
+    </parameters>
+</program_description>

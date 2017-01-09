@@ -52,7 +52,7 @@
             </rhs>
             <operator>leq</operator>
         </constraint>
-        <constraint id="con0">
+        <constraint id="con2">
                 <element>
                     <alternativeID>B</alternativeID>
                     <coefficient>

@@ -5,15 +5,12 @@ import java.util.*;
 
 import org.xmcda.*;
 import org.xmcda.Alternative;
-import org.xmcda.Alternatives;
 import org.xmcda.AlternativesLinearConstraints;
 import org.xmcda.AlternativesValues;
 import org.xmcda.LinearConstraint;
 import org.xmcda.XMCDA;
-import org.xmcda.converters.v2_v3.AlternativesConverter;
 import org.xmcda.converters.v2_v3.XMCDAConverter;
 import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
-import org.xmcda.v2.*;
 import scpsolver.constraints.*;
 import scpsolver.lpsolver.LinearProgramSolver;
 import scpsolver.lpsolver.SolverFactory;
@@ -187,7 +184,7 @@ public class PrometheeV {
         if (!MakeConstraints(lp))
             return false;
 
-        if (!SolveAndSave(xmcdaVersion.V2, lp, output))
+        if (!SolveAndSave(version, lp, output))
             return false;
 
         return true;

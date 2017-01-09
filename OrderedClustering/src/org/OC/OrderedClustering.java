@@ -59,16 +59,16 @@ public class OrderedClustering {
 
     private void LoadData(xmcdaVersion version, String input) {
         if (version == xmcdaVersion.V3) {
-            LoadFile(input.concat("preferences.xml"), "alternativesMatrix");
-            LoadFile(input.concat("alternatives.xml"), "alternatives");
-            LoadFile(input.concat("method_parameters.xml"), "programParameters");
+            LoadFile(input.concat("/preferences.xml"), "alternativesMatrix");
+            LoadFile(input.concat("/alternatives.xml"), "alternatives");
+            LoadFile(input.concat("/method_parameters.xml"), "programParameters");
         }
         else
         {
             org.xmcda.v2.XMCDA tempXmcda = new org.xmcda.v2.XMCDA();
-            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("preferences.xml"), "alternativesMatrix");
-            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("alternatives.xml"), "alternatives");
-            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("method_parameters.xml"), "programParameters");
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("/preferences.xml"), "alternativesMatrix");
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("/alternatives.xml"), "alternatives");
+            tempXmcda = LoadFileObsolete(tempXmcda, input.concat("/method_parameters.xml"), "programParameters");
             xmcda = XMCDAConverter.convertTo_v3(tempXmcda);
         }
     }

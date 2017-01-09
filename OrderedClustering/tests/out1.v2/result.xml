@@ -16,6 +16,8 @@
                 <alternativeID>C</alternativeID>
                 <values/>
             </element>
+        </alternativesSet>
+        <alternativesSet id="2">
             <element>
                 <alternativeID>D</alternativeID>
                 <values/>

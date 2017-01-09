@@ -58,7 +58,7 @@
             </gui>
         </input>
 
-        <output id="output1" name="alternativesSets" displayName="alternativesSets">
+        <output id="output1" name="result" displayName="alternativesSets">
             <documentation>
                 <description>List of alternatives sets where each set representing one cluster.</description>
             </documentation>

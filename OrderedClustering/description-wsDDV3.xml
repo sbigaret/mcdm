@@ -31,13 +31,13 @@
             </documentation>
             <xmcda tag="programParameters">
                 <![CDATA[
-            <methodParameters>
+            <programParameters>
         <parameter id="NumberOfClusters">
             <value>
                 <label>%1</label>
             </value>
         </parameter>
-    </methodParameters>
+    </programParameters>
 
         ]]>
             </xmcda>
@@ -46,7 +46,7 @@
             </gui>
         </input>
 
-        <output id="output1" name="alternativesSets" displayName="alternativesSets">
+        <output id="output1" name="result" displayName="alternativesSets">
             <documentation>
                 <description>List of alternatives sets where each set representing one cluster.
                     Sets are ordered, less id value represents better set.</description>

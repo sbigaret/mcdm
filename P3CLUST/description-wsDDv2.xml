@@ -4,8 +4,7 @@
 
     <program provider="PUT" name="P3CLUST" displayName="P3CLUST" version="0.2.0" />
     <documentation>
-        <description>
-            Clustering using Protmethee Tri and k-means algorithm
+        <description>Clustering using Promethee Tri and k-means algorithm
         </description>
         <url>https://github.com/dohko93/mcdm/tree/master/P3CLUST</url>
     </documentation>
@@ -13,7 +12,7 @@
 
         <input id="input1" name="alternatives" displayName="alternatives" isoptional="0">
             <documentation>
-                <description>List of alternaties.</description>
+                <description>List of alternatives.</description>
             </documentation>
             <xmcda tag="alternatives" />
         </input>
@@ -48,12 +47,12 @@
             <methodParameters>
         <parameter id="NumberOfClusters">
             <value>
-                <label>%1</label>
+                <integer>%1</integer>
             </value>
         </parameter>
         <parameter id="distance">
                 <value>
-                    <label>%2</label>
+                    <integer>%2</integer>
                 </value>
         </parameter>
     </methodParameters>
@@ -61,8 +60,13 @@
         ]]>
             </xmcda>
             <gui status="preferGUI">
-                <entry id="%1" type="integer" displayName="NumberOfClusters" />
-                <entry id="%2" type="integer" displayName="distance"/>
+                <entry id="%1" type="int" displayName="NumberOfClusters">
+                    <constraint>
+                        <description>A integer value greater than 1 and lower than the number of alternatives</description>
+                        <code><![CDATA[ %1 > 1 ]]></code>
+                    </constraint>
+                </entry>
+                <entry id="%2" type="int" displayName="distance"/>
             </gui>
         </input>
 

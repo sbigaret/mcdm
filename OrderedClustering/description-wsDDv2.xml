@@ -2,7 +2,7 @@
 <program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
 
-    <program provider="PUT" name="P3CLUST" displayName="P3CLUST" version="0.2.0" />
+    <program provider="PUT" name="OrderedClustering" displayName="OrderedClustering" version="0.2.0" />
     <documentation>
         <description>OrderedClustering - clustering method using graphs and  flows</description>
         <url>https://github.com/dohko93/mcdm/tree/master/OrderedClustering</url>

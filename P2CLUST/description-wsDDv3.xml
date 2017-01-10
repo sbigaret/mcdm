@@ -4,16 +4,14 @@
 
     <program provider="PUT" name="P2CLUST" displayName="P2CLUST" version="0.2.0" />
     <documentation>
-        <description>
-            Clustering using Protmethee II and k-means algorithm
-        </description>
+        <description>Clustering using Promethee II and k-means algorithm</description>
         <url>https://github.com/dohko93/mcdm/tree/master/P2CLUST</url>
     </documentation>
     <parameters>
 
         <input id="input1" name="alternatives" displayName="alternatives" isoptional="0">
             <documentation>
-                <description>List of alternaties.</description>
+                <description>List of alternatives.</description>
             </documentation>
             <xmcda tag="alternatives" />
         </input>
@@ -41,20 +39,25 @@
                     Where K is integer greater than 1 and less than number of alternatives.
                 </description>
             </documentation>
-            <xmcda tag="methodParameters">
+            <xmcda tag="programParameters">
                 <![CDATA[
-            <methodParameters>
+            <programParameters>
         <parameter id="NumberOfClusters">
             <value>
-                <label>%1</label>
+                <integer>%1</integer>
             </value>
         </parameter>
-    </methodParameters>
+    </programParameters>
 
         ]]>
             </xmcda>
             <gui status="preferGUI">
-                <entry id="%1" type="integer" displayName="NumberOfClusters" />
+                <entry id="%1" type="int" displayName="NumberOfClusters">
+                    <constraint>
+                        <description>A integer value greater than 1 and lower than the number of alternatives</description>
+                        <code><![CDATA[ %1 > 1 ]]></code>
+                    </constraint>
+            </entry>
             </gui>
         </input>
 

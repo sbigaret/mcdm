@@ -335,8 +335,15 @@ public class PrometheeV {
     {
         org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
 
+        if (execResult.getStatus() == ProgramExecutionResult.Status.OK || execResult.getStatus() == ProgramExecutionResult.Status.WARNING)
+        {
+            execResult.addInfo("Success");
+        }
+
         XMCDA prgExecResults = new XMCDA();
         prgExecResults.programExecutionResultsList.add(execResult);
+
+
 
         try {
             if(version == xmcdaVersion.V3)

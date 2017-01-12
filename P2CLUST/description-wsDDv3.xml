@@ -2,7 +2,7 @@
 <program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
 
-    <program provider="PUT" name="P2CLUST" displayName="P2CLUST" version="0.2.0" />
+    <program provider="PUT" name="prometheeIIOrderedClustering" displayName="PrometheeIIOrderedClustering" version="0.2.1" />
     <documentation>
         <description>Clustering using Promethee II and k-means algorithm</description>
         <url>https://github.com/dohko93/mcdm/tree/master/P2CLUST</url>

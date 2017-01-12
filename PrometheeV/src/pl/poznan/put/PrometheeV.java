@@ -1,4 +1,4 @@
-package org.PromV;
+package pl.poznan.put;
 
 import java.io.File;
 import java.util.*;

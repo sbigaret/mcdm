@@ -1,4 +1,6 @@
-package org.PromV;
+package pl.poznan.put;
+
+import pl.poznan.put.PrometheeV;
 
 public class PromVUI {
 

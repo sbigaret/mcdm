@@ -5,9 +5,9 @@
 
     <methodParameters>
         <parameter id="NumberOfClusters">
-                <value>
-                    <integer>5</integer>
-                </value>
+            <value>
+                <integer>5</integer>
+            </value>
         </parameter>
     </methodParameters>
 

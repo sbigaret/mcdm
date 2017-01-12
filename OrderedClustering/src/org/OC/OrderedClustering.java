@@ -27,6 +27,7 @@ public class OrderedClustering {
     private ArrayList<ArrayList<Double>> matrix;
     private int clustersNum = 0;
     public enum xmcdaVersion {V2, V3}
+    private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
     public ArrayList<ArrayList<Alternative>> mainResult;
 
@@ -42,6 +43,8 @@ public class OrderedClustering {
 
         if(!file.exists())
         {
+            String message = "[LoadDataV3] File doesn't exist: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             return false;
         }
 
@@ -52,7 +55,8 @@ public class OrderedClustering {
         }
         catch (Throwable thr)
         {
-            System.out.print(thr.getMessage());
+            String message = "[LoadDataV3] Error while loading tag: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             return false;
         }
     }
@@ -80,17 +84,27 @@ public class OrderedClustering {
             try {
                 xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                String message = "[LoadDataV2] Error while loading tag: ";
+                execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             }
+        }
+        else
+        {
+            String message = "[LoadDataV2] File doesn't exist: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
         }
         return xmcdaV2;
     }
 
-    private void PrepareData()
+    private boolean PrepareData()
     {
-        GetAlternatives();
-        GetMatrix();
-        GetParameters();
+        if (!GetAlternatives())
+            return false;
+        if (!GetMatrix())
+            return false;
+        if (!GetParameters())
+            return false;
+        return true;
     }
 
     protected HashMap<String, Double>  GetFlows()
@@ -125,7 +139,7 @@ public class OrderedClustering {
         return result;
     }
 
-    private void GetAlternatives()
+    private boolean GetAlternatives()
     {
         try
         {
@@ -133,11 +147,13 @@ public class OrderedClustering {
         }
         catch(Throwable thr)
         {
-            System.out.print(thr.getMessage());
+            execResult.addError("[PrepareData] Alternatives loading error.");
+            return false;
         }
+        return true;
     }
 
-    private void GetParameters()
+    private boolean GetParameters()
     {
         try
         {
@@ -145,11 +161,14 @@ public class OrderedClustering {
         }
         catch (Throwable thr)
         {
-            System.out.print(thr.getMessage());
+
+            execResult.addError("[PrepareData] Parameters loading error.");
+            return false;
         }
+        return true;
     }
 
-    private void GetMatrix()
+    private boolean GetMatrix()
     {
         matrix = new ArrayList<ArrayList<Double>>();
 
@@ -184,22 +203,44 @@ public class OrderedClustering {
         }
         catch (Throwable thr)
         {
-            System.out.print(thr.getMessage());
-            return;
+            execResult.addError("[PrepareData] Performance matrix loading error.");
+            return false;
         }
 
+        return true;
 
-
-        //LinkedHashMap<Coord<Alternative, Alternative>, QualifiedValue<Double>>>
     }
 
 
     public void Compute(xmcdaVersion version, String in, String out) {
         LoadData(version, in);
-        PrepareData();
-        OrderedClutering(version, out);
+        if (!PrepareData())
+            return;
+        if (IsValid())
+            OrderedClutering(version, out);
     }
 
+    private boolean IsValid()
+    {
+        if (alternatives.size() == 0)
+        {
+            execResult.addError("[Validate] Number of alternatives is invalid.");
+            return false;
+        }
+
+        if (clustersNum < 2)
+        {
+            execResult.addError("[Validate] Number of clusters is invalid.");
+            return false;
+        }
+
+        if (matrix.size() != alternatives.size())
+        {
+            execResult.addWarning("[Validate] Number of clusters is invalid.");
+        }
+
+        return true;
+    }
 
     private void OrderedClutering(xmcdaVersion version, String out)
     {
@@ -278,7 +319,7 @@ public class OrderedClustering {
             try {
                 parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesSets");
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                execResult.addError("[SaveDataV3] Error while saving data.");
             }
         }
         else
@@ -288,13 +329,12 @@ public class OrderedClustering {
             try {
                 org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(resXmcda, plik.getAbsolutePath(), "alternativesSets");
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                execResult.addError("[SaveDataV2] Error while saving data.");
             }
         }
 
 
     }
-
 
     private List<Alternative> getNextResultAlt(DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph)
     {
@@ -347,5 +387,28 @@ public class OrderedClustering {
         return result;
     }
 
+    public void GetStatus(xmcdaVersion version, String outputPath)
+    {
+        org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
 
+        XMCDA prgExecResults = new XMCDA();
+        prgExecResults.programExecutionResultsList.add(execResult);
+        File messages = new File(outputPath.concat("message.xml"));
+
+        try {
+            if(version == xmcdaVersion.V3)
+            {
+                parser.writeXMCDA(prgExecResults, outputPath.concat("/message.xml"), "programExecutionResult");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA xmcda_v2 = XMCDAConverter.convertTo_v2(prgExecResults);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/message.xml"), "methodMessages");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
 }

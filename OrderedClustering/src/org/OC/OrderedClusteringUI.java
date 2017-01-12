@@ -37,6 +37,7 @@ public class OrderedClusteringUI {
 
             OrderedClustering pr = new OrderedClustering();
             pr.Compute(version, input, output);
+            pr.GetStatus(version, output);
         }
     }
 }

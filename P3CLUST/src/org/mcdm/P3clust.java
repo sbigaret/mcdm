@@ -157,10 +157,44 @@ public class P3clust {
                 continue;
 
 
-            UpdateCriteriaValue(value, key);
+            UpdateCriteriaValueMedian(value, key);
 
         }
 
+    }
+
+    private void UpdateCriteriaValueMedian(List<Alternative> list, Alternative profile)
+    {
+        for (Criterion crt : xmcda.criteria)
+        {
+            ArrayList<Double> tempList = new ArrayList<Double>();
+
+            double partialRes = 0;
+            Double tempVal = 0.0;
+
+            for (Alternative alt : list)
+            {
+                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
+                QualifiedValue qv = (QualifiedValue)qvals.get(0);
+                tempVal += (double)qv.getValue();
+                tempList.add(tempVal);
+            }
+
+            Collections.sort(tempList, new Comparator<Double>() {
+                @Override
+                public int compare(Double o1, Double o2) {
+                    return o1.compareTo(o2);
+                }
+            });
+
+            int altNum = list.size()/2;
+            partialRes = (double)((QualifiedValue)currentCriteria.get(list.get(altNum), crt).get(0)).getValue();
+
+            QualifiedValues vals = currentCriteria.get(profile, crt);
+            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
+            crtVal.setValue(partialRes);
+
+        }
     }
 
     private void UpdateCriteriaValue(List<Alternative> list, Alternative profile)

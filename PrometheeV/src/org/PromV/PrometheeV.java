@@ -348,12 +348,12 @@ public class PrometheeV {
         try {
             if(version == xmcdaVersion.V3)
             {
-                parser.writeXMCDA(prgExecResults, outputPath.concat("/message.xml"), "programExecutionResult");
+                parser.writeXMCDA(prgExecResults, outputPath.concat("/messages.xml"), "programExecutionResult");
             }
             else
             {
                 org.xmcda.v2.XMCDA xmcda_v2 = XMCDAConverter.convertTo_v2(prgExecResults);
-                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/message.xml"), "methodMessages");
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/messages.xml"), "methodMessages");
             }
         }
         catch (Exception ex)

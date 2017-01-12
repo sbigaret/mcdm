@@ -1,4 +1,4 @@
-package org.OC;
+package pl.poznan.put;
 
 public class Tuple<A, B> {
     private A First;

@@ -1,4 +1,4 @@
-package org.OC;
+package pl.poznan.put;
 
 import org.xmcda.Alternative;
 import org.xmcda.AlternativesMatrix;

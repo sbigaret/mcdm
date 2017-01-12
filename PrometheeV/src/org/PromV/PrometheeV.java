@@ -26,8 +26,8 @@ public class PrometheeV {
     private XMCDA xmcda;
 
     public enum xmcdaVersion {V2, V3}
+    private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
-    ;
 
     public PrometheeV() {
         xmcda = new XMCDA();
@@ -37,7 +37,10 @@ public class PrometheeV {
         final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
-        if (!file.exists()) {
+        if(!file.exists())
+        {
+            String message = "[LoadDataV3] File doesn't exist: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             return false;
         }
 
@@ -45,6 +48,8 @@ public class PrometheeV {
             parser.readXMCDA(xmcda, file, typeTag);
             return true;
         } catch (Throwable throwable) {
+            String message = "[LoadDataV3] Error while loading tag: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             return false;
         }
     }
@@ -56,8 +61,14 @@ public class PrometheeV {
             try {
                 xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                String message = "[LoadDataV2] Error while loading tag: ";
+                execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
             }
+        }
+        else
+        {
+            String message = "[LoadDataV2] File doesn't exist: ";
+            execResult.addError(message.concat(typeTag.length > 0 ? typeTag[0] : "empty"));
         }
         return xmcdaV2;
     }
@@ -94,6 +105,7 @@ public class PrometheeV {
             alternatives = xmcda.alternatives.getIDs();
             return true;
         } catch (Throwable thr) {
+            execResult.addError("[PrepareData] Alternatives prepare error.");
             return false;
         }
     }
@@ -172,7 +184,14 @@ public class PrometheeV {
 
 
     public boolean Compute(xmcdaVersion version, String input, String output) {
-        LoadData(version, input);
+        try {
+            LoadData(version, input);
+        }
+        catch (Exception exc)
+        {
+            execResult.addError("[DataLoading] Error while loading files.");
+            return false;
+        }
 
         if (!GetAlternatives())
             return false;
@@ -210,7 +229,8 @@ public class PrometheeV {
             }
             catch (Throwable thr)
             {
-                System.out.print(thr.getMessage());
+                execResult.addError("[PrepareData] Making linear problem error.");
+                return null;
             }
         }
 
@@ -228,6 +248,9 @@ public class PrometheeV {
             org.xmcda.AlternativesLinearConstraints constraints = xmcda.alternativesLinearConstraintsList.get(0);
 
             ListIterator<LinearConstraint> var = constraints.listIterator();
+
+            if (!var.hasNext())
+                throw(new InputMismatchException("0 constraints"));
 
             while (var.hasNext()) {
                 LinearConstraint linearConstr = var.next();
@@ -248,6 +271,7 @@ public class PrometheeV {
 
             }
         } catch (Throwable thr) {
+            execResult.addError("[PrepareData] Make constraints error.");
             return false;
         }
         return true;
@@ -265,8 +289,8 @@ public class PrometheeV {
                 lp.addConstraint(new LinearEqualsConstraint(leftSide, rhs, name));
                 break;
             default:
-                lp.addConstraint(new LinearEqualsConstraint(leftSide, rhs, name));
-                break;
+                throw(new InputMismatchException("invalid operator"));
+
         }
     }
 
@@ -284,23 +308,51 @@ public class PrometheeV {
 
         if (version == xmcdaVersion.V3) {
             final XMCDAParser parser = new XMCDAParser();
-            final File plik = new File(out, "result.xml");
+            final File plik = new File(out, "/result.xml");
             try {
                 parser.writeXMCDA(xmcda, plik.getAbsolutePath(), "alternativesValues");
             } catch (Throwable thr) {
+                execResult.addError("[SaveDataV3] Error while saving data.");
                 return false;
             }
         }
         else {
             org.xmcda.v2.XMCDA resXmcda = XMCDAConverter.convertTo_v2(xmcda);
-            final File plik = new File(out, "result.xml");
+            final File plik = new File(out, "/result.xml");
             try {
                 org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(resXmcda, plik.getAbsolutePath(), "alternativesValues");
             } catch (Throwable thr) {
+                execResult.addError("[SaveDataV2] Error while saving data.");
                 return false;
             }
         }
 
         return true;
     }
+
+
+    public void GetStatus(xmcdaVersion version, String outputPath)
+    {
+        org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
+
+        XMCDA prgExecResults = new XMCDA();
+        prgExecResults.programExecutionResultsList.add(execResult);
+
+        try {
+            if(version == xmcdaVersion.V3)
+            {
+                parser.writeXMCDA(prgExecResults, outputPath.concat("/message.xml"), "programExecutionResult");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA xmcda_v2 = XMCDAConverter.convertTo_v2(prgExecResults);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/message.xml"), "methodMessages");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
 }

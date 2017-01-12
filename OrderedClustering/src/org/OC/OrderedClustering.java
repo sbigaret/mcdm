@@ -217,7 +217,7 @@ public class OrderedClustering {
         if (!PrepareData())
             return;
         if (IsValid())
-            OrderedClutering(version, out);
+            OrderedCluteringCalc(version, out);
     }
 
     private boolean IsValid()
@@ -242,7 +242,7 @@ public class OrderedClustering {
         return true;
     }
 
-    private void OrderedClutering(xmcdaVersion version, String out)
+    private void OrderedCluteringCalc(xmcdaVersion version, String out)
     {
 
         DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
@@ -393,7 +393,6 @@ public class OrderedClustering {
 
         XMCDA prgExecResults = new XMCDA();
         prgExecResults.programExecutionResultsList.add(execResult);
-        File messages = new File(outputPath.concat("message.xml"));
 
         try {
             if(version == xmcdaVersion.V3)

@@ -38,6 +38,7 @@ public class PromVUI {
 
             PrometheeV pr = new PrometheeV();
             pr.Compute(version, input, output);
+            pr.GetStatus(version, output);
         }
     }
 }

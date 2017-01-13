@@ -2,7 +2,7 @@
 <program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
 
-    <program provider="PUT" name="prometheeCluster" displayName="PrometheeCluster" version="0.2.1" />
+    <program provider="PUT" name="PrometheeCluster" displayName="PrometheeCluster" version="0.2.1" />
     <documentation>
         <description>Clustering using Promethee Tri and k-means algorithm
         </description>

@@ -18,6 +18,7 @@ public class P3clust {
     private int K;
     private int P;
     private String prefix;
+    private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
     public enum xmcdaVersion {V2, V3};
 
@@ -32,8 +33,10 @@ public class P3clust {
 
     public boolean Calculate(xmcdaVersion version, String inputPath, String outputPath)
     {
-        if (!Init(inputPath, version))
+        if (!Init(inputPath, version)) {
+            execResult.addError("[InitData] Error while initialize data");
             return false;
+        }
 
         PrometheeTri engine = new PrometheeTri(xmcda, P);
         engine.SetCriteria(currentCriteria);
@@ -51,8 +54,15 @@ public class P3clust {
 
             for (Alternative alt : tempAlternatives)
             {
-                Alternative prof = engine.FindClosest(centralProfiles, alt);
-                profilesData.get(prof).add(alt);
+                try {
+                    Alternative prof = engine.FindClosest(centralProfiles, alt);
+                    profilesData.get(prof).add(alt);
+                }
+                catch(Exception exc)
+                {
+                    execResult.addError("[PrometheeTri] Engine error");
+                    return false;
+                }
             }
 
             UpdateCentralProfiles(profilesData);
@@ -101,6 +111,7 @@ public class P3clust {
         }
         catch(Throwable thr)
         {
+            execResult.addError("[SaveData] Save data error");
             return;
         }
     }
@@ -271,6 +282,7 @@ public class P3clust {
         }
         catch (Throwable thr)
         {
+            execResult.addError("[InitData] Data are invalid");
             return false;
         }
 
@@ -291,8 +303,12 @@ public class P3clust {
             try {
                 xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                execResult.addError("[LoadData] Parse data error");
             }
+        }
+        else
+        {
+            execResult.addError("[LoadData] File doesn't exists");
         }
         return xmcdaV2;
     }
@@ -318,8 +334,10 @@ public class P3clust {
         final org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
         File file = new File(path);
 
-        if(!file.exists())
+        if(!file.exists()) {
+            execResult.addError("[LoadData] File doesn't exists");
             return false;
+        }
 
         try
         {
@@ -328,6 +346,7 @@ public class P3clust {
         }
         catch (Throwable thr)
         {
+            execResult.addError("[LoadData] Parse data error");
             return false;
         }
     }
@@ -355,7 +374,7 @@ public class P3clust {
             return false;
 
         int cNum = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
-        if (cNum >= altNum)
+        if (cNum >= altNum || cNum <= 1)
             return false;
 
         return true;
@@ -459,5 +478,35 @@ public class P3clust {
             currentAlternatives.add(alt);
 
         currentCriteria.putAll(xmcda.performanceTablesList.get(0));
+    }
+
+    public void GetStatus(xmcdaVersion version, String outputPath)
+    {
+        org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
+
+
+        if (execResult.getStatus() == ProgramExecutionResult.Status.OK || execResult.getStatus() == ProgramExecutionResult.Status.WARNING)
+        {
+            execResult.addInfo("Success");
+        }
+
+        XMCDA prgExecResults = new XMCDA();
+        prgExecResults.programExecutionResultsList.add(execResult);
+
+        try {
+            if(version == xmcdaVersion.V3)
+            {
+                parser.writeXMCDA(prgExecResults, outputPath.concat("/messages.xml"), "programExecutionResult");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA xmcda_v2 = XMCDAConverter.convertTo_v2(prgExecResults);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/messages.xml"), "methodMessages");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 }

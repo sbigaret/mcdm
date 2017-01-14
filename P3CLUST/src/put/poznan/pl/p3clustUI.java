@@ -38,6 +38,7 @@ public class p3clustUI {
 
             P3clust pr = new P3clust();
             pr.Calculate(version, input, output);
+            pr.GetStatus(version, output);
         }
     }
 }

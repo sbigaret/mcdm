@@ -1,4 +1,4 @@
-package org.mcdm;
+package put.poznan.pl;
 import javafx.util.Pair;
 import org.xmcda.*;
 

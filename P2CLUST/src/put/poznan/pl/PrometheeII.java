@@ -1,4 +1,4 @@
-package org.mcdm;
+package put.poznan.pl;
 import org.xmcda.*;
 import org.xmcda.Alternative;
 import org.xmcda.CriteriaValues;

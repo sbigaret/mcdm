@@ -1,4 +1,4 @@
-package org.mcdm;
+package put.poznan.pl;
 
 
 public class p2clustUI {

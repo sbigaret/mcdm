@@ -1,4 +1,4 @@
-package org.mcdm;
+package put.poznan.pl;
 
 import javafx.util.Pair;
 import org.xmcda.*;
@@ -10,7 +10,6 @@ import org.xmcda.Scale;
 import org.xmcda.XMCDA;
 import org.xmcda.converters.v2_v3.XMCDAConverter;
 import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
-import org.xmcda.v2.*;
 
 import java.io.File;
 import java.util.*;

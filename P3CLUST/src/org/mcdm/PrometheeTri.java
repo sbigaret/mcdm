@@ -48,22 +48,17 @@ public class PrometheeTri {
 
     private double functionPMax(double indf, double pref, double x)
     {
-        if (x < pref)
-            return 1.0;
-        else if (x < indf)
-            return (indf - x)/(indf - pref);
-        else
+        if (x < indf)
             return 0.0;
+        else if( x > pref)
+            return 1.0;
+        else
+            return (x - indf)/(indf - pref);
     }
 
     private double functionPMin(double indf, double pref, double x)
     {
-        if (x < indf)
-            return 0.0;
-        else if (x < pref)
-            return (x - indf)/(pref - indf);
-        else
-            return 1.0;
+        return functionPMax(pref, indf, -x);
     }
 
     private double getWeigth(Criterion criterion)
@@ -95,7 +90,7 @@ public class PrometheeTri {
         double critResult = 0.0;
 
         QuantitativeScale scale = (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crt).get(0);
-        if (scale.getPreferenceDirection() == Scale.PreferenceDirection.MIN)
+        if (scale.getPreferenceDirection() == Scale.PreferenceDirection.MAX)
             critResult = functionPMax(indif, pref, difference);
         else
             critResult = functionPMin(indif, pref, difference);

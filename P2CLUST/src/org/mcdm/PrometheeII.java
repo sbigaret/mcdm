@@ -97,12 +97,6 @@ public class PrometheeII {
     private double functionPMin(double indf, double pref, double x)
     {
         return functionPMax(pref, indf, -x);
-//        if (x < indf)
-//            return 0.0;
-//        else if (x < pref)
-//            return (x - indf)/(pref - indf);
-//        else
-//            return 1.0;
     }
 
     private double getWeigth(Criterion criterion)

@@ -88,7 +88,7 @@ public class P2clust {
             for (Alternative item : temp) {
                 set.put(item, null);
             }
-            set.setId(String.valueOf(K-i));
+            set.setId(String.valueOf(i));
             xmcda.alternativesSets.add(set);
         }
 

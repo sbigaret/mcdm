@@ -85,22 +85,24 @@ public class PrometheeII {
 
     private double functionPMax(double indf, double pref, double x)
     {
-        if (x < pref)
-            return 1.0;
-        else if (x < indf)
-            return (indf - x)/(indf - pref);
-        else
+        if (x < indf)
             return 0.0;
+        else if( x > pref)
+            return 1.0;
+        else
+            return (x - indf)/(indf - pref);
+
     }
 
     private double functionPMin(double indf, double pref, double x)
     {
-        if (x < indf)
-            return 0.0;
-        else if (x < pref)
-            return (x - indf)/(pref - indf);
-        else
-            return 1.0;
+        return functionPMax(pref, indf, -x);
+//        if (x < indf)
+//            return 0.0;
+//        else if (x < pref)
+//            return (x - indf)/(pref - indf);
+//        else
+//            return 1.0;
     }
 
     private double getWeigth(Criterion criterion)
@@ -130,8 +132,8 @@ public class PrometheeII {
                 Double fir = (double)firQV.getValue();
 
                 QualifiedValues secondVals = currentCriteria.get(second, crit);
-                QualifiedValue secQV = (QualifiedValue) firstVals.get(0);
-                Double sec = (double)firQV.getValue();
+                QualifiedValue secQV = (QualifiedValue) secondVals.get(0);
+                Double sec = (double)secQV.getValue();
 
                 dk = fir - sec;
             }
@@ -144,7 +146,7 @@ public class PrometheeII {
             Double pref  = getPreference(crit);
 
             QuantitativeScale x = (QuantitativeScale)xmcda.criteriaScalesList.get(0).get(crit).get(0);
-            if (x.getPreferenceDirection() == Scale.PreferenceDirection.MIN)
+            if (x.getPreferenceDirection() == Scale.PreferenceDirection.MAX)
                 critResult = functionPMax(indif, pref, dk);
             else
                 critResult = functionPMin(indif, pref, dk);

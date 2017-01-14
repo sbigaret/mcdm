@@ -4,36 +4,36 @@
 <alternativesSets>
 		<alternativesSet id="5">
 			<element>
+				<alternativeID>C</alternativeID>
+			</element>
+			<element>
 				<alternativeID>E</alternativeID>
 			</element>
 			<element>
 				<alternativeID>F</alternativeID>
 			</element>
-			<element>
-				<alternativeID>G</alternativeID>
-			</element>
-			<element>
-				<alternativeID>H</alternativeID>
-			</element>
 		</alternativesSet>
 		<alternativesSet id="4">
 			<element>
-				<alternativeID>A</alternativeID>
+				<alternativeID>D</alternativeID>
+			</element>
+			<element>
+				<alternativeID>G</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="3">
 			<element>
-				<alternativeID>B</alternativeID>
+				<alternativeID>A</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="2">
 			<element>
-				<alternativeID>C</alternativeID>
+				<alternativeID>B</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="1">
 			<element>
-				<alternativeID>D</alternativeID>
+				<alternativeID>H</alternativeID>
 			</element>
 		</alternativesSet>
 	</alternativesSets>

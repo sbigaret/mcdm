@@ -35,6 +35,7 @@ public class p2clustUI {
 
             P2clust pr = new P2clust();
             pr.Calculate(version, input, output);
+            pr.GetStatus(version, output);
         }
     }
 }

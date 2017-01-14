@@ -23,6 +23,7 @@ public class P2clust {
     private List<Alternative> centralProfiles;
     private int K;
     private String prefix;
+    private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
     public enum xmcdaVersion {V2, V3};
 
@@ -428,5 +429,35 @@ public class P2clust {
             currentAlternatives.add(alt);
 
         currentCriteria.putAll(xmcda.performanceTablesList.get(0));
+    }
+
+    public void GetStatus(xmcdaVersion version, String outputPath)
+    {
+        org.xmcda.parsers.xml.xmcda_v3.XMCDAParser parser = new org.xmcda.parsers.xml.xmcda_v3.XMCDAParser();
+
+
+        if (execResult.getStatus() == ProgramExecutionResult.Status.OK || execResult.getStatus() == ProgramExecutionResult.Status.WARNING)
+        {
+            execResult.addInfo("Success");
+        }
+
+        XMCDA prgExecResults = new XMCDA();
+        prgExecResults.programExecutionResultsList.add(execResult);
+
+        try {
+            if(version == xmcdaVersion.V3)
+            {
+                parser.writeXMCDA(prgExecResults, outputPath.concat("/messages.xml"), "programExecutionResult");
+            }
+            else
+            {
+                org.xmcda.v2.XMCDA xmcda_v2 = XMCDAConverter.convertTo_v2(prgExecResults);
+                org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.writeXMCDA(xmcda_v2, outputPath.concat("/messages.xml"), "methodMessages");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 }

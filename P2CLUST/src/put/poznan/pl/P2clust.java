@@ -57,8 +57,15 @@ public class P2clust {
 
             for (Alternative alt : tempAlternatives)
             {
-                Alternative prof = engine.FindClosest(centralProfiles, alt);
-                profilesData.get(prof).add(alt);
+                try {
+                    Alternative prof = engine.FindClosest(centralProfiles, alt);
+                    profilesData.get(prof).add(alt);
+                }
+                catch (Exception exc)
+                {
+                    execResult.addError("[PrometheeII] Promethee II engine error");
+                    return false;
+                }
             }
 
             UpdateCentralProfiles(profilesData);
@@ -107,6 +114,7 @@ public class P2clust {
         }
         catch(Throwable thr)
         {
+            execResult.addError("[Save] Save output data error.");
             return;
         }
     }
@@ -244,6 +252,7 @@ public class P2clust {
         }
         catch (Throwable thr)
         {
+            execResult.addError("[Validate] Input data validation error");
             return false;
         }
 
@@ -264,7 +273,7 @@ public class P2clust {
             try {
                 xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
             } catch (Throwable thr) {
-                System.out.print(thr.getMessage());
+                execResult.addError("[LoadV2] Load data error.");
             }
         }
         return xmcdaV2;
@@ -285,6 +294,7 @@ public class P2clust {
         }
         catch (Throwable thr)
         {
+            execResult.addError("[LoadV3] Load data error");
             return false;
         }
     }
@@ -374,6 +384,7 @@ public class P2clust {
                         max = tempVal;
                 }
                 catch(Throwable thr){
+                    execResult.addError("[Compute] Computation error");
                     System.out.print(thr.getMessage());
                 }
             }

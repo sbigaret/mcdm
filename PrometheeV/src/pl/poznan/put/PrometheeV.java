@@ -299,12 +299,13 @@ public class PrometheeV {
         double[] sol = solver.solve(lp);
         xmcda.alternativesValuesList.clear();
 
+        AlternativesValues<Double> altV = new AlternativesValues<Double>();
+
         for (int i = 0; i < alternatives.size(); i++) {
             Alternative alt = new Alternative(alternatives.get(i));
-            AlternativesValues<Double> altV = new AlternativesValues<Double>();
-            altV.setDefault(alt, sol[i]);
-            xmcda.alternativesValuesList.add(altV);
+            altV.put(alt, sol[i]);
         }
+        xmcda.alternativesValuesList.add(altV);
 
         if (version == xmcdaVersion.V3) {
             final XMCDAParser parser = new XMCDAParser();

@@ -7,28 +7,28 @@
 				<alternativeID>C</alternativeID>
 			</element>
 			<element>
-				<alternativeID>E</alternativeID>
+				<alternativeID>F</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="1">
 			<element>
 				<alternativeID>D</alternativeID>
 			</element>
-		</alternativesSet>
-		<alternativesSet id="2">
 			<element>
-				<alternativeID>A</alternativeID>
-			</element>
-			<element>
-				<alternativeID>F</alternativeID>
+				<alternativeID>E</alternativeID>
 			</element>
 			<element>
 				<alternativeID>G</alternativeID>
 			</element>
 		</alternativesSet>
-		<alternativesSet id="3">
+		<alternativesSet id="2">
 			<element>
 				<alternativeID>B</alternativeID>
+			</element>
+		</alternativesSet>
+		<alternativesSet id="3">
+			<element>
+				<alternativeID>A</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="4">

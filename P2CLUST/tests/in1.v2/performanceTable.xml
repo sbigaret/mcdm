@@ -9,27 +9,27 @@
 
             <performance>
                 <criterionID>weigth</criterionID>
-                
+
                     <value>
                         <real>10.9</real>
                     </value>
-                
+
             </performance>
             <performance>
                 <criterionID>price</criterionID>
-                
+
                     <value>
                         <real>105.99</real>
                     </value>
-                
+
             </performance>
             <performance>
                 <criterionID>size</criterionID>
-                
-                    <value>
-                        <real>22.2</real>
-                    </value>
-                
+
+                <value>
+                    <real>22.2</real>
+                </value>
+
             </performance>
 
         </alternativePerformances>

@@ -3,41 +3,51 @@
     <alternativesValues>
         <alternativeValue>
             <alternativeID>A</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>B</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>C</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>D</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>E</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
 </ns2:XMCDA>

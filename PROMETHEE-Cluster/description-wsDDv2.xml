@@ -2,10 +2,11 @@
 <program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
 
-    <program provider="PUT" name="PrometheeIIOrderedClustering" displayName="PrometheeIIOrderedClustering" version="0.2.1" />
+    <program provider="PUT" name="PROMETHEE-Cluster" displayName="PROMETHEE-Cluster" version="1.0" />
     <documentation>
-        <description>Clustering using Promethee II and k-means algorithm</description>
-        <url>https://github.com/dohko93/mcdm/tree/master/P2CLUST</url>
+        <description>Clustering using Promethee Tri and k-means algorithm
+        </description>
+        <url>https://github.com/dohko93/mcdm/tree/master/P3CLUST</url>
     </documentation>
     <parameters>
 
@@ -37,6 +38,8 @@
             <documentation>
                 <description>First parameter specifies number of output clusters K.
                     Where K is integer greater than 1 and less than number of alternatives.
+                    Second parameter specifies parameter P of deviation used in Promethee TRI.
+                    In this case deviation is weighted generalised mean of difference between flows on criteria, where P is used exponent.
                 </description>
             </documentation>
             <xmcda tag="methodParameters">
@@ -46,6 +49,11 @@
             <value>
                 <integer>%1</integer>
             </value>
+        </parameter>
+        <parameter id="distance">
+                <value>
+                    <integer>%2</integer>
+                </value>
         </parameter>
     </methodParameters>
 
@@ -58,6 +66,7 @@
                         <code><![CDATA[ %1 > 1 ]]></code>
                     </constraint>
                 </entry>
+                <entry id="%2" type="int" displayName="distance"/>
             </gui>
         </input>
 

@@ -3,161 +3,201 @@
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a1</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a2</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a3</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a4</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a5</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a6</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a7</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a8</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a9</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a10</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a11</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a12</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a13</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a14</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a15</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a16</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a17</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a18</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a19</alternativeID>
+            <values>
             <value>
                 <real>1.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
     <alternativesValues>
         <alternativeValue>
             <alternativeID>a20</alternativeID>
+            <values>
             <value>
                 <real>0.0</real>
             </value>
+            </values>
         </alternativeValue>
     </alternativesValues>
 </ns2:XMCDA>

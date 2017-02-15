@@ -8,13 +8,6 @@
                 </value>
             </values>
         </parameter>
-        <parameter id="randomSeed"> <!--  optional parameter -->
-            <values>
-                <value>
-                    <integer>89991</integer>
-                </value>
-            </values>
-        </parameter>
     </programParameters>
 </xmcda:XMCDA>
 

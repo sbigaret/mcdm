@@ -21,10 +21,7 @@ public class P2clust {
     private List<Alternative> currentAlternatives;
     private PerformanceTable currentCriteria;
     private List<Alternative> centralProfiles;
-    /** The number of clusters */
     private int K;
-    /** The random seed to use, if supplied in parameters. If {@code null}, no random seed is used. */
-    private Integer randomSeed = null;
     private String prefix;
     private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
@@ -261,7 +258,7 @@ public class P2clust {
 
         CopyToCurrent();
 
-        // K has been extracted in Validate()
+        K = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
         AddRandomAlternative(K);
 
 
@@ -324,39 +321,10 @@ public class P2clust {
         if (critNum != critScalNum)
             return false;
 
-        /* Parameters: the number of clusters and the (optional) random seed */
-        if ( xmcda.programParametersList.size() < 1 )
+        int cNum = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
+        if (cNum >= altNum)
             return false;
 
-        // parameter: cluster
-        ProgramParameter<?> param_nbClusters = xmcda.programParametersList.get(0).getParameter("NumberOfClusters");
-        if (param_nbClusters==null || param_nbClusters.getValues().size()<1)
-            return false;
-        try
-        {
-            K = (Integer) (param_nbClusters.getValues().get(0)).getValue();
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
-        if (K >= altNum)
-            return false;
-
-        // parameter: random seed, if supplied
-        ProgramParameter<?> param_randomSeed = xmcda.programParametersList.get(0).getParameter("randomSeed");
-        if (param_randomSeed==null)
-            return true;  // it is optional
-        if (param_randomSeed.getValues().size()<1)
-            return false;
-        try
-        {
-            randomSeed = (Integer) (param_randomSeed.getValues().get(0)).getValue();
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
         return true;
     }
 
@@ -448,8 +416,6 @@ public class P2clust {
     private HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
     {
         Random engine = new Random();
-        if (this.randomSeed != null)
-            engine.setSeed(randomSeed);
 
         HashMap<Criterion, List<Double>> tempList = new HashMap<>();
         for (Criterion crt : xmcda.criteria)

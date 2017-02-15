@@ -3,31 +3,31 @@
     <alternativesSets>
         <alternativesSet id="0">
             <element>
-                <alternativeID>G</alternativeID>
+                <alternativeID>A</alternativeID>
+                <values/>
+            </element>
+            <element>
+                <alternativeID>C</alternativeID>
                 <values/>
             </element>
         </alternativesSet>
         <alternativesSet id="1">
             <element>
-                <alternativeID>C</alternativeID>
-                <values/>
-            </element>
-            <element>
-                <alternativeID>D</alternativeID>
-                <values/>
-            </element>
-            <element>
                 <alternativeID>E</alternativeID>
                 <values/>
             </element>
             <element>
-                <alternativeID>F</alternativeID>
+                <alternativeID>G</alternativeID>
                 <values/>
             </element>
         </alternativesSet>
         <alternativesSet id="2">
             <element>
-                <alternativeID>A</alternativeID>
+                <alternativeID>D</alternativeID>
+                <values/>
+            </element>
+            <element>
+                <alternativeID>F</alternativeID>
                 <values/>
             </element>
         </alternativesSet>

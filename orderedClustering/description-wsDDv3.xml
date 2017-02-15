@@ -4,8 +4,9 @@
 
     <program provider="PUT" name="orderedClustering" displayName="orderedClustering" version="1.0" />
     <documentation>
-        <description>OrderedClustering - clustering method using graphs and  flows</description>
-        <url>https://github.com/dohko93/mcdm/tree/master/OrderedClustering</url>
+        <description>OrderedClustering - clustering method using graphs and flows</description>
+        <contact><![CDATA[Mateusz Sarbinowski <mateusz.sarbinowski@student.put.edu.pl>]]></contact>
+        <url>https://github.com/dohko93/mcdm/tree/master/orderedClustering</url>
     </documentation>
     <parameters>
 

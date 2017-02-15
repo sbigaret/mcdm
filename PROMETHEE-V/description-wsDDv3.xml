@@ -5,7 +5,8 @@
     <program provider="PUT" name="PROMETHEE-V" displayName="PROMETHEE-V" version="1.0" />
     <documentation>
         <description>Promethee V - choose alternatives using linear constraints.</description>
-        <url>https://github.com/dohko93/mcdm/tree/master/PrometheeV</url>
+        <contact><![CDATA[Mateusz Sarbinowski <mateusz.sarbinowski@student.put.edu.pl>]]></contact>
+        <url>https://github.com/dohko93/mcdm/tree/master/PROMETHEE-V</url>
     </documentation>
     <parameters>
 

@@ -16,8 +16,6 @@ public class P3clust {
     private List<Alternative> centralProfiles;
     private int K;
     private int P;
-    /** The random seed to use, if supplied in parameters. If {@code null}, no random seed is used. */
-    private Integer randomSeed = null;
     private String prefix;
     private ProgramExecutionResult execResult = new ProgramExecutionResult();
 
@@ -267,7 +265,8 @@ public class P3clust {
         }
 
         CopyToCurrent();
-        // K, P and randomSeed are extracted in Validate()
+
+        GetParameters();
         GetRandomAlternative(K);
 
 
@@ -290,6 +289,22 @@ public class P3clust {
             execResult.addError("[LoadData] File doesn't exists");
         }
         return xmcdaV2;
+    }
+
+    private void GetParameters()
+    {
+        ProgramParameters paramList = (ProgramParameters)xmcda.programParametersList.get(0);
+
+        for (Object qv : paramList)
+        {
+            ProgramParameter qwe = (ProgramParameter)qv;
+            int val = (int)((QualifiedValue)qwe.getValues().get(0)).getValue();
+            if (qwe.id().equals("distance"))
+                P = val;
+            else
+                K = val;
+        }
+
     }
 
     protected boolean LoadData(String path, String tag)
@@ -336,52 +351,10 @@ public class P3clust {
         if (critNum != critScalNum)
             return false;
 
-        /* Parameters: the number of clusters, the distance and the (optional) random seed */
-        if ( xmcda.programParametersList.size() < 1 )
+        int cNum = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
+        if (cNum >= altNum || cNum <= 1)
             return false;
 
-        // parameter: cluster
-        ProgramParameter<?> param = xmcda.programParametersList.get(0).getParameter("NumberOfClusters");
-        if (param==null || param.getValues().size()<1)
-            return false;
-        try
-        {
-            K = (Integer) (param.getValues().get(0)).getValue();
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
-        if (K >= altNum || K <= 1)
-            return false;
-
-        // parameter: distance
-        param = xmcda.programParametersList.get(0).getParameter("distance");
-        if (param==null || param.getValues().size()<1)
-            return false;
-        try
-        {
-            P = (Integer) (param.getValues().get(0)).getValue();
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
-
-        // parameter: random seed, if supplied
-        param = xmcda.programParametersList.get(0).getParameter("randomSeed");
-        if (param==null)
-            return true;  // it is optional
-        if (param.getValues().size()<1)
-            return false;
-        try
-        {
-            randomSeed = (Integer) (param.getValues().get(0)).getValue();
-        }
-        catch (ClassCastException e)
-        {
-            return false;
-        }
         return true;
     }
 
@@ -391,8 +364,6 @@ public class P3clust {
 
         int currentNum = 0;
         Random rnd = new Random();
-        if (randomSeed != null)
-            rnd.setSeed(randomSeed);
         List<Alternative> chosenOnes = new ArrayList<>();
         while (currentNum < num)
         {

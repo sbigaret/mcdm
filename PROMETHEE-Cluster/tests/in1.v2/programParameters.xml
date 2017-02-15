@@ -11,11 +11,6 @@
                     <integer>1</integer>
                 </value>
         </parameter>
-        <parameter id="randomSeed"> <!--  optional parameter -->
-            <value>
-                <integer>89991</integer>
-            </value>
-        </parameter>
     </methodParameters>
 
 </ns2:XMCDA>

@@ -9,10 +9,10 @@
 		</alternativesSet>
 		<alternativesSet id="4">
 			<element>
-				<alternativeID>C</alternativeID>
+				<alternativeID>B</alternativeID>
 			</element>
 			<element>
-				<alternativeID>E</alternativeID>
+				<alternativeID>H</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="3">
@@ -25,15 +25,15 @@
 		</alternativesSet>
 		<alternativesSet id="2">
 			<element>
-				<alternativeID>B</alternativeID>
-			</element>
-			<element>
-				<alternativeID>H</alternativeID>
+				<alternativeID>G</alternativeID>
 			</element>
 		</alternativesSet>
 		<alternativesSet id="1">
 			<element>
-				<alternativeID>G</alternativeID>
+				<alternativeID>C</alternativeID>
+			</element>
+			<element>
+				<alternativeID>E</alternativeID>
 			</element>
 		</alternativesSet>
 	</alternativesSets>

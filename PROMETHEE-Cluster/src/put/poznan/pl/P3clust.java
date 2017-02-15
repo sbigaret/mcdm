@@ -1,6 +1,5 @@
 package put.poznan.pl;
 
-import javafx.util.Pair;
 import org.xmcda.*;
 import org.xmcda.converters.v2_v3.XMCDAConverter;
 import org.xmcda.parsers.xml.xmcda_v3.XMCDAParser;
@@ -210,27 +209,6 @@ public class P3clust {
         }
     }
 
-    private void UpdateCriteriaValue(List<Alternative> list, Alternative profile)
-    {
-        for (Criterion crt : xmcda.criteria)
-        {
-            Double partialRes = 0.0;
-            for (Alternative alt : list)
-            {
-                QualifiedValues qvals = (QualifiedValues)currentCriteria.get(alt, crt);
-                QualifiedValue qv = (QualifiedValue)qvals.get(0);
-                partialRes += (double)qv.getValue();
-            }
-            partialRes /= (double)list.size();
-
-
-
-            QualifiedValues vals = currentCriteria.get(profile, crt);
-            QualifiedValue crtVal = (QualifiedValue)vals.get(0);
-            crtVal.setValue(partialRes);
-        }
-    }
-
     private boolean Init(String inputPath, xmcdaVersion version)
     {
         if (version == xmcdaVersion.V3) {
@@ -430,33 +408,6 @@ public class P3clust {
 
     }
 
-    protected HashMap<Criterion, Pair<Double, Double>> GetBounds()
-    {
-        HashMap<Criterion, Pair<Double, Double>> bounds = new HashMap<>();
-        for(Criterion crt : xmcda.criteria)
-            bounds.put(crt, new Pair<>(Double.MIN_VALUE, Double.MAX_VALUE));
-
-        for (Criterion crt : xmcda.criteria)
-        {
-            double max = Double.MIN_VALUE;
-            double min = Double.MAX_VALUE;
-            for (Alternative alt : currentAlternatives)
-            {
-                LabelledQValues temp = xmcda.alternativesCriteriaValuesList.get(0).get(alt).get(crt);
-                double tempVal = (double)((QualifiedValue)temp.get(0)).getValue();
-
-                if(tempVal < min)
-                    min = tempVal;
-                if(tempVal > max)
-                    max = tempVal;
-            }
-
-            bounds.put(crt, new Pair<>(min, max));
-        }
-
-        return bounds;
-    }
-
     protected void SetAlternativesWithCriteria(List<Alternative> from)
     {
         for (int i = 0; i < K; i++)
@@ -478,27 +429,6 @@ public class P3clust {
             }
 
         }
-    }
-
-    protected HashMap<Criterion, List<Double>> getRandomInRange(HashMap<Criterion, Pair<Double, Double>>  bounds)
-    {
-        Random engine = new Random();
-
-        HashMap<Criterion, List<Double>> tempList = new HashMap<>();
-        for (Criterion crt : xmcda.criteria)
-            tempList.put(crt, new ArrayList<>());
-
-        for (int i = 0; i < K; i++)
-        {
-            for (Criterion crt : xmcda.criteria)
-            {
-                double randVal = bounds.get(crt).getValue() - bounds.get(crt).getKey();
-                randVal = engine.nextInt((int)randVal);
-                randVal += bounds.get(crt).getKey();
-                tempList.get(crt).add(randVal);
-            }
-        }
-        return tempList;
     }
 
     protected void CopyToCurrent()

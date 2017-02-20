@@ -5,7 +5,8 @@
     <program provider="PUT" name="PROMETHEE-II_orderedClustering" displayName="PROMETHEE-II_orderedClustering" version="1.0" />
     <documentation>
         <description>Clustering using Promethee II and k-means algorithm</description>
-        <url>https://github.com/dohko93/mcdm/tree/master/P2CLUST</url>
+        <contact><![CDATA[Mateusz Sarbinowski <mateusz.sarbinowski@student.put.edu.pl>]]></contact>
+        <url>https://github.com/dohko93/mcdm/tree/master/PROMETHEE-II_orderedClustering</url>
     </documentation>
     <parameters>
 

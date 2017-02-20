@@ -4,9 +4,9 @@
 
     <program provider="PUT" name="PROMETHEE-Cluster" displayName="PROMETHEE-Cluster" version="1.0" />
     <documentation>
-        <description>Clustering using Promethee Tri and k-means algorithm
-        </description>
-        <url>https://github.com/dohko93/mcdm/tree/master/P3CLUST</url>
+        <description>Clustering using Promethee Tri and k-means algorithm</description>
+        <contact><![CDATA[Mateusz Sarbinowski <mateusz.sarbinowski@student.put.edu.pl>]]></contact>
+        <url>https://github.com/dohko93/mcdm/tree/master/PROMETHEE-Cluster</url>
     </documentation>
     <parameters>
 

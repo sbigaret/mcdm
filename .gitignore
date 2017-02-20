@@ -10,3 +10,6 @@
 
 /P3CLUST/out/*
 /P3CLUST/.idea/*
+orderedClustering/\.idea/
+
+\.idea/

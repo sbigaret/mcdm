@@ -229,7 +229,7 @@ public class PrometheeV {
             }
             catch (Throwable thr)
             {
-                execResult.addError("[PrepareData] Making linear problem error.");
+                execResult.addError("[PrepareData] Making linear problem error. Number of flows and alternatives are not equal.");
                 return null;
             }
         }
@@ -249,8 +249,10 @@ public class PrometheeV {
 
             ListIterator<LinearConstraint> var = constraints.listIterator();
 
-            if (!var.hasNext())
-                throw(new InputMismatchException("0 constraints"));
+            if (!var.hasNext()) {
+                execResult.addError("[PrepareData] Invalid number of caonstraints - 0");
+                return false;
+            }
 
             while (var.hasNext()) {
                 LinearConstraint linearConstr = var.next();

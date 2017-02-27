@@ -157,12 +157,12 @@ public class OrderedClustering {
     {
         try
         {
-            clustersNum= (Integer) xmcda.programParametersList.get(0).get(0).getValues().get(0).getValue();
+            clustersNum= (Integer) xmcda.programParametersList.get(0).getParameter("NumberOfClusters").getValues().get(0).getValue();
         }
         catch (Throwable thr)
         {
 
-            execResult.addError("[PrepareData] Parameters loading error.");
+            execResult.addError("[PrepareData] Parameter loading error.");
             return false;
         }
         return true;
@@ -224,19 +224,19 @@ public class OrderedClustering {
     {
         if (alternatives.size() == 0)
         {
-            execResult.addError("[Validate] Number of alternatives is invalid.");
+            execResult.addError("[Validate] Number of alternatives is invalid (= 0).");
             return false;
         }
 
         if (clustersNum < 2)
         {
-            execResult.addError("[Validate] Number of clusters is invalid.");
+            execResult.addError("[Validate] Number of clusters is invalid (< 2).");
             return false;
         }
 
         if (matrix.size() != alternatives.size())
         {
-            execResult.addWarning("[Validate] Number of clusters is invalid.");
+            execResult.addWarning("[Validate] Number of clusters is invalid (equal to number of alternatives).");
         }
 
         return true;

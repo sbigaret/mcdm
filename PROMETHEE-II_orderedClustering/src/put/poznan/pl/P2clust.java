@@ -217,8 +217,8 @@ public class P2clust {
             String[] filenames = new String[]{
                     "alternatives.xml",
                     "criteria.xml",
-                    "criteria.xml",
-                    "criteria.xml",
+                    "criteriaScales.xml",
+                    "criteriaThresholds.xml",
                     "criteriaValues.xml",
                     "programParameters.xml",
                     "performanceTable.xml"

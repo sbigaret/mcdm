@@ -66,7 +66,7 @@ public class P2clust {
                 }
                 catch (Exception exc)
                 {
-                    execResult.addError("[PrometheeII] Promethee II engine error");
+                    execResult.addError("[PrometheeII] Promethee II engine error.");
                     return false;
                 }
             }
@@ -276,7 +276,7 @@ public class P2clust {
             try {
                 xmcdaV2.getProjectReferenceOrMethodMessagesOrMethodParameters().addAll(org.xmcda.parsers.xml.xmcda_v2.XMCDAParser.readXMCDA(file).getProjectReferenceOrMethodMessagesOrMethodParameters());
             } catch (Throwable thr) {
-                execResult.addError("[LoadV2] Load data error.");
+                execResult.addError("[LoadV2] Load data error at " + tag + " tag.");
             }
         }
         return xmcdaV2;
@@ -297,7 +297,7 @@ public class P2clust {
         }
         catch (Throwable thr)
         {
-            execResult.addError("[LoadV3] Load data error");
+            execResult.addError("[LoadV3] Load data error at " + tag + " tag.");
             return false;
         }
     }
@@ -308,40 +308,54 @@ public class P2clust {
         int critThrNum = xmcda.criteriaThresholdsList.size();
         if (critThrNum > 0)
             critThrNum = xmcda.criteriaThresholdsList.get(0).size();
-        if (critNum != critThrNum)
+        if (critNum != critThrNum) {
+            execResult.addError("Number of criterias is not equal to number of criteria thresholds.");
             return false;
+        }
 
         int altNum = xmcda.alternatives.size();
         int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
             altCritValNum = xmcda.performanceTablesList.get(0).size();
-        if (altCritValNum != altNum*critNum)
+        if (altCritValNum != altNum*critNum) {
+            execResult.addError("Number of alternatives is not equal to number of alternatives performance.");
             return false;
+        }
 
         int critScalNum = xmcda.criteriaScalesList.size();
         if (critScalNum > 0)
             critScalNum = xmcda.criteriaScalesList.get(0).size();
-        if (critNum != critScalNum)
+        if (critNum != critScalNum) {
+            execResult.addError("Number of criteria scales is not equal to number of criterias.");
             return false;
+        }
 
         /* Parameters: the number of clusters and the (optional) random seed */
-        if ( xmcda.programParametersList.size() < 1 )
+        if ( xmcda.programParametersList.size() < 1 ) {
+            execResult.addError("Invalid number of input parameters, perhaps you forgot to set up number of clusters.");
             return false;
+        }
 
         // parameter: cluster
         ProgramParameter<?> param_nbClusters = xmcda.programParametersList.get(0).getParameter("NumberOfClusters");
-        if (param_nbClusters==null || param_nbClusters.getValues().size()<1)
+        if (param_nbClusters==null || param_nbClusters.getValues().size()<1) {
+            execResult.addError("Invalid number of clusters.");
             return false;
+        }
+
         try
         {
             K = (Integer) (param_nbClusters.getValues().get(0)).getValue();
         }
         catch (ClassCastException e)
         {
+            execResult.addError("Invalid number of clusters.");
             return false;
         }
-        if (K >= altNum)
+        if (K >= altNum) {
+            execResult.addError("Invalid number of clusters.");
             return false;
+        }
 
         // parameter: random seed, if supplied
         ProgramParameter<?> param_randomSeed = xmcda.programParametersList.get(0).getParameter("randomSeed");
@@ -416,7 +430,7 @@ public class P2clust {
                         max = tempVal;
                 }
                 catch(Throwable thr){
-                    execResult.addError("[Compute] Computation error");
+                    execResult.addError("[Compute] Computation error. Can't compute min and max bound of criterias values.");
                     System.out.print(thr.getMessage());
                 }
             }

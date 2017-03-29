@@ -55,6 +55,7 @@
                 <value>
                     <integer>%2</integer>
                 </value>
+                <defaultValue>1</defaultValue>
         </parameter>
     </methodParameters>
 

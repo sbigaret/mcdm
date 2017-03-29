@@ -34,7 +34,8 @@ public class P3clust {
     public boolean Calculate(xmcdaVersion version, String inputPath, String outputPath)
     {
         if (!Init(inputPath, version)) {
-            execResult.addError("[InitData] Error while initialize data");
+            if (!execResult.isError())
+                execResult.addError("[InitData] Error while initialize data");
             return false;
         }
 
@@ -256,6 +257,8 @@ public class P3clust {
         }
         try
         {
+            if (!GetParameters())
+                return false;
             if (!Validate())
                 return false;
         }
@@ -266,10 +269,6 @@ public class P3clust {
         }
 
         CopyToCurrent();
-
-        if (!GetParameters())
-            return false;
-
         GetRandomAlternative(NumberOfClustersParam);
 
 
@@ -372,25 +371,32 @@ public class P3clust {
         int critThrNum = xmcda.criteriaThresholdsList.size();
         if (critThrNum > 0)
             critThrNum = xmcda.criteriaThresholdsList.get(0).size();
-        if (critNum != critThrNum)
+        if (critNum != critThrNum) {
+            execResult.addError("[InitData] Number of criteria is different with number of criteria thresholds.");
             return false;
+        }
 
         int altNum = xmcda.alternatives.size();
         int altCritValNum = xmcda.performanceTablesList.size();
         if (altCritValNum > 0)
             altCritValNum = xmcda.performanceTablesList.get(0).size();
-        if (altCritValNum != altNum*critNum)
+        if (altCritValNum != altNum*critNum) {
+            execResult.addError("[InitData] Number of alternatives is different with number of alternatives in performance table.");
             return false;
+        }
 
         int critScalNum = xmcda.criteriaScalesList.size();
         if (critScalNum > 0)
             critScalNum = xmcda.criteriaScalesList.get(0).size();
-        if (critNum != critScalNum)
+        if (critNum != critScalNum) {
+            execResult.addError("[InitData] Number of criteria is different with number of criteria scales.");
             return false;
+        }
 
-        int cNum = (int)((QualifiedValue)xmcda.programParametersList.get(0).get(0).getValues().get(0)).getValue();
-        if (cNum >= altNum || cNum <= 1)
+        if (NumberOfClustersParam >= altNum || NumberOfClustersParam <= 1){
+            execResult.addError("[InitData] Invalid number of clusters.");
             return false;
+        }
 
         return true;
     }

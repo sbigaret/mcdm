@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2017/XMCDA-2.2.2">
+<ns2:XMCDA xmlns:ns2="http://www.decision-deck.org/2012/XMCDA-2.2.1">
     <methodParameters>
         <parameter id="NumberOfClusters">
             <value>
@@ -10,6 +10,11 @@
                 <value>
                     <integer>1</integer>
                 </value>
+        </parameter>
+        <parameter id="randomSeed"> <!--  optional parameter -->
+            <value>
+                <integer>89991</integer>
+            </value>
         </parameter>
     </methodParameters>
 

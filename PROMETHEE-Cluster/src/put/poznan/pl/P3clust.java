@@ -14,10 +14,11 @@ public class P3clust {
     private List<Alternative> currentAlternatives;
     private PerformanceTable currentCriteria;
     private List<Alternative> centralProfiles;
-    private int K;
-    private int P;
+    private int NumberOfClustersParam;
+    private int DistanceParam;
     private String prefix;
     private ProgramExecutionResult execResult = new ProgramExecutionResult();
+    private Integer randomSeed = null;
 
     public enum xmcdaVersion {V2, V3};
 
@@ -37,7 +38,7 @@ public class P3clust {
             return false;
         }
 
-        PrometheeTri engine = new PrometheeTri(xmcda, P);
+        PrometheeTri engine = new PrometheeTri(xmcda, DistanceParam);
         engine.SetCriteria(currentCriteria);
 
         LinkedHashMap<Alternative, List<Alternative>> lastOrder = new LinkedHashMap<>();
@@ -83,7 +84,7 @@ public class P3clust {
 
     private void SaveData(LinkedHashMap<Alternative, List<Alternative>> data, String path, xmcdaVersion version)
     {
-        for(int i = 0; i < K; i++)
+        for(int i = 0; i < NumberOfClustersParam; i++)
         {
             AlternativesSet set = new AlternativesSet<String>();
             List<Alternative> temp = data.get(centralProfiles.get(i));
@@ -91,7 +92,7 @@ public class P3clust {
             for (Alternative item : temp) {
                 set.put(item, null);
             }
-            set.setId(String.valueOf(K-i));
+            set.setId(String.valueOf(NumberOfClustersParam -i));
             xmcda.alternativesSets.add(set);
         }
 
@@ -266,8 +267,10 @@ public class P3clust {
 
         CopyToCurrent();
 
-        GetParameters();
-        GetRandomAlternative(K);
+        if (!GetParameters())
+            return false;
+
+        GetRandomAlternative(NumberOfClustersParam);
 
 
         return true;
@@ -291,20 +294,54 @@ public class P3clust {
         return xmcdaV2;
     }
 
-    private void GetParameters()
+    private boolean GetParameters()
     {
-        ProgramParameters paramList = (ProgramParameters)xmcda.programParametersList.get(0);
-
-        for (Object qv : paramList)
+        // parameter: random seed, if supplied
+        ProgramParameter<?> param = xmcda.programParametersList.get(0).getParameter("NumberOfClusters");
+        if (param==null)
+            return false;
+        if (param.getValues().size()<1)
+            return false;
+        try
         {
-            ProgramParameter qwe = (ProgramParameter)qv;
-            int val = (int)((QualifiedValue)qwe.getValues().get(0)).getValue();
-            if (qwe.id().equals("distance"))
-                P = val;
-            else
-                K = val;
+            NumberOfClustersParam = (Integer) (param.getValues().get(0)).getValue();
+        }
+        catch (ClassCastException e)
+        {
+            return false;
         }
 
+
+        // parameter: random seed, if supplied
+        param = xmcda.programParametersList.get(0).getParameter("distance");
+        if (param==null)
+            return false;
+        if (param.getValues().size()<1)
+            return false;
+        try
+        {
+            DistanceParam = (Integer) (param.getValues().get(0)).getValue();
+        }
+        catch (ClassCastException e)
+        {
+            return false;
+        }
+
+        // parameter: random seed, if supplied
+        param = xmcda.programParametersList.get(0).getParameter("randomSeed");
+        if (param==null)
+            return true;  // it is optional
+        if (param.getValues().size()<1)
+            return false;
+        try
+        {
+            randomSeed = (Integer) (param.getValues().get(0)).getValue();
+        }
+        catch (ClassCastException e)
+        {
+            return false;
+        }
+        return true;
     }
 
     protected boolean LoadData(String path, String tag)
@@ -361,9 +398,9 @@ public class P3clust {
     protected void GetRandomAlternative(int num)
     {
 
-
         int currentNum = 0;
         Random rnd = new Random();
+        rnd.setSeed(randomSeed);
         List<Alternative> chosenOnes = new ArrayList<>();
         while (currentNum < num)
         {
@@ -381,7 +418,7 @@ public class P3clust {
 
     protected void SetAlternativesWithCriteria(List<Alternative> from)
     {
-        for (int i = 0; i < K; i++)
+        for (int i = 0; i < NumberOfClustersParam; i++)
         {
             Alternative alt = new Alternative(prefix.concat(Integer.toString(i)));
             centralProfiles.add(alt);

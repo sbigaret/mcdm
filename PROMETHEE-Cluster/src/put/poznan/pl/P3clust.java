@@ -406,7 +406,8 @@ public class P3clust {
 
         int currentNum = 0;
         Random rnd = new Random();
-        rnd.setSeed(randomSeed);
+        if (randomSeed != null)
+            rnd.setSeed(randomSeed);
         List<Alternative> chosenOnes = new ArrayList<>();
         while (currentNum < num)
         {

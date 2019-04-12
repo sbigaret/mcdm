@@ -43,32 +43,65 @@
                     Second parameter specifies parameter P of deviation used in Promethee TRI.
                     In this case deviation is weighted generalised mean of difference between flows on criteria, where P is used exponent.</description>
             </documentation>
-            <xmcda tag="programParameters"><![CDATA[
-                
-            <programParameters>
-        <parameter id="NumberOfClusters">
-            <value>
-                <integer>%1</integer>
-            </value>
-        </parameter>
-        <parameter id="distance">
-                <value>
-                    <integer>%2</integer>
-                </value>
-                <defaultValue>1</defaultValue>
-        </parameter>
-    </programParameters>
+            <xmcda tag="methodParameters"><![CDATA[
+    <methodParameters>
+        %1
+        %2
+<!-- %3 -->
+        %4
+    </methodParameters>
 
-        
+
             ]]></xmcda>
             <gui status="preferGUI">
                 <entry id="%1" type="int" displayName="NumberOfClusters">
+                    <xmcda tag="parameter"><![CDATA[
+        <parameter id="NumberOfClusters">
+            <values>
+                <value>
+                    <integer>%1</integer>
+                </value>
+            </values>
+        </parameter>
+]]></xmcda>
                     <constraint>
                         <description>A integer value greater than 1 and lower than the number of alternatives</description>
-                        <code><![CDATA[ %1 >= 0 ]]></code>
+                        <code><![CDATA[ %1 > 1 ]]></code>
                     </constraint>
                 </entry>
-                <entry id="%2" type="int" displayName="distance" />
+                <entry id="%2" type="int" displayName="distance">
+                    <xmcda tag="parameter"><![CDATA[
+        <parameter id="distance">
+            <values>
+                <value>
+                    <integer>%2</integer>
+                </value>
+            </values>
+        </parameter>
+]]></xmcda>
+                <defaultValue>1</defaultValue>
+                </entry>
+                <entry id="%3" type="boolean" displayName="Use random seed">
+                    <defaultValue>false</defaultValue>
+                </entry>
+                <entry id="%4" type="int" displayName="randomSeed">
+                    <documentation />
+                    <xmcda tag="parameter"><![CDATA[
+        <parameter id="randomSeed">
+            <value>
+                <integer>%4</integer>
+            </value>
+        </parameter>
+]]></xmcda>
+<!--
+                    <constraint>
+                        <description></description>
+                        <code><![CDATA[ %4 >= 0 ]]></code>
+                    </constraint>
+-->
+                    <defaultValue/>
+                    <dependency><![CDATA[(%3:value="1")]]></dependency>
+                </entry>
             </gui>
         </input>
 

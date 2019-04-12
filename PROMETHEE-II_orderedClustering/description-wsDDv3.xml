@@ -45,9 +45,11 @@
                 
             <programParameters>
         <parameter id="NumberOfClusters">
-            <value>
-                <integer>%1</integer>
-            </value>
+            <values>
+                <value>
+                    <integer>%1</integer>
+                </value>
+            </values>
         </parameter>
     </programParameters>
 

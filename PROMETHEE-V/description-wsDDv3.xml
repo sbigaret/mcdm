@@ -15,18 +15,18 @@
             <xmcda tag="alternatives" />
         </input>
 
-        <input id="input3" name="flows" displayName="flows" isoptional="0">
-            <documentation>
-                <description>Net flows score for each alternative.</description>
-            </documentation>
-            <xmcda tag="alternativesValues" />
-        </input>
-
         <input id="input2" name="constraints" displayName="constraints" isoptional="0">
             <documentation>
                 <description>Linear constraints.</description>
             </documentation>
             <xmcda tag="alternativesLinearConstraints" />
+        </input>
+
+        <input id="input3" name="flows" displayName="flows" isoptional="0">
+            <documentation>
+                <description>Net flows score for each alternative.</description>
+            </documentation>
+            <xmcda tag="alternativesValues" />
         </input>
 
         <output id="output1" name="result" displayName="chosenAlternatives">

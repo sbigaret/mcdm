@@ -58,7 +58,7 @@
                     <xmcda tag="parameter"><![CDATA[
         <parameter id="NumberOfClusters">
             <value>
-                <integer>%1</integer>
+                <integer>%s</integer>
             </value>
         </parameter>
 ]]></xmcda>
@@ -70,9 +70,9 @@
                 <entry id="%2" type="int" displayName="distance">
                     <xmcda tag="parameter"><![CDATA[
         <parameter id="distance">
-                <value>
-                    <integer>%2</integer>
-                </value>
+            <value>
+                <integer>%s</integer>
+            </value>
         </parameter>
 ]]></xmcda>
                 <defaultValue>1</defaultValue>
@@ -85,7 +85,7 @@
                     <xmcda tag="parameter"><![CDATA[
         <parameter id="randomSeed">
             <value>
-                <integer>%4</integer>
+                <integer>%s</integer>
             </value>
         </parameter>
 ]]></xmcda>

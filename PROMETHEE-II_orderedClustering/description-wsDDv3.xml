@@ -36,13 +36,27 @@
             <xmcda tag="criteriaValues" />
         </input>
 
+        <input id="input6" name="criteriaScales" displayName="criteria scales" isoptional="0">
+            <documentation>
+                <description></description>
+            </documentation>
+            <xmcda tag="criteriaScales" />
+        </input>
+
+        <input id="input7" name="criteriaThresholds" displayName="criteria thresholds" isoptional="0">
+            <documentation>
+                <description></description>
+            </documentation>
+            <xmcda tag="criteriaThresholds" />
+        </input>
+
         <input id="input5" name="programParameters" displayName="programParameters" isoptional="0">
             <documentation>
                 <description>First parameter specifies number of output clusters K.
                     Where K is integer greater than 1 and less than number of alternatives.</description>
             </documentation>
             <xmcda tag="programParameters"><![CDATA[
-                
+
             <programParameters>
         <parameter id="NumberOfClusters">
             <values>
@@ -53,10 +67,10 @@
         </parameter>
     </programParameters>
 
-        
+
             ]]></xmcda>
             <gui status="preferGUI">
-                <entry id="%1" type="int" displayName="NumberOfClusters">
+                <entry id="%1" type="int" displayName="Number of clusters">
                     <constraint>
                         <description>A integer value greater than 1 and lower than the number of alternatives</description>
                         <code><![CDATA[ %1 > 1 ]]></code>

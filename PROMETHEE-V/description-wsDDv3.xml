@@ -29,7 +29,7 @@
             <xmcda tag="alternativesValues" />
         </input>
 
-        <output id="output1" name="result" displayName="chosenAlternatives">
+        <output id="output1" name="result" displayName="chosen alternatives">
             <documentation>
                 <description>List of alternatives values where alternatives inside optimal set have value equal to 1, rest are outside optimal set.</description>
             </documentation>

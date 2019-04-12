@@ -22,7 +22,7 @@
             <xmcda tag="alternatives" />
         </input>
 
-        <input id="input4" name="performanceTable" displayName="performanceTable" isoptional="0">
+        <input id="input4" name="performanceTable" displayName="performance table" isoptional="0">
             <documentation>
                 <description>The performance of alternatives.</description>
             </documentation>
@@ -36,7 +36,7 @@
             <xmcda tag="criteriaValues" />
         </input>
 
-        <input id="input5" name="programParameters" displayName="programParameters" isoptional="0">
+        <input id="input5" name="programParameters" displayName="parameters" isoptional="0">
             <documentation>
                 <description>First parameter specifies number of output clusters K.
                     Where K is integer greater than 1 and less than number of alternatives.
@@ -54,7 +54,7 @@
 
             ]]></xmcda>
             <gui status="preferGUI">
-                <entry id="%1" type="int" displayName="NumberOfClusters">
+                <entry id="%1" type="int" displayName="number of clusters">
                     <xmcda tag="parameter"><![CDATA[
         <parameter id="NumberOfClusters">
             <value>
@@ -80,7 +80,7 @@
                 <entry id="%3" type="boolean" displayName="Use random seed">
                     <defaultValue>false</defaultValue>
                 </entry>
-                <entry id="%4" type="int" displayName="randomSeed">
+                <entry id="%4" type="int" displayName="random seed">
                     <documentation />
                     <xmcda tag="parameter"><![CDATA[
         <parameter id="randomSeed">
@@ -101,7 +101,7 @@
             </gui>
         </input>
 
-        <output id="output1" name="result" displayName="alternativesSets">
+        <output id="output1" name="result" displayName="alternatives sets">
             <documentation>
                 <description>List of alternatives sets where each set representing one cluster.</description>
             </documentation>

@@ -3,5 +3,10 @@
 
 <programExecutionResult>
 		<status>ok</status>
+                <messages>
+                        <message level="info">
+                                <text>Success</text>
+                        </message>
+                </messages>
 	</programExecutionResult>
 </xmcda:XMCDA>
